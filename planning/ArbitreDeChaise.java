@@ -19,7 +19,11 @@ public class ArbitreDeChaise extends Arbitre {
    public MatchDouble[] matchsDoubleArbitres;
    /** @pdRoleInfo migr=no name=MatchSimple assc=association11 mult=0..2 side=A */
    public MatchSimple[] matchsSimplesAbritres;
-   
+
+   public ArbitreDeChaise(int id, String nom, String pre, String nat, int type) {
+      super(id, nom, pre, nat, type);
+   }
+
    /** @pdOid 94a8af1f-c523-428c-8c7f-fa9921c3f455 */
    public int getNbMatchSimple() {
       return nbMatchSimple;

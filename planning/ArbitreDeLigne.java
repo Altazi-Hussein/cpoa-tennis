@@ -14,8 +14,12 @@ public class ArbitreDeLigne extends Arbitre {
    public java.util.Collection<MatchDouble> lesMatchs;
    /** @pdRoleInfo migr=no name=MatchSimple assc=association10 mult=0..* side=A */
    public MatchSimple[] matchsPartiucipes;
-   
-   
+
+   public ArbitreDeLigne(int id, String nom, String pre, String nat, int type) {
+      super(id, nom, pre, nat, type);
+   }
+
+
    /** @pdGenerated default getter */
    public java.util.Collection<MatchDouble> getLesMatchs() {
       if (lesMatchs == null)
