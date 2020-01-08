@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package model.interfaces;
 
 import java.sql.SQLException;
 import java.util.List;
-import planning.Joueur;
+import planning.Arbitre;
 /**
  *
  * @author 91806052
  */
-public interface InterfaceJoueurDAO {
-    public List<Joueur> findAll() throws SQLException;
-    public Joueur findById(int noJoueur) throws SQLException;
-    public int create (Joueur j) throws SQLException;
+public interface InterfaceArbitreDAO {
+    public List<Arbitre> findAll() throws SQLException;
+    public Arbitre findbyId(int noArbitre) throws SQLException;
+    public int create (Arbitre j) throws SQLException;
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package model.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,34 +12,37 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+
+import model.interfaces.InterfaceArbitreDAO;
+import planning.Arbitre;
 
 /**
  *
  * @author p1806052
  */
-public class DbJoueurDAO implements InterfaceJoueurDAO {
+public class ArbitreDAO implements InterfaceArbitreDAO {
 
     private final Connection connexionBD;
 
-    public DbTennisDAO(Connection c) {
+    public ArbitreDAO(Connection c) {
         this.connexionBD = c;
     }
 
-    @Override
-    public Joueur findById(int noJoueur) throws SQLException{
+    public Arbitre findbyId(int noArbitre) throws SQLException{
         PreparedStatement pst = null;
         ResultSet rset;
-        Joueur m = null;
+        Arbitre j = null;
         try {
-            pst = connexionBD.prepareStatement("SELECT * FROM Joueur WHERE idJoueur=?");
-            pst.setInt(1, noJoueur);
+            pst = connexionBD.prepareStatement("SELECT * FROM Arbitre WHERE idArbitre=?");
+            pst.setInt(1, noArbitre);
             rset = pst.executeQuery();
             if (rset.next()) {
-                j = new Joueur(rset.getInt(1), rset.getString(2), rset.getString(3) ,rset.getString(4));
+                j = new Arbitre(rset.getInt(1), rset.getString(2), rset.getString(3) ,rset.getString(4), rset.getInt(5));
             }
-            else 
+            else
             {
-                throw new SQLException ("Contact " + noJoueur + " inconnu");
+                throw new SQLException ("Contact " + noArbitre + " inconnu");
             }
 
         } catch (SQLException exc) {
@@ -58,15 +61,15 @@ public class DbJoueurDAO implements InterfaceJoueurDAO {
     }
 
     @Override
-    public int create (Joueur j) throws SQLException {
+    public int create (Arbitre j) throws SQLException {
         int rowCount;
         PreparedStatement pst = null;
         try {
-            pst = connexionBD.prepareStatement("INSERT INTO Joueur VALUES (?,?,?,?)");
-            pst.setInt(1, j.getIdJoueur());
-            pst.setString(2, j.getNomJoueur());
-            pst.setString(3, j.getPrenomJoueur());
-            pst.setString(4, j.getNationaliteJoueur());
+            pst = connexionBD.prepareStatement("INSERT INTO Arbitre VALUES (?,?,?,?)");
+            pst.setInt(1, j.getIdArbitre());
+            pst.setString(2, j.getNomArbitre());
+            pst.setString(3, j.getPrenomArbitre());
+            pst.setString(4, j.getNationaliteArbitre());
             rowCount = pst.executeUpdate();
 
         } catch (SQLException exc) {
@@ -87,28 +90,30 @@ public class DbJoueurDAO implements InterfaceJoueurDAO {
     }
 
     @Override
-    public List<Joueur> findAll() throws SQLException {
+    public List<Arbitre> findAll() throws SQLException {
         Statement st = connexionBD.createStatement() ;
-        ArrayList<Joueur> lesJoueur = new ArrayList<Joueur>();
+        ArrayList<Arbitre> lesArbitre = new ArrayList<Arbitre>();
         try{
-            ResultSet rs = st.executeQuery("SELECT * from Joueur");
+            ResultSet rs = st.executeQuery("SELECT * from Arbitre");
             int no;
             String nom;
             String pre;
             String nat;
+            int type;
             while (rs.next()){
-                noJoueur = rs.getInt(1);
+                no = rs.getInt(1);
                 nom = rs.getString(2);
                 pre = rs.getString(3);
                 nat = rs.getString(4);
-                Joueur j = new Joueur(no, nom, pre, nat);
-                lesJoueur.add(j);
-            }  
+                type = rs.getInt(5);
+                Arbitre j = new Arbitre(no, nom, pre, nat, type);
+                lesArbitre.add(j);
+            }
         }catch (SQLException exc) {
             throw exc;
         }
-        return lesJoueur;
-        
+        return lesArbitre;
+
     }
 
 }
