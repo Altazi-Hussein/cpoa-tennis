@@ -21,6 +21,17 @@
                 margin: 0;
             }
 
+            a
+            {
+                text-decoration:none; 
+                color: white;
+                font-size: 2vh;
+                font-weight:bold;
+                text-align:center;
+                color:black;
+                text-transform: uppercase
+            }
+
             .full-height {
                 height: 100vh;
             }
@@ -62,34 +73,25 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
-            /* div
-            {
-                opacity: 0.8;
-            } */
-            div:hover
-            {
-                opacity:1
-            }
         </style>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
             
-                <a href="#" style="text-decoration:none; 
-                color: white; font-size: 30px;
-                 text-align:center;color:red;font-weight:bold;">
-                    <div style="background: url('../public/images/evenement.jpg'); height: 40vh; width: 20vw; background-size:300%; background-position: center;">
+            <div class="" style="background: #384d9b; padding:15px;">
+                <a href="#" style="line-height: 10vh;">
+                    <div style="background: url('../public/images/evenement.jpg'); height: 10vh; width: 20vw; background-size:300%; background-position: center;">
                     Découvrir l'événement
                     </div>
                 </a>
 
-                <a href="#" style="text-decoration:none; 
-                color: white; font-size: 30px;
-                 text-align:center;color:red;font-weight:bold;">
-                    <div style="background: url('../public/images/billets.jpg'); height: 40vh; width: 20vw; background-size:300%; background-position: center;">
+                <a href="#" style="line-height: 20vh;">
+                    <div style="background: url('../public/images/billets.jpg');height: 20vh;width: 20vw; background-size:300%; background-position: center;">
                     Achetez vos billets
                     </div>
                 </a>
+
+            </div>
             @if (Route::has('login'))
                     @auth
                         <a href="{{ url('/home') }}" style="">Home</a>
@@ -100,7 +102,7 @@
                             <a href="{{ route('register') }}">Register</a>
                         @endif
                     @endauth
-            @endif
+                @endif
                 {{-- <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
