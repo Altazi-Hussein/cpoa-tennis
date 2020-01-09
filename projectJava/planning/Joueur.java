@@ -18,11 +18,38 @@ public class Joueur {
    private String nomJoueur;
    /** @pdOid 99c98e99-78f6-4acb-a4ac-c4031052d2e1 */
    private String prenomJoueur;
+
+    public String getNationaliteJoueur() {
+        return nationaliteJoueur;
+    }
+
+    public String getNomJoueur() {
+        return nomJoueur;
+    }
+
+    public String getPrenomJoueur() {
+        return prenomJoueur;
+    }
+
+    public void setNationaliteJoueur(String nationaliteJoueur) {
+        this.nationaliteJoueur = nationaliteJoueur;
+    }
+
+    public void setNomJoueur(String nomJoueur) {
+        this.nomJoueur = nomJoueur;
+    }
+
+    public void setPrenomJoueur(String prenomJoueur) {
+        this.prenomJoueur = prenomJoueur;
+    }
    
-   /** @pdRoleInfo migr=no name=MatchSimple assc=association8 mult=2 side=A */
-   public MatchSimple[] lesMatchsSimplesJoues;
-   /** @pdRoleInfo migr=no name=Equipe assc=association13 mult=0..1 side=A */
-   public Equipe lesJoueur;
+
+    public Joueur(int no, String nom, String pre, String nat) {
+        this.idJoueur = no;
+        this.nomJoueur = nom;
+        this.prenomJoueur = pre;
+        this.nationaliteJoueur = nat;
+    }
    
    /** @pdOid 69b08fd5-5b43-4e35-90f6-081480f3c4c9 */
    public int getIdJoueur() {
