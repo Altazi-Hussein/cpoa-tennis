@@ -7,7 +7,6 @@ package tennis;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,10 +31,8 @@ public class Tennis {
             List<Joueur> lesJoueurs = joueurDAO.findAll();
             System.out.println(lesJoueurs.get(0).getIdJoueur());
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+        e.printStackTrace();
         }
     }
     
