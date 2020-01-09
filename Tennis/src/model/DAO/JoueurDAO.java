@@ -23,10 +23,10 @@ import planning.Joueur;
  */
 public class JoueurDAO implements InterfaceJoueurDAO {
 
-    private final Connection connexionBD;
+    private static Connection connexionBD;
 
     public JoueurDAO(Connection c) {
-        this.connexionBD = c;
+        JoueurDAO.connexionBD = c;
     }
 
     @Override
@@ -93,8 +93,9 @@ public class JoueurDAO implements InterfaceJoueurDAO {
     @Override
     public List<Joueur> findAll() throws SQLException {
         Statement st = connexionBD.createStatement() ;
-        ArrayList<Joueur> lesJoueur = new ArrayList<Joueur>();
+        ArrayList<Joueur> lesJoueur = null;
         try{
+            lesJoueur = new ArrayList<Joueur>();
             ResultSet rs = st.executeQuery("SELECT * from Joueur");
             int no;
             String nom;
