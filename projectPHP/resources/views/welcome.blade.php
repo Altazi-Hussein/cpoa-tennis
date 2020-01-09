@@ -12,8 +12,9 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
-                color: #636b6f;
+                background: url('../public/images/background.jpg');
+                background-size: cover;
+                color: black;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
@@ -61,14 +62,37 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            /* div
+            {
+                opacity: 0.8;
+            } */
+            div:hover
+            {
+                opacity:1
+            }
         </style>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            
+                <a href="#" style="text-decoration:none; 
+                color: white; font-size: 30px;
+                 text-align:center;color:red;font-weight:bold;">
+                    <div style="background: url('../public/images/evenement.jpg'); height: 40vh; width: 20vw; background-size:300%; background-position: center;">
+                    Découvrir l'événement
+                    </div>
+                </a>
+
+                <a href="#" style="text-decoration:none; 
+                color: white; font-size: 30px;
+                 text-align:center;color:red;font-weight:bold;">
+                    <div style="background: url('../public/images/billets.jpg'); height: 40vh; width: 20vw; background-size:300%; background-position: center;">
+                    Achetez vos billets
+                    </div>
+                </a>
             @if (Route::has('login'))
-                <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}" style="">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -76,15 +100,8 @@
                             <a href="{{ route('register') }}">Register</a>
                         @endif
                     @endauth
-                </div>
             @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
+                {{-- <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://laravel-news.com">News</a>
@@ -93,7 +110,7 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://vapor.laravel.com">Vapor</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </body>
