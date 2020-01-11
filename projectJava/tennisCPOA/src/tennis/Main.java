@@ -9,10 +9,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.ConnexionBD;
 import model.DAO.JoueurDAO;
+import model.MonMariaDbDataSource;
 import planning.Joueur;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,14 +26,15 @@ public class Main {
     public static void main(String[] args){
         try {
             // TODO code application logic here
-            final Connection conn = ConnexionBD.getConnection();
-            JoueurDAO joueurDAO = new JoueurDAO(conn);
+            MonMariaDbDataSource dataSourceDAO = MonMariaDbDataSource.getMdbDataSource();
+            Connection connexionBD = dataSourceDAO.getConnection();
+            JoueurDAO joueurDAO = new JoueurDAO(connexionBD);
             List<Joueur> lesJoueurs = joueurDAO.findAll();
             System.out.println(lesJoueurs.get(0).getIdJoueur());
 
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
