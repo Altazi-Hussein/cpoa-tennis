@@ -14,36 +14,36 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-import model.interfaces.InterfaceJoueurDAO;
-import classesJava.Joueur;
+import classesJava.ArbitreDeChaise;
+import model.interfaces.InterfaceArbitreDeChaiseDAO;
+import classesJava.Arbitre;
 
 /**
  *
  * @author p1806052
  */
-public class JoueurDAO implements InterfaceJoueurDAO {
+public class ArbitreDeChaiseDAO implements InterfaceArbitreDeChaiseDAO {
 
     private final Connection connexionBD;
 
-    public JoueurDAO(Connection c) {
+    public ArbitreDeChaiseDAO(Connection c) {
         this.connexionBD = c;
     }
 
-    @Override
-    public Joueur findById(int noJoueur) throws SQLException{
+    public ArbitreDeChaise findbyId(int noArbitre) throws SQLException{
         PreparedStatement pst = null;
         ResultSet rset;
-        Joueur j = null;
+        ArbitreDeChaise a = null;
         try {
-            pst = connexionBD.prepareStatement("SELECT * FROM Joueur WHERE idJoueur=?");
-            pst.setInt(1, noJoueur);
+            pst = connexionBD.prepareStatement("SELECT * FROM ArbitreDeChaise WHERE idArbitre=?");
+            pst.setInt(1, noArbitre);
             rset = pst.executeQuery();
             if (rset.next()) {
-                j = new Joueur(rset.getInt(1), rset.getString(2), rset.getString(3) ,rset.getString(4));
+                a = new ArbitreDeChaise (rset.getInt(1), rset.getString(2), rset.getString(3) ,rset.getString(4), rset.getInt(5), rset.getInt(6),rset.getInt(7));
             }
-            else 
+            else
             {
-                throw new SQLException ("Contact " + noJoueur + " inconnu");
+                throw new SQLException ("Contact " + noArbitre + " inconnu");
             }
 
         } catch (SQLException exc) {
@@ -58,19 +58,19 @@ public class JoueurDAO implements InterfaceJoueurDAO {
                 throw exc;
             }
         }
-        return j;
+        return a;
     }
 
     @Override
-    public int create (Joueur j) throws SQLException {
+    public int create (ArbitreDeChaise a) throws SQLException {
         int rowCount;
         PreparedStatement pst = null;
         try {
-            pst = connexionBD.prepareStatement("INSERT INTO Joueur VALUES (?,?,?,?)");
-            pst.setInt(1, j.getIdJoueur());
-            pst.setString(2, j.getNomJoueur());
-            pst.setString(3, j.getPrenomJoueur());
-            pst.setString(4, j.getNationaliteJoueur());
+            pst = connexionBD.prepareStatement("INSERT INTO Arbitre VALUES (?,?,?,?)");
+            pst.setInt(1, a.getIdArbitre());
+            pst.setString(2, a.getNomArbitre());
+            pst.setString(3, a.getPrenomArbitre());
+            pst.setString(4, a.getNationaliteArbitre());
             rowCount = pst.executeUpdate();
 
         } catch (SQLException exc) {
@@ -91,28 +91,33 @@ public class JoueurDAO implements InterfaceJoueurDAO {
     }
 
     @Override
-    public List<Joueur> findAll() throws SQLException {
+    public List<ArbitreDeChaise> findAll() throws SQLException {
         Statement st = connexionBD.createStatement() ;
-        ArrayList<Joueur> lesJoueur = new ArrayList<Joueur>();
+        ArrayList<ArbitreDeChaise> lesArbitre = new ArrayList<ArbitreDeChaise>();
         try{
-            ResultSet rs = st.executeQuery("SELECT * from Joueur");
+            ResultSet rs = st.executeQuery("SELECT * from Arbitre");
             int no;
             String nom;
             String pre;
             String nat;
+            int type;
+            int maS, maD;
             while (rs.next()){
                 no = rs.getInt(1);
                 nom = rs.getString(2);
                 pre = rs.getString(3);
                 nat = rs.getString(4);
-                Joueur j = new Joueur(no, nom, pre, nat);
-                lesJoueur.add(j);
-            }  
+                type = rs.getInt(5);
+                maS = rs.getInt(6);
+                maD = rs.getInt(7);
+                ArbitreDeChaise a = new ArbitreDeChaise(no, nom, pre, nat, type, maS, maD);
+                lesArbitre.add(a);
+            }
         }catch (SQLException exc) {
             throw exc;
         }
-        return lesJoueur;
-        
+        return lesArbitre;
+
     }
 
 }

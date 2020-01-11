@@ -7,7 +7,7 @@ package model.interfaces;
 
 import java.sql.SQLException;
 import java.util.List;
-import planning.Joueur;
+import classesJava.Joueur;
 /**
  *
  * @author 91806052
