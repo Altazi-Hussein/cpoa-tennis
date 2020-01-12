@@ -6,8 +6,19 @@
 
 package classesJava;
 
-/** @pdOid b5144f7f-5066-462e-901c-6815db569d9a */
+
 public class Arbitre {
+
+   private int idArbitre;
+
+   private String nationaliteArbitre;
+
+   private String nomArbitre;
+
+   private String prenomArbitre;
+
+   private String categorieArbitre;
+
    public String getNationaliteArbitre() {
       return nationaliteArbitre;
    }
@@ -16,12 +27,12 @@ public class Arbitre {
       this.nationaliteArbitre = nationaliteArbitre;
    }
 
-   public Arbitre(int id, String nom, String pre, String nat, int type) {
+   public Arbitre(int id, String nom, String pre, String nat, String cat) {
       this.idArbitre = id;
       this.nationaliteArbitre = nat;
       this.nomArbitre = nom;
       this .prenomArbitre = pre;
-      this.typeArbitre = type;
+      this.categorieArbitre = cat;
    }
 
    public void setNomArbitre(String nomArbitre) {
@@ -40,25 +51,18 @@ public class Arbitre {
       return prenomArbitre;
    }
 
+   public String getCategorieArbitre() {
+      return categorieArbitre;
+   }
 
-   /** @pdOid eec9b1e0-3cdc-43ff-96f4-4cb1ece2b3a1 */
-   private int idArbitre;
-   /** @pdOid 6e76bdc1-0c56-43a2-b2c5-383680f2b7b5 */
-   private String nationaliteArbitre;
-   /** @pdOid 086bd6da-df5e-4934-b37b-07d5ab0cf7d1 */
-   private String nomArbitre;
-   /** @pdOid 89097b18-0e6b-4f49-94a9-683fc66c379b */
-   private String prenomArbitre;
+   public void setCategorieArbitre(String categorieArbitre) {
+      this.categorieArbitre = categorieArbitre;
+   }
 
-   private int typeArbitre;
-   
-   /** @pdOid 24188593-ef1a-426e-a310-e3745d62cb54 */
    public int getIdArbitre() {
       return idArbitre;
    }
-   
-   /** @param newIdArbitre
-    * @pdOid 8ed586f1-43dd-4a8f-aca8-4f1df87ee68a */
+
    public void setIdArbitre(int newIdArbitre) {
       idArbitre = newIdArbitre;
    }

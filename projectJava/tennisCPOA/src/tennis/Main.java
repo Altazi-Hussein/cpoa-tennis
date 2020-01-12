@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.DAO.JoueurDAO;
+import model.ObjectDAO.JoueurDAO;
 import model.MonMariaDbDataSource;
 import classesJava.Joueur;
 import java.util.List;
@@ -30,7 +30,9 @@ public class Main {
             Connection connexionBD = dataSourceDAO.getConnection();
             JoueurDAO joueurDAO = new JoueurDAO(connexionBD);
             List<Joueur> lesJoueurs = joueurDAO.findAll();
-            System.out.println(lesJoueurs.get(0).getIdJoueur());
+            Joueur j1 = joueurDAO.findById(1);
+            System.out.println(j1.getEquipe());
+
 
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

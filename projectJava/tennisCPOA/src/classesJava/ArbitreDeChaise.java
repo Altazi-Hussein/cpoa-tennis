@@ -42,8 +42,8 @@ public class ArbitreDeChaise extends Arbitre{
       this.nbMatchDouble = nbMatchDouble;
    }
 
-   public ArbitreDeChaise(int id, String nom, String pre, String nat, int type, int maS, int maD) {
-      super(id, nom, pre, nat, type);
+   public ArbitreDeChaise(int id, String nom, String pre, String nat, String cat, int maS, int maD) {
+      super(id, nom, pre, nat, cat);
       this.nbMatchSimple = maS;
       this.nbMatchDouble = maD;
    }
