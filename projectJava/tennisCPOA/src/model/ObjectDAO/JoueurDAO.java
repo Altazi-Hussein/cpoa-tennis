@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.ObjectDAO;
 
 import java.sql.Connection;
@@ -17,10 +12,6 @@ import javax.swing.JOptionPane;
 import model.interfaces.InterfaceJoueurDAO;
 import classesJava.Joueur;
 
-/**
- *
- * @author p1806052
- */
 public class JoueurDAO implements InterfaceJoueurDAO {
 
     private final Connection connexionBD;
@@ -30,20 +21,20 @@ public class JoueurDAO implements InterfaceJoueurDAO {
     }
 
     @Override
-    public Joueur findById(int noJoueur) throws SQLException{
+    public Joueur findById(int idJoueur) throws SQLException{
         PreparedStatement pst = null;
         ResultSet rset;
         Joueur j = null;
         try {
             pst = connexionBD.prepareStatement("SELECT * FROM Joueur WHERE idJoueur=?");
-            pst.setInt(1, noJoueur);
+            pst.setInt(1, idJoueur);
             rset = pst.executeQuery();
             if (rset.next()) {
                 j = new Joueur(rset.getInt(1), rset.getString(2), rset.getString(3) ,rset.getString(4), rset.getInt(5));
             }
             else 
             {
-                throw new SQLException ("Contact " + noJoueur + " inconnu");
+                throw new SQLException ("Contact " + idJoueur + " inconnu");
             }
 
         } catch (SQLException exc) {

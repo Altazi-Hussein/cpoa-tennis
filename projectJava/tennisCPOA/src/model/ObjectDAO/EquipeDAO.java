@@ -8,32 +8,33 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import classesJava.ArbitreDeLigne;
-import model.interfaces.InterfaceArbitreDeLigneDAO;
 
+import model.interfaces.InterfaceEquipeDAO;
+import classesJava.Equipe;
 
-public class ArbitreDeLigneDAO implements InterfaceArbitreDeLigneDAO {
+public class EquipeDAO implements InterfaceEquipeDAO {
 
     private final Connection connexionBD;
 
-    public ArbitreDeLigneDAO(Connection c) {
+    public EquipeDAO(Connection c) {
         this.connexionBD = c;
     }
 
-    public ArbitreDeLigne findbyId(int noArbitre) throws SQLException{
+    @Override
+    public Equipe findById(int idEquipe) throws SQLException{
         PreparedStatement pst = null;
         ResultSet rset;
-        ArbitreDeLigne a = null;
+        Equipe equipe = null;
         try {
-            pst = connexionBD.prepareStatement("SELECT * FROM ArbitreDeLigne WHERE idArbitre=?");
-            pst.setInt(1, noArbitre);
+            pst = connexionBD.prepareStatement("SELECT * FROM Equipe WHERE idEquipe=?");
+            pst.setInt(1, idEquipe);
             rset = pst.executeQuery();
             if (rset.next()) {
-                a = new ArbitreDeLigne (rset.getInt(1), rset.getString(2), rset.getString(3) ,rset.getString(4), rset.getString(5));
+                equipe = new Equipe(rset.getInt(1), rset.getInt(2), rset.getInt(3));
             }
             else
             {
-                throw new SQLException ("Contact " + noArbitre + " inconnu");
+                throw new SQLException ("Contact " + idEquipe + " inconnu");
             }
 
         } catch (SQLException exc) {
@@ -48,20 +49,18 @@ public class ArbitreDeLigneDAO implements InterfaceArbitreDeLigneDAO {
                 throw exc;
             }
         }
-        return a;
+        return equipe;
     }
 
     @Override
-    public int create (ArbitreDeLigne a) throws SQLException {
+    public int create (Equipe equipe) throws SQLException {
         int rowCount;
         PreparedStatement pst = null;
         try {
-            pst = connexionBD.prepareStatement("INSERT INTO Arbitre VALUES (?,?,?,?,?)");
-            pst.setInt(1, a.getIdArbitre());
-            pst.setString(2, a.getNomArbitre());
-            pst.setString(3, a.getPrenomArbitre());
-            pst.setString(4, a.getNationaliteArbitre());
-            pst.setString(5, a.getCategorieArbitre());
+            pst = connexionBD.prepareStatement("INSERT INTO Equipe VALUES (?,?,?)");
+            pst.setInt(1, equipe.getIdEquipe());
+            pst.setInt(2, equipe.getIdJoueur1());
+            pst.setInt(3, equipe.getidJoueur2());
             rowCount = pst.executeUpdate();
 
         } catch (SQLException exc) {
@@ -82,38 +81,34 @@ public class ArbitreDeLigneDAO implements InterfaceArbitreDeLigneDAO {
     }
 
     @Override
-    public List<ArbitreDeLigne> findAll() throws SQLException {
+    public List<Equipe> findAll() throws SQLException {
         Statement st = connexionBD.createStatement() ;
-        ArrayList<ArbitreDeLigne> lesArbitre = new ArrayList<ArbitreDeLigne>();
+        ArrayList<Equipe> lesEquipe = new ArrayList<Equipe>();
         try{
-            ResultSet rs = st.executeQuery("SELECT * from ArbitreDeLigne");
+            ResultSet rs = st.executeQuery("SELECT * from Equipe");
             int no;
-            String nom;
-            String pre;
-            String nat;
-            String cat;
+            int j1, j2;
             while (rs.next()){
                 no = rs.getInt(1);
-                nom = rs.getString(2);
-                pre = rs.getString(3);
-                nat = rs.getString(4);
-                cat = rs.getString(5);
-                ArbitreDeLigne a = new ArbitreDeLigne(no, nom, pre, nat, cat);
-                lesArbitre.add(a);
+                j1 = rs.getInt(2);
+                j2 = rs.getInt(2);
+                Equipe equipe = new Equipe(no, j1, j2);
+                lesEquipe.add(equipe);
             }
         }catch (SQLException exc) {
             throw exc;
         }
-        return lesArbitre;
+        return lesEquipe;
 
     }
 
-    public int delete(ArbitreDeLigne a) throws SQLException {
+
+    public int delete(Equipe equipe) throws SQLException {
         PreparedStatement pst = null;
         int rowCount;
         try{
-            pst = connexionBD.prepareStatement("delete from Joueur WHERE idArbitre=?");
-            pst.setInt(1, a.getIdArbitre());
+            pst = connexionBD.prepareStatement("delete from Equipe WHERE idEquipe=?");
+            pst.setInt(1, equipe.getIdEquipe());
             rowCount = pst.executeUpdate();
         } catch (SQLException exc) {
             JOptionPane.showMessageDialog(null, "Code d'erreur : "+ exc.getErrorCode() +"\nMessage d'erreur : "+ exc.getMessage());
@@ -132,16 +127,14 @@ public class ArbitreDeLigneDAO implements InterfaceArbitreDeLigneDAO {
     }
 
 
-    public int update (ArbitreDeLigne a) throws SQLException {
+    public int update (Equipe equipe) throws SQLException {
         int rowCount;
         PreparedStatement pst = null;
         try {
-            pst = connexionBD.prepareStatement("UPDATE ArbitreDeLigne SET prenomArbitre=?, nomArbitre=?, nationaliteArbitre=?, categorieArbitre=? WHERE idArbitre=?");
-            pst.setString(1, a.getPrenomArbitre());
-            pst.setString(2, a.getNomArbitre());
-            pst.setString(3, a.getNationaliteArbitre());
-            pst.setString(4, a.getCategorieArbitre());
-            pst.setInt(5, a.getIdArbitre());
+            pst = connexionBD.prepareStatement("UPDATE Equipe SET idJoueur1=?, idJoueur2=? WHERE idEquipe=?");
+            pst.setInt(1, equipe.getIdEquipe());
+            pst.setInt(2, equipe.getIdJoueur1());
+            pst.setInt(3, equipe.getidJoueur2());
             rowCount = pst.executeUpdate();
 
         } catch (SQLException exc) {

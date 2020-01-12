@@ -1,4 +1,3 @@
-
 package model.interfaces;
 
 import java.sql.SQLException;

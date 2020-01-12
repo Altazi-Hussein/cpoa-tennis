@@ -1,9 +1,3 @@
-/***********************************************************************
- * Module:  ArbitreDeLigne.java
- * Author:  p1806052
- * Purpose: Defines the Class ArbitreDeLigne
- ***********************************************************************/
-
 package classesJava;
 
 

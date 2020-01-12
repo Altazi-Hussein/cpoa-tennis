@@ -2,16 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b443f66e-50c4-425e-8a7a-4ab30bf1c45c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/model/interfaces/InterfaceEquipeDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classesJava/Arbitre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classesJava/Arbitre.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classesJava/ArbitreDeChaise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classesJava/ArbitreDeChaise.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/classesJava/ArbitreDeLigne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classesJava/ArbitreDeLigne.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classesJava/CategorieCourt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classesJava/CategorieCourt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classesJava/Court.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classesJava/Court.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classesJava/Equipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classesJava/Equipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classesJava/EquipeRamasseur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classesJava/EquipeRamasseur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/classesJava/Joueur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classesJava/Joueur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/DAO/ArbitreDeChaiseDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ObjectDAO/ArbitreDeChaiseDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/DAO/JoueurDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ObjectDAO/JoueurDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classesJava/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classesJava/Match.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classesJava/MatchDouble.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classesJava/MatchDouble.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classesJava/MatchSimple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classesJava/MatchSimple.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classesJava/Planning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classesJava/Planning.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classesJava/RamasseurDeBalle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classesJava/RamasseurDeBalle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classesJava/ReservationEntrainement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classesJava/ReservationEntrainement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ObjectDAO/ArbitreDeChaiseDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ObjectDAO/ArbitreDeChaiseDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ObjectDAO/ArbitreDeLigneDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ObjectDAO/ArbitreDeLigneDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ObjectDAO/JoueurDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ObjectDAO/JoueurDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/interfaces/InterfaceArbitreDeChaiseDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/interfaces/InterfaceArbitreDeChaiseDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/interfaces/InterfaceArbitreDeLigneDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/interfaces/InterfaceArbitreDeLigneDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/interfaces/InterfaceJoueurDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/interfaces/InterfaceJoueurDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tennis/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tennis/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +31,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -101,10 +112,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="178" key="#Inspections/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1578760076972" />
-    <state x="765" y="220" key="#com.intellij.ide.util.MemberChooser" timestamp="1578833911781">
+    <state x="765" y="220" key="#com.intellij.ide.util.MemberChooser" timestamp="1578837681590">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="220" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1578833911781" />
+    <state x="765" y="220" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1578837681590" />
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1578516400044">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -113,30 +124,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1578761690475" />
-    <state width="1877" height="266" key="GridCell.Tab.0.bottom" timestamp="1578833599425">
+    <state width="1877" height="266" key="GridCell.Tab.0.bottom" timestamp="1578837762295">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="266" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1578833599425" />
-    <state width="1877" height="266" key="GridCell.Tab.0.center" timestamp="1578833599425">
+    <state width="1877" height="266" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1578837762295" />
+    <state width="1877" height="266" key="GridCell.Tab.0.center" timestamp="1578837762295">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="266" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1578833599425" />
-    <state width="1877" height="266" key="GridCell.Tab.0.left" timestamp="1578833599425">
+    <state width="1877" height="266" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1578837762295" />
+    <state width="1877" height="266" key="GridCell.Tab.0.left" timestamp="1578837762295">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="266" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1578833599425" />
-    <state width="1877" height="266" key="GridCell.Tab.0.right" timestamp="1578833599425">
+    <state width="1877" height="266" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1578837762295" />
+    <state width="1877" height="266" key="GridCell.Tab.0.right" timestamp="1578837762295">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="266" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1578833599425" />
+    <state width="1877" height="266" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1578837762295" />
     <state x="440" y="94" key="SettingsEditor" timestamp="1578761742088">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1578761742088" />
-    <state width="424" height="446" key="SwitcherDM" timestamp="1578833113832">
+    <state width="424" height="446" key="SwitcherDM" timestamp="1578836640836">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="424" height="446" key="SwitcherDM/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1578833113832" />
+    <state width="424" height="446" key="SwitcherDM/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1578836640836" />
     <state x="655" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1578830026442">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
