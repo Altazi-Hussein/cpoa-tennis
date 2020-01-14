@@ -1,12 +1,12 @@
 package model.interfaces;
 
 import java.sql.SQLException;
-import java.util.List;
 import classesJava.ArbitreDeLigne;
+import java.util.ArrayList;
 
 
 public interface InterfaceArbitreDeLigneDAO {
-    public List<ArbitreDeLigne> findAll() throws SQLException;
+    public ArrayList<ArbitreDeLigne> findAll() throws SQLException;
     public ArbitreDeLigne findbyId(int noArbitre) throws SQLException;
     public int create (ArbitreDeLigne a) throws SQLException;
     public int update (ArbitreDeLigne a) throws SQLException;

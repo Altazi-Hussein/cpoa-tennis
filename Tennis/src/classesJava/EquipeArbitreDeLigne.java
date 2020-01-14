@@ -5,11 +5,36 @@
  */
 package classesJava;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author angel
  */
 public class EquipeArbitreDeLigne {
     private int idEquipe;
-    private ArbitreDeLigne[] lesArbitresDeLignes;
+    private ArrayList<ArbitreDeLigne> lesArbitresDeLigne;
+
+    public EquipeArbitreDeLigne(int idEquipe, ArrayList<ArbitreDeLigne> lesArbitresDeLignes) {
+        this.idEquipe = idEquipe;
+        this.lesArbitresDeLigne = lesArbitresDeLignes;
+    }
+
+    
+    
+    public int getIdEquipe() {
+        return idEquipe;
+    }
+
+    public void setIdEquipe(int idEquipe) {
+        this.idEquipe = idEquipe;
+    }
+
+    public ArrayList<ArbitreDeLigne> getLesArbitresDeLigne() {
+        return lesArbitresDeLigne;
+    }
+
+    public void setLesArbitresDeLigne(ArrayList<ArbitreDeLigne> lesArbitresDeLignes) {
+        this.lesArbitresDeLigne = lesArbitresDeLignes;
+    }
 }

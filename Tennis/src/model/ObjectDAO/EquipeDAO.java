@@ -89,7 +89,7 @@ public class EquipeDAO implements InterfaceEquipeDAO {
     }
 
     @Override
-    public List<Equipe> findAll() throws SQLException {
+    public ArrayList<Equipe> findAll() throws SQLException {
         Statement st = connexionBD.createStatement() ;
         ArrayList<Equipe> lesEquipe = new ArrayList<Equipe>();
         try{
@@ -145,8 +145,8 @@ public class EquipeDAO implements InterfaceEquipeDAO {
         try {
             pst = connexionBD.prepareStatement("UPDATE Equipe SET idJoueur1=?, idJoueur2=? WHERE idEquipe=?");
             pst.setInt(1, equipe.getIdEquipe());
-            pst.setInt(2, equipe.getIdJoueur1());
-            pst.setInt(3, equipe.getIdJoueur2());
+            pst.setInt(2, equipe.getJoueur1().getIdJoueur());
+            pst.setInt(3, equipe.getJoueur2().getIdJoueur());
             rowCount = pst.executeUpdate();
 
         } catch (SQLException exc) {

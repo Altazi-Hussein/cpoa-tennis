@@ -6,6 +6,8 @@
 
 package classesJava;
 
+import java.util.ArrayList;
+
 
 public class ArbitreDeChaise extends Arbitre{
 
@@ -14,23 +16,23 @@ public class ArbitreDeChaise extends Arbitre{
    private int nbMatchDouble;
    
 
-   public MatchDouble[] matchsDoubleArbitres;
+   public ArrayList<MatchDouble> matchsDoubleArbitres;
 
-   public MatchSimple[] matchsSimplesAbritres;
+   public ArrayList<MatchSimple> matchsSimplesAbritres;
 
-   public MatchDouble[] getMatchsDoubleArbitres() {
+   public ArrayList<MatchDouble>  getMatchsDoubleArbitres() {
       return matchsDoubleArbitres;
    }
 
-   public void setMatchsDoubleArbitres(MatchDouble[] matchsDoubleArbitres) {
+   public void setMatchsDoubleArbitres(ArrayList<MatchDouble>  matchsDoubleArbitres) {
       this.matchsDoubleArbitres = matchsDoubleArbitres;
    }
 
-   public MatchSimple[] getMatchsSimplesAbritres() {
+   public ArrayList<MatchSimple> getMatchsSimplesAbritres() {
       return matchsSimplesAbritres;
    }
 
-   public void setMatchsSimplesAbritres(MatchSimple[] matchsSimplesAbritres) {
+   public void setMatchsSimplesAbritres(ArrayList<MatchSimple> matchsSimplesAbritres) {
       this.matchsSimplesAbritres = matchsSimplesAbritres;
    }
 

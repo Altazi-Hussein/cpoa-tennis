@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/classesJava/EquipeArbitreDeLigne.java</file>
+            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/model/interfaces/InterfaceEquipeArbitreDeLigne.java</file>
+            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/tennis/Main.java</file>
+            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/model/ObjectDAO/EquipeArbitreDeLigneDAO.java</file>
+            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/model/ObjectDAO/EquipeDAO.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -29,15 +29,15 @@ public class Equipe {
         this.lesJoueurs = lesJoueurs;
     }
    
-   public int getIdJoueur1(){
+   public Joueur getJoueur1(){
        
-       int idJoueur1 = lesJoueurs.get(0).getIdJoueur();
+       Joueur idJoueur1 = lesJoueurs.get(0);
        return idJoueur1;
    }
    
-      public int getIdJoueur2(){
+      public Joueur getJoueur2(){
        
-       int idJoueur2 = lesJoueurs.get(1).getIdJoueur();
+       Joueur idJoueur2 = lesJoueurs.get(1);
        return idJoueur2;
    }
 

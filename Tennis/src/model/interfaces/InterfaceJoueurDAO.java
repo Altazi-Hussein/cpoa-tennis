@@ -1,11 +1,11 @@
 package model.interfaces;
 
 import java.sql.SQLException;
-import java.util.List;
 import classesJava.Joueur;
+import java.util.ArrayList;
 
 public interface InterfaceJoueurDAO {
-    public List<Joueur> findAll() throws SQLException;
+    public ArrayList<Joueur> findAll() throws SQLException;
     public Joueur findById(int idJoueur) throws SQLException;
     public int create (Joueur j) throws SQLException;
     public int update (Joueur j) throws SQLException;

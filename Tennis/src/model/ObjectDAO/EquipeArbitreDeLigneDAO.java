@@ -1,5 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package model.ObjectDAO;
 
+import classesJava.ArbitreDeLigne;
+import classesJava.EquipeArbitreDeLigne;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,35 +15,36 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import model.interfaces.InterfaceEquipeArbitreDeLigne;
 
-import model.interfaces.InterfaceJoueurDAO;
-import classesJava.Joueur;
-
-public class JoueurDAO implements InterfaceJoueurDAO {
+/**
+ *
+ * @author angel
+ */
+public class EquipeArbitreDeLigneDAO implements InterfaceEquipeArbitreDeLigne{
 
     private final Connection connexionBD;
 
-    public JoueurDAO(Connection c) {
+    public EquipeArbitreDeLigneDAO(Connection c) {
         this.connexionBD = c;
     }
 
     @Override
-    public Joueur findById(int idJoueur) throws SQLException{
+    public EquipeArbitreDeLigne findById(int idEquipe) throws SQLException{
         PreparedStatement pst = null;
         ResultSet rset;
-        Joueur j = null;
+        EquipeArbitreDeLigne equipe = null;
         try {
-            pst = connexionBD.prepareStatement("SELECT * FROM Joueur WHERE idJoueur=?");
-            pst.setInt(1, idJoueur);
+            pst = connexionBD.prepareStatement("SELECT * FROM EquipeArbitreDeLigne_ArbitreDeLigne WHERE idEquipeArbitreDeLigne=?");
+            pst.setInt(1, idEquipe);
             rset = pst.executeQuery();
-            if (rset.next()) {
-                j = new Joueur(rset.getInt(1), rset.getInt(2), rset.getString(3) ,rset.getString(4), rset.getString(5));
+            ArbitreDeLigneDAO DAO = new ArbitreDeLigneDAO(connexionBD);
+            ArrayList<ArbitreDeLigne> lesArbitres = null;
+            while (rset.next()) {
+                ArbitreDeLigne al = DAO.findbyId(rset.getInt(2));
+                lesArbitres.add(al);
             }
-            else 
-            {
-                throw new SQLException ("Contact " + idJoueur + " inconnu");
-            }
-
+            equipe = new EquipeArbitreDeLigne(idEquipe, lesArbitres);
         } catch (SQLException exc) {
             throw exc;
         } finally {
@@ -49,21 +57,23 @@ public class JoueurDAO implements InterfaceJoueurDAO {
                 throw exc;
             }
         }
-        return j;
+        return equipe;
     }
 
     @Override
-    public int create (Joueur j) throws SQLException {
+    public int create (EquipeArbitreDeLigne equipe) throws SQLException {
         int rowCount;
         PreparedStatement pst = null;
         try {
-            pst = connexionBD.prepareStatement("INSERT INTO Joueur VALUES (?,?,?,?,?)");
-            pst.setInt(1, j.getIdJoueur());
-            pst.setInt(2, j.getEquipe());
-            pst.setString(3, j.getNationaliteJoueur());
-            pst.setString(4, j.getNomJoueur());
-            pst.setString(5, j.getPrenomJoueur());
+            pst = connexionBD.prepareStatement("INSERT INTO EquipeArbitreDeLigne VALUES (?)");
+            pst.setInt(1, equipe.getIdEquipe());
             rowCount = pst.executeUpdate();
+            for(ArbitreDeLigne a : equipe.getLesArbitresDeLigne()){
+                pst = connexionBD.prepareStatement("INSERT INTO EquipeArbitreDeLigne_ArbitreDeLigne VALUES (?,?)");
+                pst.setInt(1, equipe.getIdEquipe());
+                pst.setInt(2, a.getIdArbitre());
+                pst.executeUpdate();
+            }
 
         } catch (SQLException exc) {
             JOptionPane.showMessageDialog(null, "Code d'erreur : "+ exc.getErrorCode() +"\nMessage d'erreur : "+ exc.getMessage());
@@ -83,41 +93,38 @@ public class JoueurDAO implements InterfaceJoueurDAO {
     }
 
     @Override
-    public ArrayList<Joueur> findAll() throws SQLException {
+    public ArrayList<EquipeArbitreDeLigne> findAll() throws SQLException {
         Statement st = connexionBD.createStatement() ;
-        ArrayList<Joueur> lesJoueur = new ArrayList<Joueur>();
+        ArrayList<EquipeArbitreDeLigne> lesEquipe = new ArrayList<EquipeArbitreDeLigne>();
         try{
-            ResultSet rs = st.executeQuery("SELECT * from Joueur");
+            ResultSet rs = st.executeQuery("SELECT * from Equipe");
             int no;
-            String nom;
-            String pre;
-            String nat;
-            int eq;
+            Joueur j1, j2;
             while (rs.next()){
                 no = rs.getInt(1);
-                eq = rs.getInt(2);
-                nat = rs.getString(3);
-                nom = rs.getString(4);
-                pre = rs.getString(5);
-                
-                
-                Joueur j = new Joueur(no, eq, nat, nom, pre);
-                lesJoueur.add(j);
-            }  
+                ArrayList<Joueur> joueurs = null;
+                JoueurDAO joueurDao = new JoueurDAO(connexionBD);
+                j1 = joueurDao.findById(rs.getInt(2));
+                j2 = joueurDao.findById(rs.getInt(3));
+                joueurs.add(j1);
+                joueurs.add(j2);
+                EquipeArbitreDeLigne equipe = new EquipeArbitreDeLigne(no,joueurs);
+                lesEquipe.add(equipe);
+            }
         }catch (SQLException exc) {
             throw exc;
         }
-        return lesJoueur;
-        
+        return lesEquipe;
+
     }
 
 
-    public int delete(Joueur j) throws SQLException {
+    public int delete(EquipeArbitreDeLigne equipe) throws SQLException {
         PreparedStatement pst = null;
         int rowCount;
         try{
-            pst = connexionBD.prepareStatement("delete from Joueur WHERE idJoueur=?");
-            pst.setInt(1, j.getIdJoueur());
+            pst = connexionBD.prepareStatement("delete from Equipe WHERE idEquipe=?");
+            pst.setInt(1, equipe.getIdEquipe());
             rowCount = pst.executeUpdate();
         } catch (SQLException exc) {
             JOptionPane.showMessageDialog(null, "Code d'erreur : "+ exc.getErrorCode() +"\nMessage d'erreur : "+ exc.getMessage());
@@ -136,16 +143,14 @@ public class JoueurDAO implements InterfaceJoueurDAO {
     }
 
 
-    public int update (Joueur j) throws SQLException {
+    public int update (EquipeArbitreDeLigne equipe) throws SQLException {
         int rowCount;
         PreparedStatement pst = null;
         try {
-            pst = connexionBD.prepareStatement("UPDATE Joueur SET prenomJoueur=?, nomJoueur=?, nationaliteJoueur=?, equipe=? WHERE idJoueur=?");
-            pst.setString(1, j.getPrenomJoueur());
-            pst.setString(2, j.getNomJoueur());
-            pst.setString(3, j.getNationaliteJoueur());
-            pst.setInt(4, j.getEquipe());
-            pst.setInt(5, j.getIdJoueur());
+            pst = connexionBD.prepareStatement("UPDATE Equipe SET idJoueur1=?, idJoueur2=? WHERE idEquipe=?");
+            pst.setInt(1, equipe);
+            pst.setInt(2, equipe);
+            pst.setInt(3, equipe);
             rowCount = pst.executeUpdate();
 
         } catch (SQLException exc) {
@@ -165,4 +170,6 @@ public class JoueurDAO implements InterfaceJoueurDAO {
         return rowCount;
     }
 
+}
+    
 }

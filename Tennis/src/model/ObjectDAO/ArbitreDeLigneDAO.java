@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 import classesJava.ArbitreDeLigne;
 import model.interfaces.InterfaceArbitreDeLigneDAO;
@@ -82,7 +81,7 @@ public class ArbitreDeLigneDAO implements InterfaceArbitreDeLigneDAO {
     }
 
     @Override
-    public List<ArbitreDeLigne> findAll() throws SQLException {
+    public ArrayList<ArbitreDeLigne> findAll() throws SQLException {
         Statement st = connexionBD.createStatement() ;
         ArrayList<ArbitreDeLigne> lesArbitre = new ArrayList<ArbitreDeLigne>();
         try{
