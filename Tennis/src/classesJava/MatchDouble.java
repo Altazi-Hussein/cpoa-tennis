@@ -4,13 +4,13 @@ public class MatchDouble extends Match {
 
    private int idGagnants;
 
-   public Equipe[] lesEquipes;
+   public int[] idEquipes;
 
-   public ArbitreDeChaise arbitre;
+   public int idArbitreDeChaise;
 
-   public ArbitreDeLigne[] arbitresDeLignesMD;
+   public int[] idArbitresDeLignesMD;
 
-   public EquipeRamasseur[] equipeDeRamasseur;
+   public int idEquipeDeRamasseur;
 
    public int getIdGagnants() {
       return idGagnants;

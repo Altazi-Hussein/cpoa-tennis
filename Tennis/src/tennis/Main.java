@@ -31,7 +31,7 @@ public class Main {
             JoueurDAO joueurDAO = new JoueurDAO(connexionBD);
             List<Joueur> lesJoueurs = joueurDAO.findAll();
             Joueur j1 = joueurDAO.findById(1);
-            System.out.println(j1.getEquipe());
+            System.out.println(j1.getNomJoueur());
 
 
         } catch (SQLException ex) {
