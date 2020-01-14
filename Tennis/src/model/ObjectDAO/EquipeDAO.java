@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import model.interfaces.InterfaceEquipeDAO;
 import classesJava.Equipe;
+import classesJava.Joueur;
 
 public class EquipeDAO implements InterfaceEquipeDAO {
 
@@ -30,7 +31,13 @@ public class EquipeDAO implements InterfaceEquipeDAO {
             pst.setInt(1, idEquipe);
             rset = pst.executeQuery();
             if (rset.next()) {
-                equipe = new Equipe(rset.getInt(1), rset.getInt(2), rset.getInt(3));
+                JoueurDAO joueurDAO = new JoueurDAO(connexionBD);
+                ArrayList<Joueur> joueurs = new ArrayList<>();
+                Joueur j1 = joueurDAO.findById(rset.getInt(2));
+                Joueur j2 = joueurDAO.findById(rset.getInt(3));
+                joueurs.add(j1);
+                joueurs.add(j2);
+                equipe = new Equipe(rset.getInt(1), joueurs);
             }
             else
             {
@@ -59,8 +66,9 @@ public class EquipeDAO implements InterfaceEquipeDAO {
         try {
             pst = connexionBD.prepareStatement("INSERT INTO Equipe VALUES (?,?,?)");
             pst.setInt(1, equipe.getIdEquipe());
-            pst.setInt(2, equipe.getIdJoueur1());
-            pst.setInt(3, equipe.getidJoueur2());
+            ArrayList<Joueur> joueurs = equipe.getLesJoueurs();
+            pst.setInt(2, joueurs.get(0).getIdJoueur());
+            pst.setInt(3, joueurs.get(0).getIdJoueur());
             rowCount = pst.executeUpdate();
 
         } catch (SQLException exc) {
@@ -87,12 +95,16 @@ public class EquipeDAO implements InterfaceEquipeDAO {
         try{
             ResultSet rs = st.executeQuery("SELECT * from Equipe");
             int no;
-            int j1, j2;
+            Joueur j1, j2;
             while (rs.next()){
                 no = rs.getInt(1);
-                j1 = rs.getInt(2);
-                j2 = rs.getInt(2);
-                Equipe equipe = new Equipe(no, j1, j2);
+                ArrayList<Joueur> joueurs = null;
+                JoueurDAO joueurDao = new JoueurDAO(connexionBD);
+                j1 = joueurDao.findById(rs.getInt(2));
+                j2 = joueurDao.findById(rs.getInt(3));
+                joueurs.add(j1);
+                joueurs.add(j2);
+                Equipe equipe = new Equipe(no,joueurs);
                 lesEquipe.add(equipe);
             }
         }catch (SQLException exc) {
@@ -134,7 +146,7 @@ public class EquipeDAO implements InterfaceEquipeDAO {
             pst = connexionBD.prepareStatement("UPDATE Equipe SET idJoueur1=?, idJoueur2=? WHERE idEquipe=?");
             pst.setInt(1, equipe.getIdEquipe());
             pst.setInt(2, equipe.getIdJoueur1());
-            pst.setInt(3, equipe.getidJoueur2());
+            pst.setInt(3, equipe.getIdJoueur2());
             rowCount = pst.executeUpdate();
 
         } catch (SQLException exc) {

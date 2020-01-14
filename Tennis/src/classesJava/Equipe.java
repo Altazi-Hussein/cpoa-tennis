@@ -1,59 +1,44 @@
 package classesJava;
 
+import java.util.ArrayList;
+
 public class Equipe {
 
    private int idEquipe;
-   private int idJoueur1;
-   private int idJoueur2;
+   
+   private ArrayList<Joueur> lesJoueurs;
 
-   public int getIdJoueur1() {
-      return idJoueur1;
+    public Equipe(int idEquipe, ArrayList<Joueur> lesJoueurs) {
+        this.idEquipe = idEquipe;
+        this.lesJoueurs = lesJoueurs;
+    }
+
+    public int getIdEquipe() {
+        return idEquipe;
+    }
+
+    public void setIdEquipe(int idEquipe) {
+        this.idEquipe = idEquipe;
+    }
+
+    public ArrayList<Joueur> getLesJoueurs() {
+        return lesJoueurs;
+    }
+
+    public void setLesJoueurs(ArrayList<Joueur> lesJoueurs) {
+        this.lesJoueurs = lesJoueurs;
+    }
+   
+   public int getIdJoueur1(){
+       
+       int idJoueur1 = lesJoueurs.get(0).getIdJoueur();
+       return idJoueur1;
    }
-
-   public void setIdJoueur1(int idJoueur1) {
-      this.idJoueur1 = idJoueur1;
-   }
-
-   public int getidJoueur2() {
-      return idJoueur2;
-   }
-
-   public void setIdJoueur2(int idJoueur2) {
-      idJoueur2 = idJoueur2;
-   }
-
-   public MatchDouble[] lesMatchs;
-
-   public Joueur[] equipe;
-
-   public MatchDouble[] getLesMatchs() {
-      return lesMatchs;
-   }
-
-   public void setLesMatchs(MatchDouble[] lesMatchs) {
-      this.lesMatchs = lesMatchs;
-   }
-
-   public Equipe(int idEquipe, int idJ1, int idJ2) {
-      this.idEquipe = idEquipe;
-      this.idJoueur1 = idJ1;
-      this.idJoueur2 = idJ2;
-   }
-
-   public Joueur[] getEquipe() {
-      return equipe;
-   }
-
-   public void setEquipe(Joueur[] equipe) {
-      this.equipe = equipe;
-   }
-
-   public int getIdEquipe() {
-      return idEquipe;
-   }
-
-   public void setIdEquipe(int newIdEquipe) {
-      idEquipe = newIdEquipe;
+   
+      public int getIdJoueur2(){
+       
+       int idJoueur2 = lesJoueurs.get(1).getIdJoueur();
+       return idJoueur2;
    }
 
 }

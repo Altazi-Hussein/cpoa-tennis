@@ -56,7 +56,7 @@ public class Joueur {
     }
    
 
-    public Joueur(int no, String nom, String pre, String nat, int eq) {
+    public Joueur(int no, int eq, String nat, String nom, String pre) {
         this.idJoueur = no;
         this.nomJoueur = nom;
         this.prenomJoueur = pre;

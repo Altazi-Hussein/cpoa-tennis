@@ -30,7 +30,7 @@ public class JoueurDAO implements InterfaceJoueurDAO {
             pst.setInt(1, idJoueur);
             rset = pst.executeQuery();
             if (rset.next()) {
-                j = new Joueur(rset.getInt(1), rset.getString(2), rset.getString(3) ,rset.getString(4), rset.getInt(5));
+                j = new Joueur(rset.getInt(1), rset.getInt(2), rset.getString(3) ,rset.getString(4), rset.getString(5));
             }
             else 
             {
@@ -57,12 +57,12 @@ public class JoueurDAO implements InterfaceJoueurDAO {
         int rowCount;
         PreparedStatement pst = null;
         try {
-            pst = connexionBD.prepareStatement("INSERT INTO Joueur VALUES (?,?,?,?, ?)");
+            pst = connexionBD.prepareStatement("INSERT INTO Joueur VALUES (?,?,?,?,?)");
             pst.setInt(1, j.getIdJoueur());
-            pst.setString(2, j.getNomJoueur());
-            pst.setString(3, j.getPrenomJoueur());
-            pst.setString(4, j.getNationaliteJoueur());
-            pst.setInt(1, j.getEquipe());
+            pst.setInt(2, j.getEquipe());
+            pst.setString(3, j.getNationaliteJoueur());
+            pst.setString(4, j.getNomJoueur());
+            pst.setString(5, j.getPrenomJoueur());
             rowCount = pst.executeUpdate();
 
         } catch (SQLException exc) {
@@ -95,11 +95,13 @@ public class JoueurDAO implements InterfaceJoueurDAO {
             int eq;
             while (rs.next()){
                 no = rs.getInt(1);
-                nom = rs.getString(2);
-                pre = rs.getString(3);
-                nat = rs.getString(4);
-                eq = rs.getInt(5);
-                Joueur j = new Joueur(no, nom, pre, nat, eq);
+                eq = rs.getInt(2);
+                nat = rs.getString(3);
+                nom = rs.getString(4);
+                pre = rs.getString(5);
+                
+                
+                Joueur j = new Joueur(no, eq, nat, nom, pre);
                 lesJoueur.add(j);
             }  
         }catch (SQLException exc) {

@@ -7,6 +7,10 @@ public class ReservationEntrainement {
    private int idReservation;
 
    private Date crenauEntrainement;
+   
+   private Court court;
+   
+   private Joueur joueur;
 
    public int getIdReservation() {
       return idReservation;

@@ -5,6 +5,7 @@
  */
 package tennis;
 
+import classesJava.Equipe;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -13,6 +14,7 @@ import model.ObjectDAO.JoueurDAO;
 import model.MonMariaDbDataSource;
 import classesJava.Joueur;
 import java.util.List;
+import model.ObjectDAO.EquipeDAO;
 
 /**
  *
@@ -29,9 +31,12 @@ public class Main {
             MonMariaDbDataSource dataSourceDAO = MonMariaDbDataSource.getMdbDataSource();
             Connection connexionBD = dataSourceDAO.getConnection();
             JoueurDAO joueurDAO = new JoueurDAO(connexionBD);
+            EquipeDAO equipeDAO = new EquipeDAO(connexionBD);
             List<Joueur> lesJoueurs = joueurDAO.findAll();
             Joueur j1 = joueurDAO.findById(1);
-            System.out.println(j1.getNomJoueur());
+            Equipe equipe1 = equipeDAO.findById(1);
+            System.out.println("Nom joueur dont l'id est 1: " + j1.getNomJoueur());
+            System.out.println("ID du joueur 2 dont l'id est 2 dans la base de données :" + equipe1.getIdJoueur2());
 
 
         } catch (SQLException ex) {
