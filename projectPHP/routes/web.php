@@ -20,3 +20,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/billets', 'BilletsController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

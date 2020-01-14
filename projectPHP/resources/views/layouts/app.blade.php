@@ -24,9 +24,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body style="background: url('../public/images/background.jpg'); background-size: cover;">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" >
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -69,10 +69,13 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+
+                                    
                                 </div>
                             </li>
                         @endguest
                     </ul>
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Panier') }}</a>
                 </div>
             </div>
         </nav>
