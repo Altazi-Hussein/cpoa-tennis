@@ -6,6 +6,11 @@ public class Court {
 
    public String typeCourt;
 
+    public Court(int idCourt, String typeCourt) {
+        this.idCourt = idCourt;
+        this.typeCourt = typeCourt;
+    }
+
     public String getTypeCourt() {
         return typeCourt;
     }

@@ -12,22 +12,22 @@ import java.util.ArrayList;
  * @author angel
  */
 public class EquipeArbitreDeLigne {
-    private int idEquipe;
+    private int idEquipeAL;
     private ArrayList<ArbitreDeLigne> lesArbitresDeLigne;
 
     public EquipeArbitreDeLigne(int idEquipe, ArrayList<ArbitreDeLigne> lesArbitresDeLignes) {
-        this.idEquipe = idEquipe;
+        this.idEquipeAL = idEquipe;
         this.lesArbitresDeLigne = lesArbitresDeLignes;
     }
 
     
     
-    public int getIdEquipe() {
-        return idEquipe;
+    public int getIdEquipeAL() {
+        return idEquipeAL;
     }
 
-    public void setIdEquipe(int idEquipe) {
-        this.idEquipe = idEquipe;
+    public void setIdEquipeAL(int idEquipeAL) {
+        this.idEquipeAL = idEquipeAL;
     }
 
     public ArrayList<ArbitreDeLigne> getLesArbitresDeLigne() {

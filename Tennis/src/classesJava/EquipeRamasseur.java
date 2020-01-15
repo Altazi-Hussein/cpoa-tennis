@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class EquipeRamasseur {
 
-   private int idEquipeRamasseur;
+   private int idEquipeR;
 
    private ArrayList<RamasseurDeBalle> lesRamasseurs;
    
-   public int getIdEquipeRamasseur() {
-      return idEquipeRamasseur;
+   public int getIdEquipeR() {
+      return idEquipeR;
    }
 
 }

@@ -5,30 +5,30 @@ public class Joueur {
 
    private int idJoueur;
 
-   private String nationaliteJoueur;
+   private String nationaliteJ;
 
-   private String nomJoueur;
+   private String nomJ;
 
-   private String prenomJoueur;
+   private String prenomJ;
 
-   private int idEquipe;
+   private int idEquipeJ;
 
    private Match lesMatchsSimplesJoues;
 
-    public String getNationaliteJoueur() {
-        return nationaliteJoueur;
+    public String getNationaliteJ() {
+        return nationaliteJ;
     }
 
-    public String getNomJoueur() {
-        return nomJoueur;
+    public String getNomJ() {
+        return nomJ;
     }
 
-    public int getIdEquipe() {
-        return idEquipe;
+    public int getIdEquipeJ() {
+        return idEquipeJ;
     }
 
-    public void setIdEquipe(int idEquipe) {
-        this.idEquipe = idEquipe;
+    public void setIdEquipeJ(int idEquipeJ) {
+        this.idEquipeJ = idEquipeJ;
     }
 
     public Match getLesMatchsSimplesJoues() {
@@ -39,29 +39,29 @@ public class Joueur {
         this.lesMatchsSimplesJoues = lesMatchsSimplesJoues;
     }
 
-    public String getPrenomJoueur() {
-        return prenomJoueur;
+    public String getPrenomJ() {
+        return prenomJ;
     }
 
-    public void setNationaliteJoueur(String nationaliteJoueur) {
-        this.nationaliteJoueur = nationaliteJoueur;
+    public void setNationaliteJ(String nationaliteJ) {
+        this.nationaliteJ = nationaliteJ;
     }
 
-    public void setNomJoueur(String nomJoueur) {
-        this.nomJoueur = nomJoueur;
+    public void setNomJ(String nomJ) {
+        this.nomJ = nomJ;
     }
 
-    public void setPrenomJoueur(String prenomJoueur) {
-        this.prenomJoueur = prenomJoueur;
+    public void setPrenomJ(String prenomJ) {
+        this.prenomJ = prenomJ;
     }
    
 
     public Joueur(int no, int eq, String nat, String nom, String pre) {
         this.idJoueur = no;
-        this.nomJoueur = nom;
-        this.prenomJoueur = pre;
-        this.nationaliteJoueur = nat;
-        this.idEquipe = eq;
+        this.nomJ = nom;
+        this.prenomJ = pre;
+        this.nationaliteJ = nat;
+        this.idEquipeJ = eq;
     }
 
    public int getIdJoueur() {

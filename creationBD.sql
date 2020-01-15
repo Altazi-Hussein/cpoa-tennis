@@ -1,40 +1,41 @@
 create or replace table Joueur(
 	idJoueur int not null,
-	idEquipe int,
-	nationaliteJoueur varchar(254),
-	nomJoueur varchar(254),
-	nomPrenomJoueur varchar(254),
+	idEquipeJ int,
+	nationaliteJ varchar(254),
+	nomJ varchar(254),
+	prenomJ varchar(254),
 	primary key (idJoueur)
 );
 
-create or replace table EquipeJoueur(
-	idEquipe int not null,
-	idJoueur1 int,
-	idJoueur2,
-	primary key (idEquipe)
-);
-
 create or replace table ArbitreDeLigne(
-	idArbitre int not null,
-	nomArbitre varchar(254),
-	nomPrenomArbitre varchar(254),
-	nationaliteArbitre varchar(254),
-	categorieArbitre varchar(254),
-	primary key (idArbitre)
+	idArbitreL int not null,
+	nomL varchar(254),
+	prenomL varchar(254),
+	nationaliteL varchar(254),
+	categorieL varchar(254),
+	primary key (idArbitreL)
 );
 
 create or replace table ArbitreDeChaise(
-	idArbitre int not null,
-	nomArbitre varchar(254),
-	nomPrenomArbitre varchar(254),
-	nationaliteArbitre varchar(254),
-	categorieArbitre varchar(254),
+	idArbitreC int not null,
+	nomC varchar(254),
+	prenomC varchar(254),
+	nationaliteC varchar(254),
+	categorieC varchar(254),
 	nbMatchSimple int,
 	nbMatchDouble int,
-	primary key (idArbitre)
+	primary key (idArbitreC)
 );
 
 create or replace table EquipeArbitreDeLigne(
-	idEquipe int not null,
-	primary key (idEquipe)
+	idEquipeL int,
+	idArbitreL int
+);
+
+create or replace table RamasseurDeBalle(
+	idRamasseur int not null,
+	idEquipeR int,
+	nomR varchar(254),
+	prenomR varchar(254),
+	primary key(idRamasseur)
 );

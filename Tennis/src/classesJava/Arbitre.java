@@ -11,52 +11,52 @@ public class Arbitre {
 
    private int idArbitre;
 
-   private String nationaliteArbitre;
+   private String nationalite;
 
-   private String nomArbitre;
+   private String nom;
 
-   private String prenomArbitre;
+   private String prenom;
 
-   private String categorieArbitre;
+   private String categorie;
 
-   public String getNationaliteArbitre() {
-      return nationaliteArbitre;
+   public String getNationalite() {
+      return nationalite;
    }
 
-   public void setNationaliteArbitre(String nationaliteArbitre) {
-      this.nationaliteArbitre = nationaliteArbitre;
+   public void setNationalite(String nationalite) {
+      this.nationalite = nationalite;
    }
 
    public Arbitre(int id, String nom, String pre, String nat, String cat) {
       this.idArbitre = id;
-      this.nationaliteArbitre = nat;
-      this.nomArbitre = nom;
-      this .prenomArbitre = pre;
-      this.categorieArbitre = cat;
+      this.nationalite = nat;
+      this.nom = nom;
+      this .prenom = pre;
+      this.categorie = cat;
    }
 
-   public void setNomArbitre(String nomArbitre) {
-      this.nomArbitre = nomArbitre;
+   public void setNom(String nom) {
+      this.nom = nom;
    }
 
-   public void setPrenomArbitre(String prenomArbitre) {
-      this.prenomArbitre = prenomArbitre;
+   public void setPrenom(String prenom) {
+      this.prenom = prenom;
    }
 
-   public String getNomArbitre() {
-      return nomArbitre;
+   public String getNom() {
+      return nom;
    }
 
-   public String getPrenomArbitre() {
-      return prenomArbitre;
+   public String getPrenom() {
+      return prenom;
    }
 
-   public String getCategorieArbitre() {
-      return categorieArbitre;
+   public String getCategorie() {
+      return categorie;
    }
 
-   public void setCategorieArbitre(String categorieArbitre) {
-      this.categorieArbitre = categorieArbitre;
+   public void setCategorie(String categorie) {
+      this.categorie = categorie;
    }
 
    public int getIdArbitre() {

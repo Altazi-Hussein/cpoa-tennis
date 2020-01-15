@@ -6,7 +6,7 @@ import classesJava.ArbitreDeChaise;
 
 public interface InterfaceArbitreDeChaiseDAO {
     public List<ArbitreDeChaise> findAll() throws SQLException;
-    public ArbitreDeChaise findbyId(int noArbitre) throws SQLException;
+    public ArbitreDeChaise findbyId(int idArbitreC) throws SQLException;
     public int create (ArbitreDeChaise a) throws SQLException;
     public int update (ArbitreDeChaise a) throws SQLException;
     public int delete(ArbitreDeChaise a) throws SQLException;

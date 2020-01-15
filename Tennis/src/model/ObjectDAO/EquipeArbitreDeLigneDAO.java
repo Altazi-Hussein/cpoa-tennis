@@ -35,7 +35,7 @@ public class EquipeArbitreDeLigneDAO implements InterfaceEquipeArbitreDeLigne{
         ResultSet rset;
         EquipeArbitreDeLigne equipe = null;
         try {
-            pst = connexionBD.prepareStatement("SELECT * FROM EquipeArbitreDeLigne_ArbitreDeLigne WHERE idEquipeArbitreDeLigne=?");
+            pst = connexionBD.prepareStatement("SELECT * FROM EquipeArbitreDeLigne WHERE idEquipeL=?");
             pst.setInt(1, idEquipe);
             rset = pst.executeQuery();
             ArbitreDeLigneDAO ALDAO = new ArbitreDeLigneDAO(connexionBD);
@@ -66,7 +66,7 @@ public class EquipeArbitreDeLigneDAO implements InterfaceEquipeArbitreDeLigne{
         ArrayList<EquipeArbitreDeLigne> lesEquipe = new ArrayList<EquipeArbitreDeLigne>();
         EquipeArbitreDeLigne equipe = null;
         try{
-            ResultSet rs = st.executeQuery("SELECT * from EquipeArbitreDeLigne");
+            ResultSet rs = st.executeQuery("SELECT distinct idEquipeL from EquipeArbitreDeLigne");
             int no;
             while (rs.next()){
                 no = rs.getInt(1);

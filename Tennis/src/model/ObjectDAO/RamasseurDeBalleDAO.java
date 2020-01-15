@@ -19,20 +19,20 @@ public class RamasseurDeBalleDAO implements InterfaceRamasseurDeBalleDAO {
         this.connexionBD = c;
     }
 
-    public RamasseurDeBalle findbyId(int noArbitre) throws SQLException{
+    public RamasseurDeBalle findbyId(int idRamasseur) throws SQLException{
         PreparedStatement pst = null;
         ResultSet rset;
         RamasseurDeBalle a = null;
         try {
-            pst = connexionBD.prepareStatement("SELECT * FROM RamasseurDeBalle WHERE idArbitre=?");
-            pst.setInt(1, noArbitre);
+            pst = connexionBD.prepareStatement("SELECT * FROM RamasseurDeBalle WHERE idRamasseur=?");
+            pst.setInt(1, idRamasseur);
             rset = pst.executeQuery();
             if (rset.next()) {
-                a = new RamasseurDeBalle (rset.getInt(1), rset.getString(2), rset.getString(3) ,rset.getString(4));
+                a = new RamasseurDeBalle (rset.getInt(1), rset.getString(2), rset.getString(3));
             }
             else
             {
-                throw new SQLException ("Contact " + noArbitre + " inconnu");
+                throw new SQLException ("Contact " + idRamasseur + " inconnu");
             }
 
         } catch (SQLException exc) {
@@ -51,16 +51,14 @@ public class RamasseurDeBalleDAO implements InterfaceRamasseurDeBalleDAO {
     }
 
     @Override
-    public int create (RamasseurDeBalle a) throws SQLException {
+    public int create (RamasseurDeBalle r) throws SQLException {
         int rowCount;
         PreparedStatement pst = null;
         try {
-            pst = connexionBD.prepareStatement("INSERT INTO Arbitre VALUES (?,?,?,?,?)");
-            pst.setInt(1, a.getIdArbitre());
-            pst.setString(2, a.getNomArbitre());
-            pst.setString(3, a.getPrenomArbitre());
-            pst.setString(4, a.getNationaliteArbitre());
-            pst.setString(5, a.getCategorieArbitre());
+            pst = connexionBD.prepareStatement("INSERT INTO RamasseurDeBalle VALUES (?,?,?)");
+            pst.setInt(1, r.getIdRamasseur());
+            pst.setString(2, r.getNomR());
+            pst.setString(3, r.getPrenomR());
             rowCount = pst.executeUpdate();
 
         } catch (SQLException exc) {
@@ -83,36 +81,32 @@ public class RamasseurDeBalleDAO implements InterfaceRamasseurDeBalleDAO {
     @Override
     public ArrayList<RamasseurDeBalle> findAll() throws SQLException {
         Statement st = connexionBD.createStatement() ;
-        ArrayList<RamasseurDeBalle> lesArbitre = new ArrayList<RamasseurDeBalle>();
+        ArrayList<RamasseurDeBalle> lesRamasseur = new ArrayList<RamasseurDeBalle>();
         try{
             ResultSet rs = st.executeQuery("SELECT * from RamasseurDeBalle");
             int no;
             String nom;
             String pre;
-            String nat;
-            String cat;
             while (rs.next()){
                 no = rs.getInt(1);
                 nom = rs.getString(2);
                 pre = rs.getString(3);
-                nat = rs.getString(4);
-                cat = rs.getString(5);
-                RamasseurDeBalle a = new RamasseurDeBalle(no, nom, pre, nat, cat);
-                lesArbitre.add(a);
+                RamasseurDeBalle a = new RamasseurDeBalle(no, nom, pre);
+                lesRamasseur.add(a);
             }
         }catch (SQLException exc) {
             throw exc;
         }
-        return lesArbitre;
+        return lesRamasseur;
 
     }
 
-    public int delete(RamasseurDeBalle a) throws SQLException {
+    public int delete(RamasseurDeBalle r) throws SQLException {
         PreparedStatement pst = null;
         int rowCount;
         try{
-            pst = connexionBD.prepareStatement("delete from Joueur WHERE idArbitre=?");
-            pst.setInt(1, a.getIdArbitre());
+            pst = connexionBD.prepareStatement("delete from RamasseurDeBalle WHERE idRamasseur=?");
+            pst.setInt(1, r.getIdRamasseur());
             rowCount = pst.executeUpdate();
         } catch (SQLException exc) {
             JOptionPane.showMessageDialog(null, "Code d'erreur : "+ exc.getErrorCode() +"\nMessage d'erreur : "+ exc.getMessage());
@@ -135,12 +129,10 @@ public class RamasseurDeBalleDAO implements InterfaceRamasseurDeBalleDAO {
         int rowCount;
         PreparedStatement pst = null;
         try {
-            pst = connexionBD.prepareStatement("UPDATE RamasseurDeBalle SET prenomArbitre=?, nomArbitre=?, nationaliteArbitre=?, categorieArbitre=? WHERE idArbitre=?");
-            pst.setString(1, a.getPrenomArbitre());
-            pst.setString(2, a.getNomArbitre());
-            pst.setString(3, a.getNationaliteArbitre());
-            pst.setString(4, a.getCategorieArbitre());
-            pst.setInt(5, a.getIdArbitre());
+            pst = connexionBD.prepareStatement("UPDATE RamasseurDeBalle SET prenomR=?, nomR=? WHERE idRamasseur=?");
+            pst.setString(1, a.getPrenomR());
+            pst.setString(2, a.getNomR());
+            pst.setInt(3, a.getIdRamasseur());
             rowCount = pst.executeUpdate();
 
         } catch (SQLException exc) {
