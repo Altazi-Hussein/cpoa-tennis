@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-USE App\Billet;
+use Illuminate\Support\Str;
+USE App\{Billet};
 
 class BilletsController extends Controller
 {
@@ -14,7 +15,8 @@ class BilletsController extends Controller
      */
     public function index()
     {
-        return view('billets.index');
+        $billets = Billet::all();
+        return view('billets.index', ['billets' => $billets]);
     }
 
     /**
@@ -58,7 +60,7 @@ class BilletsController extends Controller
     public function edit($id)
     {
         $billet = Billet::findOrFail($id);
-        return view('billets.edit', ['billet' => $billet]);
+        return view('billets.edit', ['billet' => $billet, 'id' => $id]);
     }
 
     /**
@@ -70,7 +72,17 @@ class BilletsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return view('home');
+        $this->validate($request, [
+            'quantite' => 'required',
+            'prix'     => 'required'
+        ]);
+        
+        $billet = Billet::findOrFail($id);
+        $billet->quantite = $request->get('quantite');
+        $billet->prix = Str::replaceFirst(',', '.',$request->get('prix'));
+        $billet->save();
+
+        return redirect()->route('home')->with('success', 'Billet modifié avec succès !');
     }
 
     /**

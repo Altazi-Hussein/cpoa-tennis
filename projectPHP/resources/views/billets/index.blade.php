@@ -11,17 +11,20 @@
                 <div class="card-body" style="background: #384d9b; color:white;font-size: 1.8vh; opacity: 0.95;">
                     
                     <form class="column">
-                        <div class="d-flex justify-content-between">
-                        <h3 for="grandPublic">Billets Grand Public 
-                        <p style="font-size: 1.5vh; font-weight: 400;">Du Samedi 16/05/2020 au Samedi 23/05/2020</p>
-                        </h3>
-                        <span class="d-flex flex-column justify-content-between">
-                        <input class="text-right" type="number" value="1" min="1" max="20">
-                        <input class="btn btn-success text-uppercase" type="button" value="Réserver" name="quantity" min="1" max="50" id="grandPublic">
-                        </span>
-                        </div>
-                        <hr>
-
+                        @foreach ($billets as $billet)
+                            <div class="d-flex justify-content-between">
+                            <h3 for="grandPublic">{{$billet->typeMatch}}
+                                <p style="font-size: 1.5vh; font-weight: 400;">Quantité restante: {{$billet->prix}}</p>
+                            <p style="font-size: 1.5vh; font-weight: 400;">Du Samedi 16/05/2020 au Samedi 23/05/2020</p>
+                            </h3>
+                            <span class="d-flex flex-column justify-content-between">
+                            <input class="text-right" type="number" value="1" min="1" max="{{$billet->quantite}}">
+                            <input class="btn btn-success text-uppercase" type="button" value="Réserver" name="quantity" id="grandPublic">
+                            </span>
+                            </div>
+                            <hr>
+                        @endforeach
+{{-- 
                         <div class="d-flex justify-content-between">
                         <h3 for="promo">Billets Promo 
                             <p style="font-size: 1.5vh; font-weight: 400;">Du Samedi 16/05/2020 au Samedi 23/05/2020</p>
@@ -68,7 +71,7 @@
                         </span>
                     </div>
 
-
+ --}}
                     </form>
                 </div>
             </div>

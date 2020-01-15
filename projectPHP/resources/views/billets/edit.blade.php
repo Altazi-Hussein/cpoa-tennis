@@ -7,6 +7,14 @@
             <div class="card">
                 <div class="card-header">Panel d'administration
                 <a class="float-right" href="{{ URL::to('/') }}">Accueil</a></div>
+                @if (count($errors)>0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                @endif
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -15,8 +23,9 @@
                     @endif
                     <h3>Gestion des billets</h3>
                     <hr>
-                    <form action="{{route('billets.update', $billet) }}" method="patch">
+                    <form method="post" action="{{action('BilletsController@update', $id)}}">
                     @csrf
+                    @method('PATCH')
                     <label class="mt-2" for="typeMatch">Type de billet</label>
                     <input class="form-control" placeholder="{{$billet->typeMatch}}" id="typeMatch" name="typeMatch" readonly>
 
@@ -31,7 +40,7 @@
                     <input class="form-control" value="{{$billet->quantite}}" id="quantite" name="quantite">
 
                     <input class="float-right btn btn-success form-control w-75 mt-4" type="submit" value="Éditer le billet">
-                    <a class="float-right btn btn-danger form-control w-25 mt-4" href="{{ URL::previous() }}">Annuler</a>
+                    <a class="float-right btn btn-danger form-control w-25 mt-4" href="{{ URL::to('home') }}">Annuler</a>
 
                 </form>
                 </div>

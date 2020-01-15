@@ -19,5 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('billets/choose', 'BilletsController@choose');
+Route::put('billets/{id}', 'BilletsController@update')->name('billet');
 Route::resource('/billets', 'BilletsController');
 Auth::routes();
