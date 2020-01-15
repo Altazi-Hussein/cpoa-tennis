@@ -38,10 +38,10 @@ public class EquipeArbitreDeLigneDAO implements InterfaceEquipeArbitreDeLigne{
             pst = connexionBD.prepareStatement("SELECT * FROM EquipeArbitreDeLigne_ArbitreDeLigne WHERE idEquipeArbitreDeLigne=?");
             pst.setInt(1, idEquipe);
             rset = pst.executeQuery();
-            ArbitreDeLigneDAO DAO = new ArbitreDeLigneDAO(connexionBD);
-            ArrayList<ArbitreDeLigne> lesArbitres = null;
+            ArbitreDeLigneDAO ALDAO = new ArbitreDeLigneDAO(connexionBD);
+            ArrayList<ArbitreDeLigne> lesArbitres = new ArrayList<>();
             while (rset.next()) {
-                ArbitreDeLigne al = DAO.findbyId(rset.getInt(2));
+                ArbitreDeLigne al = ALDAO.findbyId(rset.getInt(2));
                 lesArbitres.add(al);
             }
             equipe = new EquipeArbitreDeLigne(idEquipe, lesArbitres);
@@ -61,54 +61,16 @@ public class EquipeArbitreDeLigneDAO implements InterfaceEquipeArbitreDeLigne{
     }
 
     @Override
-    public int create (EquipeArbitreDeLigne equipe) throws SQLException {
-        int rowCount;
-        PreparedStatement pst = null;
-        try {
-            pst = connexionBD.prepareStatement("INSERT INTO EquipeArbitreDeLigne VALUES (?)");
-            pst.setInt(1, equipe.getIdEquipe());
-            rowCount = pst.executeUpdate();
-            for(ArbitreDeLigne a : equipe.getLesArbitresDeLigne()){
-                pst = connexionBD.prepareStatement("INSERT INTO EquipeArbitreDeLigne_ArbitreDeLigne VALUES (?,?)");
-                pst.setInt(1, equipe.getIdEquipe());
-                pst.setInt(2, a.getIdArbitre());
-                pst.executeUpdate();
-            }
-
-        } catch (SQLException exc) {
-            JOptionPane.showMessageDialog(null, "Code d'erreur : "+ exc.getErrorCode() +"\nMessage d'erreur : "+ exc.getMessage());
-            throw exc;
-        } finally {
-            try {
-                // la clause finally est toujours executée, quoi qu'il arrive
-                if (pst != null) {
-                    pst.close();
-
-                }
-            } catch (SQLException exc) {
-                throw exc;
-            }
-        }
-        return rowCount;
-    }
-
-    @Override
     public ArrayList<EquipeArbitreDeLigne> findAll() throws SQLException {
         Statement st = connexionBD.createStatement() ;
         ArrayList<EquipeArbitreDeLigne> lesEquipe = new ArrayList<EquipeArbitreDeLigne>();
+        EquipeArbitreDeLigne equipe = null;
         try{
-            ResultSet rs = st.executeQuery("SELECT * from Equipe");
+            ResultSet rs = st.executeQuery("SELECT * from EquipeArbitreDeLigne");
             int no;
-            Joueur j1, j2;
             while (rs.next()){
                 no = rs.getInt(1);
-                ArrayList<Joueur> joueurs = null;
-                JoueurDAO joueurDao = new JoueurDAO(connexionBD);
-                j1 = joueurDao.findById(rs.getInt(2));
-                j2 = joueurDao.findById(rs.getInt(3));
-                joueurs.add(j1);
-                joueurs.add(j2);
-                EquipeArbitreDeLigne equipe = new EquipeArbitreDeLigne(no,joueurs);
+                equipe = this.findById(no);
                 lesEquipe.add(equipe);
             }
         }catch (SQLException exc) {
@@ -117,59 +79,5 @@ public class EquipeArbitreDeLigneDAO implements InterfaceEquipeArbitreDeLigne{
         return lesEquipe;
 
     }
-
-
-    public int delete(EquipeArbitreDeLigne equipe) throws SQLException {
-        PreparedStatement pst = null;
-        int rowCount;
-        try{
-            pst = connexionBD.prepareStatement("delete from Equipe WHERE idEquipe=?");
-            pst.setInt(1, equipe.getIdEquipe());
-            rowCount = pst.executeUpdate();
-        } catch (SQLException exc) {
-            JOptionPane.showMessageDialog(null, "Code d'erreur : "+ exc.getErrorCode() +"\nMessage d'erreur : "+ exc.getMessage());
-            throw exc;
-        } finally {
-            try {
-                // la clause finally est toujours executée, quoi qu'il arrive
-                if (pst != null) {
-                    pst.close();
-                }
-            } catch (SQLException exc) {
-                throw exc;
-            }
-        }
-        return rowCount;
-    }
-
-
-    public int update (EquipeArbitreDeLigne equipe) throws SQLException {
-        int rowCount;
-        PreparedStatement pst = null;
-        try {
-            pst = connexionBD.prepareStatement("UPDATE Equipe SET idJoueur1=?, idJoueur2=? WHERE idEquipe=?");
-            pst.setInt(1, equipe);
-            pst.setInt(2, equipe);
-            pst.setInt(3, equipe);
-            rowCount = pst.executeUpdate();
-
-        } catch (SQLException exc) {
-            JOptionPane.showMessageDialog(null, "Code d'erreur : "+ exc.getErrorCode() +"\nMessage d'erreur : "+ exc.getMessage());
-            throw exc;
-        } finally {
-            try {
-                // la clause finally est toujours executée, quoi qu'il arrive
-                if (pst != null) {
-                    pst.close();
-
-                }
-            } catch (SQLException exc) {
-                throw exc;
-            }
-        }
-        return rowCount;
-    }
-
-}
     
 }

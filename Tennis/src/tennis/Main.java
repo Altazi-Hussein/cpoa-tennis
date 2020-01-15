@@ -43,8 +43,8 @@ public class Main {
             Equipe equipe1 = equipeDAO.findById(1);
             System.out.println("Nom joueur dont l'id est 1: " + j1.getNomJoueur());
             System.out.println("ID du joueur 2 dont l'id est 2 dans la base de données :" + equipe1.getJoueur2().getIdJoueur());
-            System.out.println("");
-
+            System.out.println(lesAL.get(0).getLesArbitresDeLigne().get(0).getNomArbitre());
+            System.out.println(lesAL.get(1).getLesArbitresDeLigne().get(1).getNomArbitre());
 
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
