@@ -13,6 +13,7 @@ class CreateBilletsTable extends Migration
      */
     public function up()
     {
+        if(!Schema::hasTable('billets')){
         Schema::create('billets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('typeMatch')->nullable();
@@ -20,6 +21,7 @@ class CreateBilletsTable extends Migration
             $table->integer('quantite')->nullable();
             $table->timestamps();
         });
+    }
     }
 
     /**

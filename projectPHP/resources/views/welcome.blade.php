@@ -85,7 +85,7 @@
                     </div>
                 </a>
 
-            <a href="{{ url('/billets')}}" style="line-height: 20vh;">
+            <a href="{{ url('/billets/choose')}}" style="line-height: 20vh;">
                     <div style="background: url('../public/images/billets.jpg');height: 20vh;width: 20vw; background-size:300%; background-position: center;">
                     Achetez vos billets
                     </div>
