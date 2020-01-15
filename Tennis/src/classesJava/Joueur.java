@@ -11,7 +11,7 @@ public class Joueur {
 
    private String prenomJoueur;
 
-   private int equipe;
+   private int idEquipe;
 
    private Match lesMatchsSimplesJoues;
 
@@ -23,12 +23,12 @@ public class Joueur {
         return nomJoueur;
     }
 
-    public int getEquipe() {
-        return equipe;
+    public int getIdEquipe() {
+        return idEquipe;
     }
 
-    public void setEquipe(int equipe) {
-        this.equipe = equipe;
+    public void setIdEquipe(int idEquipe) {
+        this.idEquipe = idEquipe;
     }
 
     public Match getLesMatchsSimplesJoues() {
@@ -61,7 +61,7 @@ public class Joueur {
         this.nomJoueur = nom;
         this.prenomJoueur = pre;
         this.nationaliteJoueur = nat;
-        this.equipe = eq;
+        this.idEquipe = eq;
     }
 
    public int getIdJoueur() {
