@@ -23,8 +23,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/4d9f9c2bbc.js" crossorigin="anonymous"></script>
+
 </head>
-<body style="background: url('../public/images/background.jpg'); background-size: cover;">
+<body style="background: url('../public/images/wallpaper.png'); background-size: cover;">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" >
             <div class="container">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+USE App\Billet;
 
 class BilletsController extends Controller
 {
@@ -56,7 +57,8 @@ class BilletsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $billet = Billet::findOrFail($id);
+        return view('billets.edit', ['billet' => $billet]);
     }
 
     /**
@@ -68,7 +70,7 @@ class BilletsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return view('home');
     }
 
     /**
