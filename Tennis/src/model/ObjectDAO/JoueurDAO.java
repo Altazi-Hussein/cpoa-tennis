@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 import model.interfaces.InterfaceJoueurDAO;
@@ -59,10 +58,10 @@ public class JoueurDAO implements InterfaceJoueurDAO {
         try {
             pst = connexionBD.prepareStatement("INSERT INTO Joueur VALUES (?,?,?,?,?)");
             pst.setInt(1, j.getIdJoueur());
-            pst.setInt(2, j.getIdEquipe());
-            pst.setString(3, j.getNationaliteJoueur());
-            pst.setString(4, j.getNomJoueur());
-            pst.setString(5, j.getPrenomJoueur());
+            pst.setInt(2, j.getIdEquipeJ());
+            pst.setString(3, j.getNationaliteJ());
+            pst.setString(4, j.getNomJ());
+            pst.setString(5, j.getPrenomJ());
             rowCount = pst.executeUpdate();
 
         } catch (SQLException exc) {
@@ -85,7 +84,7 @@ public class JoueurDAO implements InterfaceJoueurDAO {
     @Override
     public ArrayList<Joueur> findAll() throws SQLException {
         Statement st = connexionBD.createStatement() ;
-        ArrayList<Joueur> lesJoueur = new ArrayList<Joueur>();
+        ArrayList<Joueur> lesJoueur = new ArrayList<>();
         try{
             ResultSet rs = st.executeQuery("SELECT * from Joueur");
             int no;
@@ -112,6 +111,7 @@ public class JoueurDAO implements InterfaceJoueurDAO {
     }
 
 
+    @Override
     public int delete(Joueur j) throws SQLException {
         PreparedStatement pst = null;
         int rowCount;
@@ -136,15 +136,16 @@ public class JoueurDAO implements InterfaceJoueurDAO {
     }
 
 
+    @Override
     public int update (Joueur j) throws SQLException {
         int rowCount;
         PreparedStatement pst = null;
         try {
-            pst = connexionBD.prepareStatement("UPDATE Joueur SET prenomJoueur=?, nomJoueur=?, nationaliteJoueur=?, equipe=? WHERE idJoueur=?");
-            pst.setString(1, j.getPrenomJoueur());
-            pst.setString(2, j.getNomJoueur());
-            pst.setString(3, j.getNationaliteJoueur());
-            pst.setInt(4, j.getIdEquipe());
+            pst = connexionBD.prepareStatement("UPDATE Joueur SET prenomJ=?, nomJ=?, nationaliteJ=?, idEquipeJ=? WHERE idJoueur=?");
+            pst.setString(1, j.getPrenomJ());
+            pst.setString(2, j.getNomJ());
+            pst.setString(3, j.getNationaliteJ());
+            pst.setInt(4, j.getIdEquipeJ());
             pst.setInt(5, j.getIdJoueur());
             rowCount = pst.executeUpdate();
 

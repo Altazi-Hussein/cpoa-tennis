@@ -2,13 +2,13 @@ package classesJava;
 
 import java.util.ArrayList;
 
-public class Equipe {
+public class EquipeJoueur {
 
    private int idEquipe;
    
    private ArrayList<Joueur> lesJoueurs;
 
-    public Equipe(int idEquipe, ArrayList<Joueur> lesJoueurs) {
+    public EquipeJoueur(int idEquipe, ArrayList<Joueur> lesJoueurs) {
         this.idEquipe = idEquipe;
         this.lesJoueurs = lesJoueurs;
     }

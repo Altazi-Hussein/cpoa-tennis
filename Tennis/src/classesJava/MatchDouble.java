@@ -4,7 +4,7 @@ public class MatchDouble extends Match {
 
    private int idGagnants;
    
-   private Equipe[] lesEquipesJoueur;
+   private EquipeJoueur[] lesEquipesJoueur;
 
    private int idArbitreDeChaise;
 
@@ -12,11 +12,11 @@ public class MatchDouble extends Match {
 
    private EquipeRamasseur equipeDeRamasseur;
 
-    public Equipe[] getLesEquipesJoueur() {
+    public EquipeJoueur[] getLesEquipesJoueur() {
         return lesEquipesJoueur;
     }
 
-    public void setLesEquipesJoueur(Equipe[] lesEquipesJoueur) {
+    public void setLesEquipesJoueur(EquipeJoueur[] lesEquipesJoueur) {
         this.lesEquipesJoueur = lesEquipesJoueur;
     }
 

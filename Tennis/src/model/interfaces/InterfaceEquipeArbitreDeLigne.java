@@ -15,5 +15,5 @@ import java.util.ArrayList;
  */
 public interface InterfaceEquipeArbitreDeLigne {
     public ArrayList<EquipeArbitreDeLigne> findAll() throws SQLException;
-    public EquipeArbitreDeLigne findById(int noEquipe) throws SQLException;
+    public EquipeArbitreDeLigne findById(int idEquipe) throws SQLException;
 }

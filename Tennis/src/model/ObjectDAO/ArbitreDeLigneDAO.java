@@ -19,20 +19,20 @@ public class ArbitreDeLigneDAO implements InterfaceArbitreDeLigneDAO {
         this.connexionBD = c;
     }
 
-    public ArbitreDeLigne findbyId(int noArbitre) throws SQLException{
+    public ArbitreDeLigne findbyId(int idArbitre) throws SQLException{
         PreparedStatement pst = null;
         ResultSet rset;
         ArbitreDeLigne a = null;
         try {
-            pst = connexionBD.prepareStatement("SELECT * FROM ArbitreDeLigne WHERE idArbitre=?");
-            pst.setInt(1, noArbitre);
+            pst = connexionBD.prepareStatement("SELECT * FROM ArbitreDeLigne WHERE idArbitreL=?");
+            pst.setInt(1, idArbitre);
             rset = pst.executeQuery();
             if (rset.next()) {
                 a = new ArbitreDeLigne (rset.getInt(1), rset.getString(2), rset.getString(3) ,rset.getString(4), rset.getString(5));
             }
             else
             {
-                throw new SQLException ("Contact " + noArbitre + " inconnu");
+                throw new SQLException ("Contact " + idArbitre + " inconnu");
             }
 
         } catch (SQLException exc) {
@@ -55,12 +55,12 @@ public class ArbitreDeLigneDAO implements InterfaceArbitreDeLigneDAO {
         int rowCount;
         PreparedStatement pst = null;
         try {
-            pst = connexionBD.prepareStatement("INSERT INTO Arbitre VALUES (?,?,?,?,?)");
+            pst = connexionBD.prepareStatement("INSERT INTO ArbitreDeLigne VALUES (?,?,?,?,?)");
             pst.setInt(1, a.getIdArbitre());
-            pst.setString(2, a.getNomArbitre());
-            pst.setString(3, a.getPrenomArbitre());
-            pst.setString(4, a.getNationaliteArbitre());
-            pst.setString(5, a.getCategorieArbitre());
+            pst.setString(2, a.getNom());
+            pst.setString(3, a.getPrenom());
+            pst.setString(4, a.getNationalite());
+            pst.setString(5, a.getCategorie());
             rowCount = pst.executeUpdate();
 
         } catch (SQLException exc) {
@@ -111,7 +111,7 @@ public class ArbitreDeLigneDAO implements InterfaceArbitreDeLigneDAO {
         PreparedStatement pst = null;
         int rowCount;
         try{
-            pst = connexionBD.prepareStatement("delete from Joueur WHERE idArbitre=?");
+            pst = connexionBD.prepareStatement("delete from ArbitreDeLigne WHERE idArbitreL=?");
             pst.setInt(1, a.getIdArbitre());
             rowCount = pst.executeUpdate();
         } catch (SQLException exc) {
@@ -135,11 +135,11 @@ public class ArbitreDeLigneDAO implements InterfaceArbitreDeLigneDAO {
         int rowCount;
         PreparedStatement pst = null;
         try {
-            pst = connexionBD.prepareStatement("UPDATE ArbitreDeLigne SET prenomArbitre=?, nomArbitre=?, nationaliteArbitre=?, categorieArbitre=? WHERE idArbitre=?");
-            pst.setString(1, a.getPrenomArbitre());
-            pst.setString(2, a.getNomArbitre());
-            pst.setString(3, a.getNationaliteArbitre());
-            pst.setString(4, a.getCategorieArbitre());
+            pst = connexionBD.prepareStatement("UPDATE ArbitreDeLigne SET prenomL=?, nomL=?, nationaliteL=?, categorieL=? WHERE idArbitreL=?");
+            pst.setString(1, a.getPrenom());
+            pst.setString(2, a.getNom());
+            pst.setString(3, a.getNationalite());
+            pst.setString(4, a.getCategorie());
             pst.setInt(5, a.getIdArbitre());
             rowCount = pst.executeUpdate();
 
