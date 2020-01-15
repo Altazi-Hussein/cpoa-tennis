@@ -7,42 +7,67 @@
             <div class="card">
                 <div class="card-header" style="text-transform: uppercase; background: white; color: #384d9b; font-weight: bold;">Achetez vos billets
                 <a class="float-right" href="{{ URL::previous() }}">Retour</a></div>
-                <img src="{{asset('images/billetsbg.jpg')}}">
+                <img src="{{asset('images/billetsbg.jpg')}}" style="height: 50vh;">
                 <div class="card-body" style="background: #384d9b; color:white;font-size: 1.8vh; opacity: 0.95;">
                     
                     <form class="column">
                         <div class="d-flex justify-content-between">
-                        <h3 for="grandPublic">Billets Grand Public </h3>
+                        <h3 for="grandPublic">Billets Grand Public 
+                        <p style="font-size: 1.5vh; font-weight: 400;">Du Samedi 16/05/2020 au Samedi 23/05/2020</p>
+                        </h3>
+                        <span class="d-flex flex-column justify-content-between">
+                        <input class="text-right" type="number" value="1" min="1" max="20">
                         <input class="btn btn-success text-uppercase" type="button" value="Réserver" name="quantity" min="1" max="50" id="grandPublic">
+                        </span>
                         </div>
-                        <p>Du Samedi 16/05/2020 au Samedi 23/05/2020</p>
                         <hr>
 
                         <div class="d-flex justify-content-between">
-                        <h3 for="promo">Billets Promo </h3>
+                        <h3 for="promo">Billets Promo 
+                            <p style="font-size: 1.5vh; font-weight: 400;">Du Samedi 16/05/2020 au Samedi 23/05/2020</p>
+                        
+                        </h3>
+                        <span class="d-flex flex-column justify-content-between">
+                        <input class="text-right" type="number" value="1" min="1" max="20">
                         <input class="btn btn-success text-uppercase" type="button" value="Réserver" name="quantity" min="1" max="50" id="grandPublic">
+                        </span>
                         </div>
-                        <p>Du Samedi 16/05/2020 au Samedi 23/05/2020</p>
                         <hr>
                         <div class="d-flex justify-content-between">
-                        <h3 for="licencie">Billets Licenciés </h3>
+                        <h3 for="licencie">Billets Licenciés 
+                            <p style="font-size: 1.5vh; font-weight: 400;">Du Samedi 16/05/2020 au Samedi 23/05/2020</p>
+                        
+                        </h3>
+                        <span class="d-flex flex-column justify-content-between">
+                            <input class="text-right" type="number" value="1" min="1" max="20">
                         <input class="btn btn-success text-uppercase" type="button" value="Réserver" name="quantity" min="1" max="50" id="grandPublic">
-                        </div>
-                        <p>Du Samedi 16/05/2020 au Samedi 23/05/2020</p>
+                        </span>
+                    </div>
                         <hr>
 
                         <div class="d-flex justify-content-between">
-                        <h3 for="journeeSolidarite">Billets Journée de la Solidarité </h3>
+                        <h3 for="journeeSolidarite">Billets Journée de la Solidarité 
+                            <p style="font-size: 1.5vh; font-weight: 400;">Du Samedi 16/05/2020 au Samedi 23/05/2020</p>
+                        
+                        </h3>
+                        <span class="d-flex flex-column justify-content-between">
+                            <input class="text-right" type="number" value="1" min="1" max="20">
                         <input class="btn btn-success text-uppercase" type="button" value="Réserver" name="quantity" min="1" max="50" id="grandPublic">
-                        </div>
-                        <p>Du Samedi 16/05/2020 au Samedi 23/05/2020</p>
+                        </span>
+                    </div>
                         <hr>
 
                         <div class="d-flex justify-content-between">
-                        <h3 for="bigMatch">Billets Grand Public </h3>
+                        <h3 for="bigMatch">Billets Grand Public 
+                            <p style="font-size: 1.5vh; font-weight: 400;">Du Samedi 16/05/2020 au Samedi 23/05/2020</p>
+                        
+                        </h3>
+                        <span class="d-flex flex-column justify-content-between">
+                            <input class="text-right" type="number" value="1" min="1" max="20">
                         <input class="btn btn-success text-uppercase" type="button" value="Réserver" name="quantity" min="1" max="50" id="grandPublic">
-                        </div>
-                        <p>Du Samedi 16/05/2020 au Samedi 23/05/2020</p>
+                        </span>
+                    </div>
+
 
                     </form>
                 </div>

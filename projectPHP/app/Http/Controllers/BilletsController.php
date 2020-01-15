@@ -81,4 +81,9 @@ class BilletsController extends Controller
     {
         //
     }
+
+    public function choose()
+    {
+        return view('billets.choose');
+    }
 }
