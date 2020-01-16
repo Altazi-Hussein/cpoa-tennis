@@ -3,8 +3,19 @@ package classesJava;
 
 public class ArbitreDeLigne extends Arbitre {
 
-   public ArbitreDeLigne(int id, String nom, String pre, String nat, String cat) {
-      super(id, nom, pre, nat, cat);
+    private int idEquipeL;
+    
+   public ArbitreDeLigne(int idArbitre, int idEquipe, String nom, String pre, String nat, String cat) {
+      super(idArbitre, nom, pre, nat, cat);
+      this.idEquipeL = idEquipe;
    }
+
+    public int getIdEquipeL() {
+        return idEquipeL;
+    }
+
+    public void setIdEquipeL(int idEquipeL) {
+        this.idEquipeL = idEquipeL;
+    }
 
 }

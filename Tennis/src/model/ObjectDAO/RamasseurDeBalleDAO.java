@@ -22,13 +22,13 @@ public class RamasseurDeBalleDAO implements InterfaceRamasseurDeBalleDAO {
     public RamasseurDeBalle findbyId(int idRamasseur) throws SQLException{
         PreparedStatement pst = null;
         ResultSet rset;
-        RamasseurDeBalle a = null;
+        RamasseurDeBalle r = null;
         try {
             pst = connexionBD.prepareStatement("SELECT * FROM RamasseurDeBalle WHERE idRamasseur=?");
             pst.setInt(1, idRamasseur);
             rset = pst.executeQuery();
             if (rset.next()) {
-                a = new RamasseurDeBalle (rset.getInt(1), rset.getString(2), rset.getString(3));
+                r = new RamasseurDeBalle (rset.getInt(1), rset.getString(2), rset.getString(3));
             }
             else
             {
@@ -47,7 +47,7 @@ public class RamasseurDeBalleDAO implements InterfaceRamasseurDeBalleDAO {
                 throw exc;
             }
         }
-        return a;
+        return r;
     }
 
     @Override
@@ -91,8 +91,8 @@ public class RamasseurDeBalleDAO implements InterfaceRamasseurDeBalleDAO {
                 no = rs.getInt(1);
                 nom = rs.getString(2);
                 pre = rs.getString(3);
-                RamasseurDeBalle a = new RamasseurDeBalle(no, nom, pre);
-                lesRamasseur.add(a);
+                RamasseurDeBalle r = new RamasseurDeBalle(no, nom, pre);
+                lesRamasseur.add(r);
             }
         }catch (SQLException exc) {
             throw exc;
@@ -125,14 +125,14 @@ public class RamasseurDeBalleDAO implements InterfaceRamasseurDeBalleDAO {
     }
 
 
-    public int update (RamasseurDeBalle a) throws SQLException {
+    public int update (RamasseurDeBalle r) throws SQLException {
         int rowCount;
         PreparedStatement pst = null;
         try {
             pst = connexionBD.prepareStatement("UPDATE RamasseurDeBalle SET prenomR=?, nomR=? WHERE idRamasseur=?");
-            pst.setString(1, a.getPrenomR());
-            pst.setString(2, a.getNomR());
-            pst.setInt(3, a.getIdRamasseur());
+            pst.setString(1, r.getPrenomR());
+            pst.setString(2, r.getNomR());
+            pst.setInt(3, r.getIdRamasseur());
             rowCount = pst.executeUpdate();
 
         } catch (SQLException exc) {
