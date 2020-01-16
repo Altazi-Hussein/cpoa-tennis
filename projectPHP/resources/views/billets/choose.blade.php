@@ -25,12 +25,6 @@ background-size:cover;
                         <label for="dateMatch">Choisissez la date du match</label>
                         <input class="form-control" type="date" name="dateMatch">
                         </div>
-                        @php
-   if(DB::connection()->getDatabaseName())
-   {
-     echo "conncted sucessfully to database ".DB::connection()->getDatabaseName();
-   }
-                        @endphp
                         <div class="form-group">
                         <label for="court">Pour quel court ?</label>
                         <select class="form-control">
@@ -42,7 +36,7 @@ background-size:cover;
                         </div>
                         <input type="submit" class="form-control btn btn-success mt-4" value="Recherchez les billets disponibles" style="font-size: 1.8vh;">
                     </form>
-</div>
+                    </div>
 {{--                 <a href="{{url::('billets.accueil')}}">Aller</a>
  --}}            </div>
         </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Billet;
+use DB;
 
 class BilletsController extends Controller
 {
@@ -16,7 +17,8 @@ class BilletsController extends Controller
     public function index()
     {
         $billets = Billet::all();
-        return view('billets.index', ['billets' => $billets]);
+        $var = Billet::where('id', 1)->get();
+        return view('billets.index', ['billets' => $billets, 'var' => $var]);
     }
 
 

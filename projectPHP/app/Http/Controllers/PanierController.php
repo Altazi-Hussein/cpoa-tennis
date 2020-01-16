@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Cart;
 
 class PanierController extends Controller
 {
@@ -34,10 +35,16 @@ class PanierController extends Controller
      */
     public function store(Request $request)
     {
-        /* Cart::add($request->id, $request->name, 1, $request->price)->associate('App\Billet'); */
+/*         Cart::add($request->id, $request->quantite, 1, $request->prix)->associate('App\Billet');
+ */
+        /* Cart::add('1', 'Billet 1', 1, 10);
+        return redirect()->route('panier.index')->with('success', 'Billet(s) ajouté avec succès');*/
+        return view('welcome');
+    }
 
-        return redirect()->route('panier.index')->with('success', 'Billet(s) ajouté avec succès');
-
+    public function test()
+    {
+        return view('welcome');
     }
 
     /**

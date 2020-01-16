@@ -90,8 +90,9 @@
                             </li>
                         @endguest
                     </ul>
-                    <a class="nav-lin" href="{{ route('panier.index') }}">
+                    <a class="nav-lin" href="{{ url('panier') }}">
                         <i class="fas fa-shopping-cart"></i>{{ __(' Panier') }}
+                        <span>{{Cart::count()}}</span>
                     </a>
                 </div>
             </div>
