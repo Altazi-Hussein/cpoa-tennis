@@ -1,6 +1,7 @@
 package classesJava;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class Planning {
 
@@ -12,54 +13,55 @@ public class Planning {
 
    private Date dateFin;
 
-   public java.util.Collection<Match> lesMatchs;
+   public ArrayList<Match> lesMatchs;
 
-   public int getIdPlanning() {
-      return idPlanning;
-   }
+    public Planning(int idPlanning, int nomPlanning, Date dateDebut, Date dateFin, ArrayList<Match> lesMatchs) {
+        this.idPlanning = idPlanning;
+        this.nomPlanning = nomPlanning;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.lesMatchs = lesMatchs;
+    }
 
-   public void setIdPlanning(int newIdPlanning) {
-      idPlanning = newIdPlanning;
-   }
+    public int getIdPlanning() {
+        return idPlanning;
+    }
 
-   public java.util.Collection<Match> getLesMatchs() {
-      if (lesMatchs == null)
-         lesMatchs = new java.util.HashSet<Match>();
-      return lesMatchs;
-   }
+    public void setIdPlanning(int idPlanning) {
+        this.idPlanning = idPlanning;
+    }
 
-   public java.util.Iterator getIteratorLesMatchs() {
-      if (lesMatchs == null)
-         lesMatchs = new java.util.HashSet<Match>();
-      return lesMatchs.iterator();
-   }
+    public int getNomPlanning() {
+        return nomPlanning;
+    }
 
-   public void setLesMatchs(java.util.Collection<Match> newLesMatchs) {
-      removeAllLesMatchs();
-      for (java.util.Iterator iter = newLesMatchs.iterator(); iter.hasNext();)
-         addLesMatchs((Match)iter.next());
-   }
+    public void setNomPlanning(int nomPlanning) {
+        this.nomPlanning = nomPlanning;
+    }
 
-   public void addLesMatchs(Match newMatch) {
-      if (newMatch == null)
-         return;
-      if (this.lesMatchs == null)
-         this.lesMatchs = new java.util.HashSet<Match>();
-      if (!this.lesMatchs.contains(newMatch))
-         this.lesMatchs.add(newMatch);
-   }
+    public Date getDateDebut() {
+        return dateDebut;
+    }
 
-   public void removeLesMatchs(Match oldMatch) {
-      if (oldMatch == null)
-         return;
-      if (this.lesMatchs != null)
-         if (this.lesMatchs.contains(oldMatch))
-            this.lesMatchs.remove(oldMatch);
-   }
+    public void setDateDebut(Date dateDebut) {
+        this.dateDebut = dateDebut;
+    }
 
-   public void removeAllLesMatchs() {
-      if (lesMatchs != null)
-         lesMatchs.clear();
-   }
+    public Date getDateFin() {
+        return dateFin;
+    }
 
+    public void setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
+    }
+
+    public ArrayList<Match> getLesMatchs() {
+        return lesMatchs;
+    }
+
+    public void setLesMatchs(ArrayList<Match> lesMatchs) {
+        this.lesMatchs = lesMatchs;
+    }
+
+   
 }

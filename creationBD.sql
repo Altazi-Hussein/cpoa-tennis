@@ -1,18 +1,17 @@
-create or replace table Joueur(
-	idJoueur int not null,
+﻿create or replace table Joueur(
+	idJoueur int not null primary key,
 	idEquipeJ int,
 	nationaliteJ varchar(254),
 	nomJ varchar(254),
-	prenomJ varchar(254),
-	primary key (idJoueur)
+	prenomJ varchar(254)
 );
 
 create or replace table Arbitre (
-    idArbitre int not null primary key,
+	idArbitre int not null primary key,
 	nom varchar(254),
 	prenom varchar(254),
 	nationalite varchar(254),
-	categorie varchar(254)    
+	categorie varchar(254)
 );
 insert into Arbitre values(1, "Vignat", "Jean", "Français", "Deux");
 
@@ -31,9 +30,62 @@ create or replace table ArbitreDeChaise(
 );
 
 create or replace table RamasseurDeBalle(
-	idRamasseur int not null,
+	idRamasseur int not null primary key,
 	idEquipeR int,
 	nomR varchar(254),
-	prenomR varchar(254),
-	primary key(idRamasseur)
+	prenomR varchar(254)
+);
+
+create or replace table Court (
+	idCourt int not null primary key,
+	typeCourt varchar(254) check (typeCourt in ('Annexe','Principal'))
+);
+
+create or replace table ScoreMatch(
+	idScore int not null primary key,
+	tour int not null,
+	score1 int not null,
+	score2 int not null
+);
+
+create or replace table `Match`(
+	idMatch int not null primary key,
+	idAChaise int,
+	idEquipeAL int,
+	idEquipeR int
+	dateDebutM Date,
+	dateFinM Date,
+	idCourt int,
+	idScore int,
+	idGagnant int
+
+);
+
+create or replace table MatchSimple(
+	idMatchSimple int not null primary key,
+	idJoueur1 int,
+	idJoueur2 int,
+	tournoi boolean
+);
+
+create or replace table MatchDouble(
+	idMatchDouble int not null primary key,
+	idEquipeJ1 int,
+	idEquipeJ2 int
+);
+
+create or replace table ReservationEntrainement(
+	idReservation int not null,
+	dateDebutR Date,
+	dateFinR Date,
+	idCourt int not null,
+	idJoueur int not null,
+	idPlanning int not null,
+	primary key(idCourt, idJoueur, idReservation, dateDebut)
+);
+
+create or replace table Planning(
+	idPlanning int not null primary key,
+	dateDebutP Date,
+	dateFinP Date
 );

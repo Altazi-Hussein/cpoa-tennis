@@ -9,7 +9,8 @@ package classesJava;
  *
  * @author angel
  */
-class ScoreMatch {
+public class ScoreMatch {
+    
     private int idMatch;
     
     /**

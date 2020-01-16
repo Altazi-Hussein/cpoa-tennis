@@ -25,11 +25,11 @@ public class JoueurDAO implements InterfaceJoueurDAO {
         ResultSet rset;
         Joueur j = null;
         try {
-            pst = connexionBD.prepareStatement("SELECT * FROM Joueur WHERE idJoueur=?");
+            pst = connexionBD.prepareStatement("SELECT * from Joueur WHERE idJoueur=?");
             pst.setInt(1, idJoueur);
             rset = pst.executeQuery();
             if (rset.next()) {
-                j = new Joueur(rset.getInt(1), rset.getInt(2), rset.getString(3) ,rset.getString(4), rset.getString(5));
+                j = new Joueur(idJoueur, rset.getInt(2), rset.getString(3) ,rset.getString(4), rset.getString(5));
             }
             else 
             {
@@ -98,8 +98,6 @@ public class JoueurDAO implements InterfaceJoueurDAO {
                 nat = rs.getString(3);
                 nom = rs.getString(4);
                 pre = rs.getString(5);
-                
-                
                 Joueur j = new Joueur(no, eq, nat, nom, pre);
                 lesJoueur.add(j);
             }  
