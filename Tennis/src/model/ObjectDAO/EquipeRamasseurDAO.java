@@ -6,7 +6,8 @@
 package model.ObjectDAO;
 
 import classesJava.ArbitreDeLigne;
-import classesJava.EquipeArbitreDeLigne;
+import classesJava.EquipeRamasseur;
+import classesJava.RamasseurDeBalle;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,36 +16,34 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import model.interfaces.InterfaceEquipeArbitreDeLigneDAO;
-
+import model.interfaces.InterfaceEquipeRamasseurDAO;
 /**
  *
- * @author angel
+ * @author p1806052
  */
-public class EquipeArbitreDeLigneDAO implements InterfaceEquipeArbitreDeLigneDAO{
-
+public class EquipeRamasseurDAO implements InterfaceEquipeRamasseurDAO{
     private final Connection connexionBD;
 
-    public EquipeArbitreDeLigneDAO(Connection c) {
+    public EquipeRamasseurDAO(Connection c) {
         this.connexionBD = c;
     }
 
     @Override
-    public EquipeArbitreDeLigne findById(int idEquipe) throws SQLException{
+    public EquipeRamasseur findById(int idEquipe) throws SQLException{
         PreparedStatement pst = null;
         ResultSet rset;
-        EquipeArbitreDeLigne equipe = null;
+        EquipeRamasseur equipe = null;
         try {
-            pst = connexionBD.prepareStatement("SELECT * FROM EquipeArbitreDeLigne WHERE idEquipeL=?");
+            pst = connexionBD.prepareStatement("SELECT * FROM EquipeRamasseur WHERE idEquipeR=?");
             pst.setInt(1, idEquipe);
             rset = pst.executeQuery();
-            ArbitreDeLigneDAO ALDAO = new ArbitreDeLigneDAO(connexionBD);
-            ArrayList<ArbitreDeLigne> lesArbitres = new ArrayList<>();
+            RamasseurDeBalleDAO RDAO = new RamasseurDeBalleDAO(connexionBD);
+            ArrayList<RamasseurDeBalle> lesRamasseurs = new ArrayList<>();
             while (rset.next()) {
-                ArbitreDeLigne al = ALDAO.findbyId(rset.getInt(2));
-                lesArbitres.add(al);
+                RamasseurDeBalle r = RDAO.findbyId(rset.getInt(2));
+                lesRamasseurs.add(r);
             }
-            equipe = new EquipeArbitreDeLigne(idEquipe, lesArbitres);
+            equipe = new EquipeRamasseur(idEquipe, lesRamasseurs);
         } catch (SQLException exc) {
             throw exc;
         } finally {
@@ -61,12 +60,12 @@ public class EquipeArbitreDeLigneDAO implements InterfaceEquipeArbitreDeLigneDAO
     }
 
     @Override
-    public ArrayList<EquipeArbitreDeLigne> findAll() throws SQLException {
+    public ArrayList<EquipeRamasseur> findAll() throws SQLException {
         Statement st = connexionBD.createStatement() ;
-        ArrayList<EquipeArbitreDeLigne> lesEquipe = new ArrayList<EquipeArbitreDeLigne>();
-        EquipeArbitreDeLigne equipe = null;
+        ArrayList<EquipeRamasseur> lesEquipe = new ArrayList<EquipeRamasseur>();
+        EquipeRamasseur equipe = null;
         try{
-            ResultSet rs = st.executeQuery("SELECT distinct idEquipeL from EquipeArbitreDeLigne");
+            ResultSet rs = st.executeQuery("SELECT distinct idEquipeR from EquipeRamasseur");
             int no;
             while (rs.next()){
                 no = rs.getInt(1);
@@ -79,5 +78,4 @@ public class EquipeArbitreDeLigneDAO implements InterfaceEquipeArbitreDeLigneDAO
         return lesEquipe;
 
     }
-    
 }

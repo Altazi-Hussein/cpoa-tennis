@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author angel
  */
-public interface InterfaceEquipeArbitreDeLigne {
+public interface InterfaceEquipeArbitreDeLigneDAO {
     public ArrayList<EquipeArbitreDeLigne> findAll() throws SQLException;
     public EquipeArbitreDeLigne findById(int idEquipe) throws SQLException;
 }

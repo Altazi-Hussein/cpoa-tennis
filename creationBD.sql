@@ -7,29 +7,27 @@ create or replace table Joueur(
 	primary key (idJoueur)
 );
 
-create or replace table ArbitreDeLigne(
-	idArbitreL int not null,
-	nomL varchar(254),
-	prenomL varchar(254),
-	nationaliteL varchar(254),
-	categorieL varchar(254),
-	primary key (idArbitreL)
+create or replace table Arbitre (
+    idArbitre int not null primary key,
+	nom varchar(254),
+	prenom varchar(254),
+	nationalite varchar(254),
+	categorie varchar(254)    
+);
+insert into Arbitre values(1, "Vignat", "Jean", "Français", "Deux");
+
+create or replace table ArbitreDeLigne (
+    idArbitreL int not null primary key,
+    idEquipeL int,
+    foreign key (idArbitreL) references Arbitre(idArbitre)
 );
 
 create or replace table ArbitreDeChaise(
-	idArbitreC int not null,
-	nomC varchar(254),
-	prenomC varchar(254),
-	nationaliteC varchar(254),
-	categorieC varchar(254),
+	idArbitreC int not null primary key,
 	nbMatchSimple int,
 	nbMatchDouble int,
-	primary key (idArbitreC)
-);
-
-create or replace table EquipeArbitreDeLigne(
-	idEquipeL int,
-	idArbitreL int
+	foreign key (idArbitreC) references Arbitre(idArbitre)
+	
 );
 
 create or replace table RamasseurDeBalle(

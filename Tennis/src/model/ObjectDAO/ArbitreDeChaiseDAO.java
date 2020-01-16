@@ -25,7 +25,7 @@ public class ArbitreDeChaiseDAO implements InterfaceArbitreDeChaiseDAO {
         ResultSet rset;
         ArbitreDeChaise a = null;
         try {
-            pst = connexionBD.prepareStatement("SELECT * FROM ArbitreDeChaise WHERE idArbitreC=?");
+            pst = connexionBD.prepareStatement("SELECT * FROM ArbitreDeChaise natural join Arbitre WHERE idArbitreC=?");
             pst.setInt(1, idArbitre);
             rset = pst.executeQuery();
             if (rset.next()) {
