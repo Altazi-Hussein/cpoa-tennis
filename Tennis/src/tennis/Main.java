@@ -40,13 +40,11 @@ public class Main {
             RamasseurDeBalleDAO rDAO = new RamasseurDeBalleDAO(connexionBD);
             EquipeArbitreDeLigneDAO equipeALDAO = new EquipeArbitreDeLigneDAO(connexionBD);
             ArrayList<EquipeArbitreDeLigne> lesAL = equipeALDAO.findAll();
-            List<Joueur> lesJoueurs = joueurDAO.findAll();
-            Joueur j1 = joueurDAO.findById(1);
+            Joueur j1 = joueurDAO.findById(2);
             EquipeJoueur equipe1 = equipeDAO.findById(1);
             System.out.println("Nom joueur dont l'id est 1: " + j1.getNomJ());
             System.out.println("ID du joueur 2 dont l'id est 2 dans la base de données :" + equipe1.getJoueur2().getIdJoueur());
             System.out.println(lesAL.get(0).getLesArbitresDeLigne().get(0).getNom());
-            System.out.println(lesAL.get(1).getLesArbitresDeLigne().get(1).getNom());
             System.out.println("Le premier ramasseur de balle se nomme: " + rDAO.findAll().get(0).getPrenomR());
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

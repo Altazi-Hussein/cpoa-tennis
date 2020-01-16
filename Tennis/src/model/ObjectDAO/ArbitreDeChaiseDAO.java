@@ -25,7 +25,7 @@ public class ArbitreDeChaiseDAO implements InterfaceArbitreDeChaiseDAO {
         ResultSet rset;
         ArbitreDeChaise a = null;
         try {
-            pst = connexionBD.prepareStatement("SELECT * FROM ArbitreDeChaise natural join Arbitre WHERE idArbitreC=?");
+            pst = connexionBD.prepareStatement("SELECT idArbitreC, nom, prenom, nationalite, categorie, nmMatchSimple, nbMatchDouble FROM ArbitreDeChaise join Arbitre on idArbitreC=idArbitre WHERE idArbitreC = ?");
             pst.setInt(1, idArbitre);
             rset = pst.executeQuery();
             if (rset.next()) {
@@ -53,18 +53,21 @@ public class ArbitreDeChaiseDAO implements InterfaceArbitreDeChaiseDAO {
 
     @Override
     public int create (ArbitreDeChaise a) throws SQLException {
-        int rowCount;
+        int rowCount = 0;
         PreparedStatement pst = null;
         try {
-            pst = connexionBD.prepareStatement("INSERT INTO ArbitreDeChaise VALUES (?,?,?,?,?,?,?)");
+            pst = connexionBD.prepareStatement("INSERT INTO ArbitreDeChaise VALUES (?,?,?)");
+            pst.setInt(1, a.getIdArbitre());
+            pst.setInt(2, a.getNbMatchSimple());
+            pst.setInt(3, a.getNbMatchDouble());
+            rowCount += pst.executeUpdate();
+            pst = connexionBD.prepareStatement("INSERT INTO ArbitreDeChaise VALUES (?,?,?,?,?)");
             pst.setInt(1, a.getIdArbitre());
             pst.setString(2, a.getNom());
             pst.setString(3, a.getPrenom());
             pst.setString(4, a.getNationalite());
             pst.setString(5, a.getCategorie());
-            pst.setInt(6, a.getNbMatchSimple());
-            pst.setInt(7, a.getNbMatchDouble());
-            rowCount = pst.executeUpdate();
+            rowCount += pst.executeUpdate();
 
         } catch (SQLException exc) {
             JOptionPane.showMessageDialog(null, "Code d'erreur : "+ exc.getErrorCode() +"\nMessage d'erreur : "+ exc.getMessage());
@@ -88,7 +91,7 @@ public class ArbitreDeChaiseDAO implements InterfaceArbitreDeChaiseDAO {
         Statement st = connexionBD.createStatement() ;
         ArrayList<ArbitreDeChaise> lesArbitre = new ArrayList<ArbitreDeChaise>();
         try{
-            ResultSet rs = st.executeQuery("SELECT * from ArbitreDeChaise");
+            ResultSet rs = st.executeQuery("SELECT idArbitreC, nom, prenom, nationalite, categorie, nmMatchSimple, nbMatchDouble FROM ArbitreDeChaise join Arbitre on idArbitreC=idArbitre");
             int no;
             String nom;
             String pre;
@@ -138,19 +141,22 @@ public class ArbitreDeChaiseDAO implements InterfaceArbitreDeChaiseDAO {
 
 
     public int update (ArbitreDeChaise a) throws SQLException {
-        int rowCount;
+        int rowCount = 0;
         PreparedStatement pst = null;
         try {
-            pst = connexionBD.prepareStatement("UPDATE ArbitreDeChaise SET prenomC=?, nomC=?, nationaliteC=?, categorieC=?, nbMatchSimple=?, nbMatchDouble=? WHERE idArbitreC=?");
+            pst = connexionBD.prepareStatement("UPDATE ArbitreDeChaise SET nbMatchSimple=?, nbMatchDouble=? WHERE idArbitreC=?");
+            pst.setInt(1, a.getNbMatchSimple());
+            pst.setInt(2, a.getNbMatchDouble());
+            rowCount += pst.executeUpdate();
+            
+            pst = connexionBD.prepareStatement("UPDATE Arbitre SET nom=?, prenom=?, nationalite=?, categorie=? WHERE idArbitre=?");
             pst.setString(1, a.getPrenom());
             pst.setString(2, a.getNom());
             pst.setString(3, a.getNationalite());
             pst.setString(4, a.getCategorie());
-            pst.setInt(5, a.getNbMatchSimple());
-            pst.setInt(6, a.getNbMatchDouble());
-            pst.setInt(7, a.getIdArbitre());
-            rowCount = pst.executeUpdate();
-
+            pst.setInt(5, a.getIdArbitre());
+            rowCount += pst.executeUpdate();
+            
         } catch (SQLException exc) {
             JOptionPane.showMessageDialog(null, "Code d'erreur : "+ exc.getErrorCode() +"\nMessage d'erreur : "+ exc.getMessage());
             throw exc;

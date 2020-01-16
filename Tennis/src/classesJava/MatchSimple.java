@@ -1,21 +1,18 @@
 package classesJava;
 
-public class MatchSimple extends Match {
+import java.util.Date;
 
-   private int idGagnant;
+public class MatchSimple extends Match {
 
    private Boolean tournoi;
    
    private Joueur[] lesJoueurs;
 
-    public MatchSimple(int idGagnant, Boolean tournoi, Joueur[] lesJoueurs, ArbitreDeChaise arbitre, EquipeRamasseur[] equipeDeRamasseur) {
-        this.idGagnant = idGagnant;
+    public MatchSimple(Boolean tournoi, Joueur[] lesJoueurs, int idMatch, int idPlanning, ArbitreDeChaise arbitreDeChaise, EquipeArbitreDeLigne equipeArbitresDeLigne, EquipeRamasseur equipeDeRamasseur, Date dateDébut, Date dateFin, Court court, ScoreMatch score, int idGagnant) {
+        super(idMatch, idPlanning, arbitreDeChaise, equipeArbitresDeLigne, equipeDeRamasseur, dateDébut, dateFin, court, score, idGagnant);
         this.tournoi = tournoi;
         this.lesJoueurs = lesJoueurs;
-        this.arbitre = arbitre;
-        this.equipeDeRamasseur = equipeDeRamasseur;
     }
-
 
     public Boolean getTournoi() {
         return tournoi;
@@ -25,31 +22,12 @@ public class MatchSimple extends Match {
         this.tournoi = tournoi;
     }
 
-    public ArbitreDeChaise getArbitre() {
-        return arbitre;
+    public Joueur[] getLesJoueurs() {
+        return lesJoueurs;
     }
 
-    public void setArbitre(ArbitreDeChaise arbitre) {
-        this.arbitre = arbitre;
+    public void setLesJoueurs(Joueur[] lesJoueurs) {
+        this.lesJoueurs = lesJoueurs;
     }
-
-    public EquipeRamasseur[] getEquipeDeRamasseur() {
-        return equipeDeRamasseur;
-    }
-
-    public void setEquipeDeRamasseur(EquipeRamasseur[] equipeDeRamasseur) {
-        this.equipeDeRamasseur = equipeDeRamasseur;
-    }
-
-   public ArbitreDeChaise arbitre;
-
-   public EquipeRamasseur[] equipeDeRamasseur;
-
-   public int getIdGagnant() {
-      return idGagnant;
-   }
-
-   public void setIdGagnant(int newIdGagnant) {
-      idGagnant = newIdGagnant;
-   }
+   
 }

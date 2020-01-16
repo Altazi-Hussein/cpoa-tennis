@@ -24,7 +24,7 @@ public class ArbitreDeLigneDAO implements InterfaceArbitreDeLigneDAO {
         ResultSet rset;
         ArbitreDeLigne a = null;
         try {
-            pst = connexionBD.prepareStatement("SELECT idArbitreL, idEquipeL, nom, prenom, nationalite, categorie FROM ArbitreDeLigne join Arbitre on idArbitreL=idArbitre WHERE idArbitre = ?");
+            pst = connexionBD.prepareStatement("SELECT idArbitreL, idEquipeL, nom, prenom, nationalite, categorie FROM ArbitreDeLigne join Arbitre on idArbitreL=idArbitre WHERE idArbitreL = ?");
             pst.setInt(1, idArbitre);
             rset = pst.executeQuery();
             if (rset.next()) {
@@ -52,17 +52,21 @@ public class ArbitreDeLigneDAO implements InterfaceArbitreDeLigneDAO {
 
     @Override
     public int create (ArbitreDeLigne a) throws SQLException {
-        int rowCount;
+        int rowCount = 0;
         PreparedStatement pst = null;
         try {
-            pst = connexionBD.prepareStatement("INSERT INTO ArbitreDeLigne VALUES (?,?,?,?,?,?)");
+            pst = connexionBD.prepareStatement("INSERT INTO ArbitreDeLigne VALUES (?,?)");
             pst.setInt(1, a.getIdArbitre());
             pst.setInt(2, a.getIdEquipeL());
-            pst.setString(3, a.getNom());
-            pst.setString(4, a.getPrenom());
-            pst.setString(5, a.getNationalite());
-            pst.setString(6, a.getCategorie());
-            rowCount = pst.executeUpdate();
+            rowCount += pst.executeUpdate();
+            pst = connexionBD.prepareStatement("INSERT INTO Arbitre VALUES (?,?,?,?,?)");
+            pst.setInt(1, a.getIdArbitre());
+            pst.setString(2, a.getNom());
+            pst.setString(3, a.getPrenom());
+            pst.setString(4, a.getNationalite());
+            pst.setString(5, a.getCategorie());
+            rowCount += pst.executeUpdate();
+            
 
         } catch (SQLException exc) {
             JOptionPane.showMessageDialog(null, "Code d'erreur : "+ exc.getErrorCode() +"\nMessage d'erreur : "+ exc.getMessage());
@@ -86,21 +90,21 @@ public class ArbitreDeLigneDAO implements InterfaceArbitreDeLigneDAO {
         Statement st = connexionBD.createStatement() ;
         ArrayList<ArbitreDeLigne> lesArbitre = new ArrayList<ArbitreDeLigne>();
         try{
-            ResultSet rs = st.executeQuery("SELECT * from ArbitreDeLigne");
-            int no;
-            int eq;
+            ResultSet rs = st.executeQuery("SELECT idArbitreL, idEquipeL, nom, prenom, nationalite, categorie FROM ArbitreDeLigne join Arbitre on idArbitreL=idArbitre");
+            int idAL;
+            int idEAL;
             String nom;
             String pre;
             String nat;
             String cat;
             while (rs.next()){
-                no = rs.getInt(1);
-                eq = rs.getInt(2);
+                idAL = rs.getInt(1);
+                idEAL = rs.getInt(2);
                 nom = rs.getString(3);
                 pre = rs.getString(4);
                 nat = rs.getString(5);
                 cat = rs.getString(6);
-                ArbitreDeLigne a = new ArbitreDeLigne(no, eq, nom, pre, nat, cat);
+                ArbitreDeLigne a = new ArbitreDeLigne(idAL, idEAL, nom, pre, nat, cat);
                 lesArbitre.add(a);
             }
         }catch (SQLException exc) {
@@ -135,14 +139,20 @@ public class ArbitreDeLigneDAO implements InterfaceArbitreDeLigneDAO {
 
 
     public int update (ArbitreDeLigne a) throws SQLException {
-        int rowCount;
+        int rowCount = 0;
         PreparedStatement pst = null;
         try {
             pst = connexionBD.prepareStatement("UPDATE ArbitreDeLigne SET EquipeL=? WHERE idArbitreL=?");
             pst.setInt(1, a.getIdEquipeL());
             pst.setInt(2, a.getIdArbitre());
-            rowCount = pst.executeUpdate();
-
+            rowCount += pst.executeUpdate();
+            pst = connexionBD.prepareStatement("UPDATE Arbitre SET nom=?, prenom=?, nationalite=?, categorie=? WHERE idArbitre=?");
+            pst.setInt(5,a.getIdArbitre());
+            pst.setString(1, a.getNom());
+            pst.setString(2, a.getPrenom());
+            pst.setString(3, a.getNationalite());
+            pst.setString(4, a.getCategorie());
+            rowCount += pst.executeUpdate();
         } catch (SQLException exc) {
             JOptionPane.showMessageDialog(null, "Code d'erreur : "+ exc.getErrorCode() +"\nMessage d'erreur : "+ exc.getMessage());
             throw exc;

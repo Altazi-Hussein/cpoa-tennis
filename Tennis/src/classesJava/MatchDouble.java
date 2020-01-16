@@ -1,16 +1,15 @@
 package classesJava;
 
-public class MatchDouble extends Match {
+import java.util.Date;
 
-   private int idGagnants;
+public class MatchDouble extends Match {
    
    private EquipeJoueur[] lesEquipesJoueur;
 
-   private int idArbitreDeChaise;
-
-   private EquipeArbitreDeLigne equipeArbitresDeLigne;
-
-   private EquipeRamasseur equipeDeRamasseur;
+    public MatchDouble(EquipeJoueur[] lesEquipesJoueur, int idMatch, int idPlanning, ArbitreDeChaise arbitreDeChaise, EquipeArbitreDeLigne equipeArbitresDeLigne, EquipeRamasseur equipeDeRamasseur, Date dateDébut, Date dateFin, Court court, ScoreMatch score, int idGagnant) {
+        super(idMatch, idPlanning, arbitreDeChaise, equipeArbitresDeLigne, equipeDeRamasseur, dateDébut, dateFin, court, score, idGagnant);
+        this.lesEquipesJoueur = lesEquipesJoueur;
+    }
 
     public EquipeJoueur[] getLesEquipesJoueur() {
         return lesEquipesJoueur;
@@ -19,37 +18,5 @@ public class MatchDouble extends Match {
     public void setLesEquipesJoueur(EquipeJoueur[] lesEquipesJoueur) {
         this.lesEquipesJoueur = lesEquipesJoueur;
     }
-
-    public int getIdArbitreDeChaise() {
-        return idArbitreDeChaise;
-    }
-
-    public void setIdArbitreDeChaise(int idArbitreDeChaise) {
-        this.idArbitreDeChaise = idArbitreDeChaise;
-    }
-
-    public EquipeArbitreDeLigne getEquipeArbitresDeLigne() {
-        return equipeArbitresDeLigne;
-    }
-
-    public void setEquipeArbitresDeLigne(EquipeArbitreDeLigne equipeArbitresDeLigne) {
-        this.equipeArbitresDeLigne = equipeArbitresDeLigne;
-    }
-
-    public EquipeRamasseur getEquipeDeRamasseur() {
-        return equipeDeRamasseur;
-    }
-
-    public void setEquipeDeRamasseur(EquipeRamasseur equipeDeRamasseur) {
-        this.equipeDeRamasseur = equipeDeRamasseur;
-    }
-
-   public int getIdGagnants() {
-      return idGagnants;
-   }
-
-   public void setIdGagnants(int newIdGagnants) {
-      idGagnants = newIdGagnants;
-   }
 
 }
