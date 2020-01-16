@@ -73,21 +73,33 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+ /*            a
+            {
+                transition-duration: 500ms;
+            }
+
+            a:hover
+            {
+                font-size: 3vw;
+                transition-duration: 500ms;
+            } */
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="flex-center full-height">
             
-            <div class="" style="background: #384d9b; padding:15px;">
+            <div class="d-flex" style="background: #384d9b; padding:2vh;width:50vw;height:50vh;">
+
                 <a href="#" style="line-height: 10vh;">
-                    <div style="background: url('../public/images/evenement.jpg'); height: 10vh; width: 20vw; background-size:300%; background-position: center;">
-                    Découvrir l'événement
+                    <div style="background: url('../public/images/evenement.jpg'); background-size:300%; background-position: center; font-size:3vh;">
+                        <p>Découvrir l'événement</p>
                     </div>
                 </a>
-
-            <a href="{{ url('/billets/choose')}}" style="line-height: 20vh;">
-                    <div style="background: url('../public/images/billets.jpg');height: 20vh;width: 20vw; background-size:300%; background-position: center;">
-                    Achetez vos billets
+            
+                <a href="{{ url('/billets/choose')}}" style="line-height: 25vh;">
+                    <div style="background: url('../public/images/billets.jpg'); background-size:300%; background-position: center; font-size:3vh;">
+                        Achetez vos billets
                     </div>
                 </a>
 

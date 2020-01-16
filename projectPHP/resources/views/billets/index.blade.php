@@ -14,16 +14,19 @@
                         @foreach ($billets as $billet)
                             <div class="d-flex justify-content-between">
                             <h3 for="grandPublic">{{$billet->typeMatch}}
-                                <p style="font-size: 1.5vh; font-weight: 400;">Quantité restante: {{$billet->prix}}</p>
-                            <p style="font-size: 1.5vh; font-weight: 400;">Du Samedi 16/05/2020 au Samedi 23/05/2020</p>
+                                <p style="font-size: 1.5vh; font-weight: 400;">Quantité restante: {{$billet->quantite}}</p>
+                            <p style="font-size: 1.5vh; font-weight: 400; line-height:0">Du Samedi 16/05/2020 au Samedi 23/05/2020</p>
                             </h3>
-                            <span class="d-flex flex-column justify-content-between">
-                            <input class="text-right" type="number" value="1" min="1" max="{{$billet->quantite}}">
-                            <input class="btn btn-success text-uppercase" type="button" value="Réserver" name="quantity" id="grandPublic">
-                            </span>
+
+                            <span class="align-self-center">
+                            <input class="text-center form-control" type="number" value="0" min="0" max="{{$billet->quantite}}">
+                            <p class="text-center">{{$billet->prix}}€</p>
+                        </span>
                             </div>
                             <hr>
                         @endforeach
+                        <input class="btn btn-success text-uppercase form-control" style="" type="button" value="Réserver" name="quantity" id="grandPublic">
+                            
 {{-- 
                         <div class="d-flex justify-content-between">
                         <h3 for="promo">Billets Promo 
