@@ -1,5 +1,16 @@
 @extends('layouts.app')
 
+
+@section('head')
+<style>
+html
+{
+background-size:cover;
+}
+</style>
+@endsection
+
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -7,6 +18,14 @@
             <div class="card">
                 <div class="card-header">Panel d'administration
                 <a class="float-right" href="{{ URL::to('/') }}">Accueil</a></div>
+                @if (count($errors)>0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
+                @endif
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">

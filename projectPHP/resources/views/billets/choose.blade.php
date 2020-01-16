@@ -1,9 +1,18 @@
 @extends('layouts.app')
 
+@section('head')
+<style>
+html
+{
+background-size:cover;
+}
+</style>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-7">
             <div class="card">
                 <div class="card-header" style="text-transform: uppercase; background: white; color: #384d9b; font-weight: bold;">Achetez vos billets
                     <a class="float-right" href="{{ URL::to('/') }}">Retour</a>
@@ -21,12 +30,13 @@
                         <label for="court">Pour quel court ?</label>
                         <select class="form-control">
                             <option>Court central</option>
-                            <option>Court annexe</option>
-                            <option>Finale</option>
+                            <option>Court annexe 1</option>
+                            <option>Court annexe 2</option>
+                            <option>Court annexe 3</option>
                         </select>
                         </div>
 
-                    <input type="submit" class="btn btn-success mt-4" value="Trouver des billets" style="font-size: 1.8vh;">
+                    <input type="submit" class="form-control btn btn-success mt-4" value="Recherchez les billets disponibles" style="font-size: 1.8vh;">
                     </form>
                 </div>
             </div>
