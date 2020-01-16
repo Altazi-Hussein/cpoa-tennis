@@ -20,11 +20,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/panier', 'PanierController@index')->name('panier.index');
+Route::post('/panier', 'PanierController@store')->name('panier.store');
 
-Route::get('billets/choose', 'BilletsController@choose');
-
+Route::get('billets/choose', 'BilletsController@choose')->name('billets.choose');
 Route::put('billets/{id}', 'BilletsController@update')->name('billet');
-
+Route::get('billets/accueil', 'BilletsController@accueil')->name('billets.accueil');
 Route::resource('/billets', 'BilletsController');
 
 

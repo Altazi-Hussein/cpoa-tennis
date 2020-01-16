@@ -13,7 +13,7 @@ class PanierController extends Controller
      */
     public function index()
     {
-        //
+        return view('panier');
     }
 
     /**
@@ -34,7 +34,10 @@ class PanierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /* Cart::add($request->id, $request->name, 1, $request->price)->associate('App\Billet'); */
+
+        return redirect()->route('panier.index')->with('success', 'Billet(s) ajouté avec succès');
+
     }
 
     /**

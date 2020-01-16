@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-USE App\{Billet};
+use App\Billet;
 
 class BilletsController extends Controller
 {
@@ -19,6 +19,11 @@ class BilletsController extends Controller
         return view('billets.index', ['billets' => $billets]);
     }
 
+
+    public function accueil()
+    {
+        return view('billets.accueil');
+    }
     /**
      * Show the form for creating a new resource.
      *

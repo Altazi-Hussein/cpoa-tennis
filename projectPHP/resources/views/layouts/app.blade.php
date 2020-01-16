@@ -32,6 +32,7 @@
         {
             background: url('{{asset('images/wallpaper.png')}}');
             background-repeat:no-repeat;
+            background-size:cover;
         }
         </style>
     @yield('head')
@@ -89,7 +90,7 @@
                             </li>
                         @endguest
                     </ul>
-                    <a class="nav-lin" href="{{ route('login') }}">
+                    <a class="nav-lin" href="{{ route('panier.index') }}">
                         <i class="fas fa-shopping-cart"></i>{{ __(' Panier') }}
                     </a>
                 </div>
