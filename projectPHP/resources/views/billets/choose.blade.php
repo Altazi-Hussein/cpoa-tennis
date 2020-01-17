@@ -28,7 +28,7 @@ background-size:cover;
                         <div class="form-group">
                         <label for="court">Pour quel court ?</label>
                         <select class="form-control">
-                            <option>Court central</option>
+                            <option>Court central </option>
                             <option>Court annexe 1</option>
                             <option>Court annexe 2</option>
                             <option>Court annexe 3</option>
