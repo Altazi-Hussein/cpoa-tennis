@@ -22,7 +22,6 @@
                             @endforeach
                     </div>
                 @endif
-                {{-- {{$var[0]}} --}}
                 <form action="{{url('add')}}" method="post">
                     @csrf
                     <input type="hidden" value="{{$var[0]['id']}}" name="id">

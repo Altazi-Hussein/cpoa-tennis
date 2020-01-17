@@ -13,6 +13,6 @@ class Coupon extends Model
 
     public function discount($total)
     {
-        return round(($this->reduction / 100) * $total);
+        return ($this->reduction / 100) * $total;
     }
 }

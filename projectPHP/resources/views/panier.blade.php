@@ -8,7 +8,7 @@
                 <div class="card-header">Gestion du panier
                 <a class="float-right" href="{{ URL::to('/') }}">Accueil</a></div>
                 <div class="card-body">
-                    @if (session()->has('success'))
+                @if (session()->has('success'))
                     <div class="alert alert-success">
                             {{ session()->get('success') }}
                     </div>
@@ -49,6 +49,7 @@
                                 @csrf
                                 <div class="d-flex">
                                 <input placeholder="Code promo ?" name="code" id="code" class="form-control form-control-sm w-75 mr-2" type="text">
+                                <input type="hidden" value="{{$item->id}}" name="idBillet">
                                 <button type="submit" class="form-control form-control-sm btn btn-primary w-25">
                                     <i class="fas fa-check"></i>
                                 </button>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Billet;
+use App\Models\Match;
 use DB;
 
 class BilletsController extends Controller
@@ -17,14 +18,20 @@ class BilletsController extends Controller
     public function index()
     {
         $billets = Billet::all();
+/*         $matchs = Match::findOrFail($r->dateMatch); */
         $var = Billet::where('id', 1)->get();
-        return view('billets.index', ['billets' => $billets, 'var' => $var]);
+        return view('billets.index', ['billets' => $billets, 'var' => $var/* , 'matchs' => $matchs */]);
     }
 
 
-    public function accueil()
+    public function accueil(Request $r)
     {
-        return view('billets.accueil');
+        $match = Match::where('dateDebutM', $r->dateMatch)->get();
+        if(!$match)
+        {
+            return redirect()->route('billets.index');
+        }
+        return redirect()->route('billets.index');
     }
     /**
      * Show the form for creating a new resource.

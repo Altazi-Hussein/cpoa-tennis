@@ -26,13 +26,18 @@ Route::post('/panier', 'PanierController@store')->name('panier.store');
 
 Route::post('billets/choose', 'BilletsController@choose')->name('billets.choose');
 Route::put('billets/{id}', 'BilletsController@update')->name('billet');
-/* Route::get('billets/accueil', 'BilletsController@accueil')->name('billets.accueil');
- */Route::resource('/billets', 'BilletsController');
+Route::get('billets/accueil', 'BilletsController@accueil')->name('billets.index');
+Route::resource('/billets', 'BilletsController');
 
 Route::delete('/coupon', 'CouponsController@supprimer')->name('coupon.delete');
 
 Route::post('/coupon', 'CouponsController@store')->name('coupon.store');
 Route::resource('/coupon', 'CouponsController');
+
+Route::get('/delete', function()
+{
+    session()->flush();
+});
 
 Route::get('panier', 'CartController@index')->name('panier.index');
 Route::post('add', 'CartController@add');

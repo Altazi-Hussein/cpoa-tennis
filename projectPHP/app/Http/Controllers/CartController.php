@@ -10,8 +10,8 @@ class CartController extends Controller
 {
     public function index()
     {
-        $reduction = session()->get('reduction')['montant'] ?? 0;
-        $total = Cart::total() - $reduction;
+        $reduc = session()->get('reduction')['montant'] ?? 0;
+        $total = Cart::total() - $reduc;
         return view('panier', ['total' => $total]);
     }
 

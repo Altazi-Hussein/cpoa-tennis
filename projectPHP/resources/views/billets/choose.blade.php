@@ -27,11 +27,11 @@ background-size:cover;
                         </div>
                         <div class="form-group">
                         <label for="court">Pour quel court ?</label>
-                        <select class="form-control">
-                            <option>Court central </option>
-                            <option>Court annexe 1</option>
-                            <option>Court annexe 2</option>
-                            <option>Court annexe 3</option>
+                        <select name="court" class="form-control">
+                            <option value="central">Court central </option>
+                            <option value="un">Court annexe 1</option>
+                            <option value="deux">Court annexe 2</option>
+                            <option value="trois">Court annexe 3</option>
                         </select>
                         </div>
                         <input type="submit" class="form-control btn btn-success mt-4" value="Recherchez les billets disponibles" style="font-size: 1.8vh;">

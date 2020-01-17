@@ -15,6 +15,7 @@ class CouponSeeder extends Seeder
         DB::table('coupons')->insert([
             'code' => 'ABC123',
             'reduction' => 30,
+            'quantite' => 10,
         ]); 
     }
 }
