@@ -14,7 +14,6 @@ import java.util.ArrayList;
  * @author angel
  */
 public interface InterfaceScoreMatchDAO {
-    public ArrayList<ScoreMatch> findAll() throws SQLException;
     public ScoreMatch findById(int idScoreMatch) throws SQLException;
     public int create (ScoreMatch sm) throws SQLException;
     public int update (ScoreMatch sm) throws SQLException;
