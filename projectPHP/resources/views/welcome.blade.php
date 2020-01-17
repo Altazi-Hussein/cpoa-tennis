@@ -97,11 +97,12 @@
                     </div>
                 </a>
             
-                <a href="{{ route('billets.choose')}}" style="line-height: 25vh;">
-                    <div style="background: url('../public/images/billets.jpg'); background-size:300%; background-position: center; font-size:3vh;">
+                <form action="{{ route('billets.choose')}}" method="post" style="line-height: 25vh;">
+                    @csrf
+                    <button type="submit" style="background: url('../public/images/billets.jpg'); background-size:300%; background-position: center; font-size:3vh;">
                         Achetez vos billets
-                    </div>
-                </a>
+                    </button>
+                </form>
 
             </div>
             @if (Route::has('login'))

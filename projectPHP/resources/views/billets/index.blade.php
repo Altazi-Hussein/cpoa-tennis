@@ -10,12 +10,19 @@
             <div class="card">
                 <div class="card-header" style="text-transform: uppercase; background: white; color: #384d9b; font-weight: bold;">Achetez vos billets
                 <a class="float-right" href="{{ URL::previous() }}">Retour</a></div>
-                @if(session()->has('success'))
+                @if (session()->has('success'))
                     <div class="alert alert-success">
-                        {{ session()->get('success') }}
+                            {{ session()->get('success') }}
+                    </div>
+                    @endif
+                @if (count($errors)>0)
+                    <div class="alert alert-danger">
+                            @foreach ($errors->all() as $error)
+                                {{$error}}
+                            @endforeach
                     </div>
                 @endif
-                {{$var[0]}}
+                {{-- {{$var[0]}} --}}
                 <form action="{{url('add')}}" method="post">
                     @csrf
                     <input type="hidden" value="{{$var[0]['id']}}" name="id">
@@ -25,29 +32,48 @@
                     <input type="submit" value="Ajouter"><br>
                 </form>
                 <img src="{{asset('images/billetsbg.jpg')}}" style="height: 50vh;">
-                <div class="card-body" style="background: #384d9b; color:white;font-size: 1.8vh; opacity: 0.95;">
+                <div class="card-body bg-light" style="background: #384d9b; color:black;font-size: 1.8vh; opacity: 0.95;">
                         
                         @foreach ($billets as $billet)
+                            @if ($billet->quantite>0)
                             <div class="d-flex justify-content-between">
-                            <h3>{{$billet->typeMatch}}
-                            <p style="font-size: 1.5vh; font-weight: 400;">Quantité restante: {{$billet->quantite}}. Id: {{$billet->id}}</p>
-                            <p style="font-size: 1.5vh; font-weight: 400; line-height:0">Du Samedi 16/05/2020 au Samedi 23/05/2020</p>
-                            </h3>
-                            <form class="column" action="{{url('add')}}" method="post">
-                            @csrf
-                            <div class="d-flex align-self-center">
-                                <input type="hidden" value="{{$billet->id}}" name="id">
-                                <input type="hidden" value="{{$billet->typeMatch}}" name="typeMatch">
-                                <input type="hidden" value="{{$billet->prix}}" name="prix">
-                                <input type="hidden" value="0" name="tax">
-                                <input type="number" class="form-control text-center mr-2" value="1" name="quantite" style="width: 6vh;">
-                                <button type="submit" class="btn btn-success form-control">
-                                    <i class="fas fa-check"></i>
-                                </button>
-                            </div>
-                            </form>
+                                <h3>{{$billet->typeMatch}}
+                                <p style="font-size: 1.5vh; font-weight: 400;">Quantité restante: {{$billet->quantite}}. Id: {{$billet->id}}</p>
+                                <p style="font-size: 1.5vh; font-weight: 400; line-height:0">Du Samedi 16/05/2020 au Samedi 23/05/2020</p>
+                                </h3>
+                                <form class="column" action="{{url('add')}}" method="post">
+                                @csrf
+                                <div class="d-flex align-self-center">
+                                    <input type="hidden" value="{{$billet->id}}" name="id">
+                                    <input type="hidden" value="{{$billet->typeMatch}}" name="typeMatch">
+                                    <input type="hidden" value="{{$billet->prix}}" name="prix">
+                                    <input type="number" class="form-control text-center mr-2" value="1" name="quantite" style="width: 6vh;">
+                                    <button type="submit" class="btn btn-success form-control">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                </form>
                             </div>
                             <hr>
+                            @else
+                            <div class="d-flex justify-content-between" style="opacity: 0.5;">
+                                <h3>{{$billet->typeMatch}}
+                                <p style="font-size: 1.5vh; font-weight: 400;">Quantité insuffisante. Id: {{$billet->id}}</p>
+                                <p style="font-size: 1.5vh; font-weight: 400; line-height:0">Du Samedi 16/05/2020 au Samedi 23/05/2020</p>
+                                </h3>
+                                <form class="column" action="{{url('billets.index')}}" method="post">
+                                @csrf
+                                <div class="d-flex align-self-center">
+                                    <input type="number" class="form-control text-center mr-2" value="0" name="quantite" style="width: 6vh;" readonly>
+                                    <button type="submit" class="btn btn-danger form-control">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                                </form>
+                            </div>
+                            <hr>
+                            @endif
+                            
                         @endforeach
 
                     <a class="btn btn-info form-control" style="font-size: 2vh;" href="{{ url('panier') }}">

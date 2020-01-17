@@ -18,20 +18,19 @@ background-size:cover;
             <div class="card">
                 <div class="card-header">Panel d'administration
                 <a class="float-right" href="{{ URL::to('/') }}">Accueil</a></div>
+                <div class="card-body">
+                    @if (session()->has('success'))
+                    <div class="alert alert-success">
+                            {{ session()->get('success') }}
+                    </div>
+                    @endif
                 @if (count($errors)>0)
                     <div class="alert alert-danger">
-                        <ul>
                             @foreach ($errors->all() as $error)
-                                <li>{{$error}}</li>
+                                {{$error}}
                             @endforeach
-                        </ul>
+                    </div>
                 @endif
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
                     <h3>Gestion des billets</h3>
                     <hr>
                     <table class="table table-hover table-bordered">
@@ -50,10 +49,19 @@ background-size:cover;
                                 <td class="align-middle">{{$billet->typeMatch}}</td>
                                 <td class="align-middle">{{$billet->prix}}€
                                 </td>
-                                <td class="align-middle">{{$billet->quantite}}
+                                    @if ($billet->quantite>0)
+                                    <td class="align-middle">
+                                        {{$billet->quantite}}
+                                    </td>
+                                    @else
+                                    <td class="align-middle text-danger">
+                                        {{$billet->quantite}}
+                                    </td>
+                                    @endif
+                                   
                                 </td>
                                 <td class="align-middle">
-                                    <form action="{{route('billets.edit' , $billet) }}" method="GET">
+                                    <form action="{{route('billets.edit', $billet) }}" method="GET">
                                         @csrf
                                         <button type="submit" class="btn btn-warning btn-sm m-1">
                                            <i class="far fa-edit"></i>

@@ -85,11 +85,18 @@ class BilletsController extends Controller
         ]);
         
         $billet = Billet::findOrFail($id);
+        if($request->quantite>=0 && $request->prix>=0)
+        {
         $billet->quantite = $request->get('quantite');
         $billet->prix = Str::replaceFirst(',', '.',$request->get('prix'));
         $billet->save();
-
         return redirect()->route('home')->with('success', 'Billet modifié avec succès !');
+        }
+        else
+        {
+            return redirect()->route('billets.edit', $billet)->withErrors('Valeurs invalides.');
+        }
+
     }
 
     /**

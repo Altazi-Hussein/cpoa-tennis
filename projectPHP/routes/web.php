@@ -24,13 +24,20 @@ Route::post('/panier', 'PanierController@store')->name('panier.store');
  */
 
 
-Route::get('billets/choose', 'BilletsController@choose')->name('billets.choose');
+Route::post('billets/choose', 'BilletsController@choose')->name('billets.choose');
 Route::put('billets/{id}', 'BilletsController@update')->name('billet');
-Route::get('billets/accueil', 'BilletsController@accueil')->name('billets.accueil');
-Route::resource('/billets', 'BilletsController');
+/* Route::get('billets/accueil', 'BilletsController@accueil')->name('billets.accueil');
+ */Route::resource('/billets', 'BilletsController');
+
+Route::delete('/coupon', 'CouponsController@supprimer')->name('coupon.delete');
+
+Route::post('/coupon', 'CouponsController@store')->name('coupon.store');
+Route::resource('/coupon', 'CouponsController');
 
 Route::get('panier', 'CartController@index')->name('panier.index');
 Route::post('add', 'CartController@add');
-Route::post('destroy', 'CartController@destroy');
+Route::post('destroy/{id}', 'CartController@destroy')->name('panier.destroy');
+/* Route::post('destroy', 'CartController@destroy')->name('panier.destroy'); */
+Route::post('destroy', 'CartController@supprimer')->name('panier.supprimer');
 
 Auth::routes();

@@ -4,21 +4,39 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Cart;
+use App\Billet;
 
 class CartController extends Controller
 {
     public function index()
     {
-        return view('panier');
+        $reduction = session()->get('reduction')['montant'] ?? 0;
+        $total = Cart::total() - $reduction;
+        return view('panier', ['total' => $total]);
     }
 
     public function add(Request $request)
     {
-        $billet = Cart::add($request->id, $request->typeMatch, $request->quantite, $request->prix, [], $request->tax);
-        return redirect()->route('billets.index', ['billet' => $billet])->with('success', 'Billet ajouté à votre panier');
+        Cart::tax('0');
+        $quantite = Billet::findOrFail($request->id);
+        if($quantite->quantite >= $request->quantite)
+        {
+            $billet = Cart::add($request->id, $request->typeMatch, $request->quantite, $request->prix, []);
+            $quantite->quantite = $quantite->quantite - $request->quantite;
+            $quantite->save();
+            return redirect()->route('billets.index', ['billet' => $billet, 'quantite' => $quantite])->with('success', 'Billet(s) ajouté(s) à votre panier');
+        }
+        return redirect()->route('billets.index')->withErrors('Quantité insuffisante de billets.');
+
     }
 
-    public function destroy()
+    public function destroy($id)
+    {
+        Cart::remove($id);
+        return view('panier');
+    }
+
+    public function supprimer()
     {
         Cart::destroy();
         return view('panier');

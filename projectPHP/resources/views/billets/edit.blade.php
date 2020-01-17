@@ -7,15 +7,19 @@
             <div class="card">
                 <div class="card-header">Panel d'administration
                 <a class="float-right" href="{{ URL::to('/') }}">Accueil</a></div>
-                @if (count($errors)>0)
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{$error}}</li>
-                        @endforeach
-                    </ul>
-                @endif
                 <div class="card-body">
+                    @if (session()->has('success'))
+                    <div class="alert alert-success">
+                            {{ session()->get('success') }}
+                    </div>
+                    @endif
+                @if (count($errors)>0)
+                    <div class="alert alert-danger">
+                            @foreach ($errors->all() as $error)
+                                {{$error}}
+                            @endforeach
+                    </div>
+                @endif
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
