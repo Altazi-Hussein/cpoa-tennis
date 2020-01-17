@@ -25,9 +25,11 @@ public class Match {
     */
    private ScoreMatch score;
    
+   private int tour;
+   
    private int idGagnant;
 
-    public Match(int idMatch, int idPlanning, ArbitreDeChaise arbitreDeChaise, EquipeArbitreDeLigne equipeArbitresDeLigne, EquipeRamasseur equipeDeRamasseur, Date dateDébut, Date dateFin, Court court, ScoreMatch score, int idGagnant) {
+    public Match(int idMatch, int idPlanning, ArbitreDeChaise arbitreDeChaise, EquipeArbitreDeLigne equipeArbitresDeLigne, EquipeRamasseur equipeDeRamasseur, Date dateDébut, Date dateFin, Court court, ScoreMatch score, int tour, int idGagnant) {
         this.idMatch = idMatch;
         this.idPlanning = idPlanning;
         this.arbitreDeChaise = arbitreDeChaise;
@@ -37,7 +39,16 @@ public class Match {
         this.dateFin = dateFin;
         this.court = court;
         this.score = score;
+        this.tour = tour;
         this.idGagnant = idGagnant;
+    }
+
+    public int getTour() {
+        return tour;
+    }
+
+    public void setTour(int tour) {
+        this.tour = tour;
     }
 
     public int getIdPlanning() {

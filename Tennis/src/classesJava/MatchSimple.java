@@ -8,8 +8,8 @@ public class MatchSimple extends Match {
    
    private Joueur[] lesJoueurs;
 
-    public MatchSimple(Boolean tournoi, Joueur[] lesJoueurs, int idMatch, int idPlanning, ArbitreDeChaise arbitreDeChaise, EquipeArbitreDeLigne equipeArbitresDeLigne, EquipeRamasseur equipeDeRamasseur, Date dateDébut, Date dateFin, Court court, ScoreMatch score, int idGagnant) {
-        super(idMatch, idPlanning, arbitreDeChaise, equipeArbitresDeLigne, equipeDeRamasseur, dateDébut, dateFin, court, score, idGagnant);
+    public MatchSimple(Boolean tournoi, Joueur[] lesJoueurs, int idMatch, int idPlanning, ArbitreDeChaise arbitreDeChaise, EquipeArbitreDeLigne equipeArbitresDeLigne, EquipeRamasseur equipeDeRamasseur, Date dateDébut, Date dateFin, Court court, ScoreMatch score, int tour, int idGagnant) {
+        super(idMatch, idPlanning, arbitreDeChaise, equipeArbitresDeLigne, equipeDeRamasseur, dateDébut, dateFin, court, score, tour, idGagnant);
         this.tournoi = tournoi;
         this.lesJoueurs = lesJoueurs;
     }

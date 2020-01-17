@@ -57,7 +57,8 @@ create or replace table `Match`(
 	dateFinM Date,
 	idCourt int,
 	idScore int,
-	idGagnant int
+	idGagnant int,
+	tour int
 
 );
 
