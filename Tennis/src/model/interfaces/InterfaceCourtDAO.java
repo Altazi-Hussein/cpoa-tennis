@@ -8,6 +8,7 @@ package model.interfaces;
 import classesJava.Court;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -16,4 +17,5 @@ import java.util.ArrayList;
 public interface InterfaceCourtDAO {
     public ArrayList<Court> findAll() throws SQLException;
     public Court findById(int idCourt) throws SQLException;
+    public ArrayList<Court> findFreeCourts(Date dateDebut, Date dateFin) throws SQLException;
 }

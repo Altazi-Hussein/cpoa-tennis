@@ -52,9 +52,9 @@ create or replace table `Match`(
 	idMatch int not null primary key,
 	idAChaise int,
 	idEquipeAL int,
-	idEquipeR int
-	dateDebutM Date,
-	dateFinM Date,
+	idEquipeR int,
+	dateDebutM Datetime,
+	dateFinM Datetime,
 	idCourt int,
 	idScore int,
 	idGagnant int,
@@ -77,8 +77,8 @@ create or replace table MatchDouble(
 
 create or replace table ReservationEntrainement(
 	idReservation int not null,
-	dateDebutR Date,
-	dateFinR Date,
+	dateDebutR Datetime,
+	dateFinR Datetime,
 	idCourt int not null,
 	idJoueur int not null,
 	idPlanning int not null,
@@ -87,6 +87,6 @@ create or replace table ReservationEntrainement(
 
 create or replace table Planning(
 	idPlanning int not null primary key,
-	dateDebutP Date,
-	dateFinP Date
+	dateDebutP Datetime,
+	dateFinP Datetime
 );
