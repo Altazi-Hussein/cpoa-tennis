@@ -6,11 +6,19 @@ public class MatchSimple extends Match {
 
    private Boolean tournoi;
    
-   private Joueur[] lesJoueurs;
+   private int[] lesJoueurs;
 
-    public MatchSimple(Boolean tournoi, Joueur[] lesJoueurs, int idMatch, int idPlanning, ArbitreDeChaise arbitreDeChaise, EquipeArbitreDeLigne equipeArbitresDeLigne, EquipeRamasseur equipeDeRamasseur, Date dateDébut, Date dateFin, Court court, ScoreMatch score, int tour, int idGagnant) {
+    public MatchSimple(Boolean tournoi, int[] lesJoueurs, int idMatch, int idPlanning, ArbitreDeChaise arbitreDeChaise, EquipeArbitreDeLigne equipeArbitresDeLigne, EquipeRamasseur equipeDeRamasseur, Date dateDébut, Date dateFin, Court court, ScoreMatch score, int tour, int idGagnant) {
         super(idMatch, idPlanning, arbitreDeChaise, equipeArbitresDeLigne, equipeDeRamasseur, dateDébut, dateFin, court, score, tour, idGagnant);
         this.tournoi = tournoi;
+        this.lesJoueurs = lesJoueurs;
+    }
+
+    public int[] getLesJoueurs() {
+        return lesJoueurs;
+    }
+
+    public void setLesJoueurs(int[] lesJoueurs) {
         this.lesJoueurs = lesJoueurs;
     }
 
@@ -20,14 +28,6 @@ public class MatchSimple extends Match {
 
     public void setTournoi(Boolean tournoi) {
         this.tournoi = tournoi;
-    }
-
-    public Joueur[] getLesJoueurs() {
-        return lesJoueurs;
-    }
-
-    public void setLesJoueurs(Joueur[] lesJoueurs) {
-        this.lesJoueurs = lesJoueurs;
     }
    
 }

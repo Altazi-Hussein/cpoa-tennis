@@ -6,23 +6,39 @@ public class ReservationEntrainement {
 
    private int idReservation;
 
-   private Date dateDebutEntrainement;
+   private Date dateDebutR;
    
-   private Date dateFinEntrainement;
+   private Date dateFinR;
    
-   private Court court;
+   private int idCourt;
    
-   private Joueur joueur;
+   private int idJoueur;
    
    private int idPlanning;
 
-    public ReservationEntrainement(int idReservation, Date dateDebutEntrainement, Date dateFinEntrainement, Court court, Joueur joueur, int idPlanning) {
+    public ReservationEntrainement(int idReservation, Date dateDebutEntrainement, Date dateFinEntrainement, int idCourt, int idJoueur, int idPlanning) {
         this.idReservation = idReservation;
-        this.dateDebutEntrainement = dateDebutEntrainement;
-        this.dateFinEntrainement = dateFinEntrainement;
-        this.court = court;
-        this.joueur = joueur;
+        this.dateDebutR = dateDebutEntrainement;
+        this.dateFinR = dateFinEntrainement;
+        this.idCourt = idCourt;
+        this.idJoueur = idJoueur;
         this.idPlanning = idPlanning;
+    }
+
+    public int getIdCourt() {
+        return idCourt;
+    }
+
+    public void setIdCourt(int idCourt) {
+        this.idCourt = idCourt;
+    }
+
+    public int getIdJoueur() {
+        return idJoueur;
+    }
+
+    public void setIdJoueur(int idJoueur) {
+        this.idJoueur = idJoueur;
     }
 
     public int getIdPlanning() {
@@ -33,36 +49,20 @@ public class ReservationEntrainement {
         this.idPlanning = idPlanning;
     }
 
-    public Date getDateDebutEntrainement() {
-        return dateDebutEntrainement;
+    public Date getDateDebutR() {
+        return dateDebutR;
     }
 
-    public void setDateDebutEntrainement(Date dateDebutEntrainement) {
-        this.dateDebutEntrainement = dateDebutEntrainement;
+    public void setDateDebutR(Date dateDebutR) {
+        this.dateDebutR = dateDebutR;
     }
 
-    public Date getDateFinEntrainement() {
-        return dateFinEntrainement;
+    public Date getDateFinR() {
+        return dateFinR;
     }
 
-    public void setDateFinEntrainement(Date dateFinEntrainement) {
-        this.dateFinEntrainement = dateFinEntrainement;
-    }
-
-    public Court getCourt() {
-        return court;
-    }
-
-    public void setCourt(Court court) {
-        this.court = court;
-    }
-
-    public Joueur getJoueur() {
-        return joueur;
-    }
-
-    public void setJoueur(Joueur joueur) {
-        this.joueur = joueur;
+    public void setDateFinR(Date dateFinR) {
+        this.dateFinR = dateFinR;
     }
 
    public int getIdReservation() {

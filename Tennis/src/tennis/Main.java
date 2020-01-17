@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import model.ObjectDAO.JoueurDAO;
 import model.MonMariaDbDataSource;
 import classesJava.Joueur;
+import classesJava.ScoreMatch;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,6 +24,7 @@ import model.ObjectDAO.CourtDAO;
 import model.ObjectDAO.EquipeArbitreDeLigneDAO;
 import model.ObjectDAO.EquipeJoueurDAO;
 import model.ObjectDAO.RamasseurDeBalleDAO;
+import model.ObjectDAO.ScoreMatchDAO;
 
 /**
  *
@@ -52,12 +54,19 @@ public class Main {
             
             Date dateD = new Date(2020 -1900, 0, 27);
             Date dateF = new Date(2020 -1900,0,28);
-            System.out.println(dateD +" - " + dateF);
+            String dateDS = dateD.toString();
+            System.out.println(dateD+ dateDS +" - " + dateF);
             CourtDAO courtdao = new CourtDAO(connexionBD);
             ArrayList<Court> courtsLibre = courtdao.findFreeCourts(dateD,dateF);
             for(Court c : courtsLibre){
                 System.out.println("id court libre: " + c.getIdCourt() + " typeCourt: " + c.getTypeCourt());
             }
+            
+            ScoreMatchDAO scoreDAO = new ScoreMatchDAO(connexionBD);
+            int[][] scoreM1 = scoreDAO.findById(1).getScoreMatch();
+            for(int i=0; i<scoreM1.length; i++){
+                System.out.println("Round: " + (i+1) + "  J1: " + scoreM1[i][0] + "  J2: " + scoreM1[i][1]);
+            } 
             
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

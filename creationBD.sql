@@ -43,7 +43,7 @@ create or replace table Court (
 
 create or replace table ScoreMatch(
 	idScore int not null primary key,
-	tour int not null,
+	manche int not null,
 	score1 int not null,
 	score2 int not null
 );
@@ -56,9 +56,9 @@ create or replace table `Match`(
 	dateDebutM Datetime,
 	dateFinM Datetime,
 	idCourt int,
-	idScore int,
 	idGagnant int,
-	tour int
+	tour int,
+	idPlanning int
 
 );
 

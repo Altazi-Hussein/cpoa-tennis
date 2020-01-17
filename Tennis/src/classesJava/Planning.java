@@ -14,13 +14,24 @@ public class Planning {
    private Date dateFin;
 
    public ArrayList<Match> lesMatchs;
+   
+   public ArrayList<ReservationEntrainement> lesReservations;
 
-    public Planning(int idPlanning, int nomPlanning, Date dateDebut, Date dateFin, ArrayList<Match> lesMatchs) {
+    public Planning(int idPlanning, int nomPlanning, Date dateDebut, Date dateFin, ArrayList<Match> lesMatchs, ArrayList<ReservationEntrainement> lesReservations) {
         this.idPlanning = idPlanning;
         this.nomPlanning = nomPlanning;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.lesMatchs = lesMatchs;
+        this.lesReservations = lesReservations;
+    }
+
+    public ArrayList<ReservationEntrainement> getLesReservations() {
+        return lesReservations;
+    }
+
+    public void setLesReservations(ArrayList<ReservationEntrainement> lesReservations) {
+        this.lesReservations = lesReservations;
     }
 
     public int getIdPlanning() {

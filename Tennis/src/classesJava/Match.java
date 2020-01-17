@@ -122,8 +122,6 @@ public class Match {
     public void setScore(ScoreMatch score) {
         this.score = score;
     }
-   
-   
 
    public int getIdMatch() {
       return idMatch;
