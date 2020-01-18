@@ -12,7 +12,12 @@
                     <div class="alert alert-success">
                             {{ session()->get('success') }}
                     </div>
-                    @endif
+                @endif
+                @if (session()->has('warning'))
+                    <div class="alert alert-warning">
+                            {{ session()->get('warning') }}
+                    </div>
+                @endif
                 @if (count($errors)>0)
                     <div class="alert alert-danger">
                             @foreach ($errors->all() as $error)
@@ -26,7 +31,7 @@
                         <thead>
                           <tr>
                             <th scope="col"><i class="fas fa-ticket-alt"></i> Billet</th>
-                            <th class="text-center"scope="col">Quantité</th>
+                            <th scope="col">Quantité</th>
                             <th class="text-center"scope="col">Prix</th>
                           </tr>
                         </thead>
@@ -73,7 +78,17 @@
                            </div>
                             </td>
                             @endif
-                            <td class="text-center align-middle"><h5>{{$item->qty}}</h5></td>
+                        <td class="align-middle">
+                            <form action="{{URL::route('panier.update', array('id' => $item->rowId))}}" method="post">
+                                @csrf
+                                <div class="d-flex">
+                                <input class="text-center form-control form-control-sm w-25 mr-2" name="quantite" id="quantite" type="number" value="{{$item->qty}}">
+                                <button class="btn btn-secondary btn-sm" type="submit"><i class="fas fa-check"></i>
+
+                                </button>
+                                </div>
+                            </form>
+                        </td>
                             <td class="text-center align-middle" ><h5>{{$item->price}}€</h5></td>
                             </tr>
                             @endforeach

@@ -8,28 +8,61 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
+        <link href="https://fonts.googleapis.com/css?family=Bungee+Inline&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
         <!-- Styles -->
+
+        <script src="https://kit.fontawesome.com/4d9f9c2bbc.js" crossorigin="anonymous"></script>
+
         <style>
             html, body {
-                background: url('../public/images/background.jpg');
+               /* background: url('{{asset('images/background.jpg')}}');*/
+                background-image: url('https://images7.alphacoders.com/734/734192.jpg');
                 background-size: cover;
                 color: black;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
+                padding:0;
             }
 
-            a
+            h1
+            {
+                font-family: 'Bungee Inline', cursive;
+                text-align: center;
+                margin: 0;
+                padding: 0;
+                line-height: 5vw;
+                font-size: 5vw;
+            }
+
+            h2
+            {
+                font-family: 'Bungee Inline', cursive;
+                text-align: center;
+                margin: 0;
+                padding: 0;
+                line-height: 4vw;
+                font-size: 4vw;
+                text-align: center;
+            }
+
+            h3,h4,h5,h6
+            {
+                line-height: 10vh;
+                margin: 0;
+            }
+
+            a,input,form
             {
                 text-decoration:none; 
                 color: white;
                 font-size: 2vh;
-                font-weight:bold;
                 text-align:center;
                 color:black;
-                text-transform: uppercase
+                text-transform: uppercase;
+                font-family: Roboto, 'sans-serif';
             }
 
             .full-height {
@@ -52,46 +85,74 @@
                 top: 18px;
             }
 
-            .content {
-                text-align: center;
-            }
+           hr
+           {
+               border: 0.2vh solid black;
+               margin:0;
+           }
 
-            .title {
-                font-size: 84px;
-            }
+           .main
+           {
+               display: flex;
+               justify-content: space-around;
+           }
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-
- /*            a
+            a,input,form
             {
+                border: none;
+                background:white;
+                font-size: 2.5vh;
                 transition-duration: 500ms;
+                padding:1vw;
+                cursor: pointer;
             }
 
-            a:hover
+            form
             {
-                font-size: 3vw;
+                height: 10vh;
+                margin: 0;
+                padding: 0;
+                background: blue;
+                display: flex;
+            }
+
+            input
+            {
+                border:none;
+                background:white;                
+            }
+
+
+            a:hover, input:hover
+            {
+                border: none;
+                font-weight: bold;
+                background: black;
+                padding:1vh;
+                color:white;
+                font-size: 3vh;
                 transition-duration: 500ms;
-            } */
+            } 
         </style>
     </head>
     <body>
         <div class="flex-center full-height">
-            
-            <div class="d-flex" style="background: #384d9b; padding:2vh;width:50vw;height:50vh;">
-
-                <a href="#" style="line-height: 10vh;">
+            <div class="d-flex" style="padding:2vh;width:40vw;height:40vh;">
+                <h2>Open</h2>
+                <h1>Parc</h1>
+                <hr>
+                <div class="main">
+                <a href="#">Découvrir l'événement</a>
+                {{-- <a href="{{route('billets.choose')}}">Accéder à la billeterie</a> --}}
+                <form action="{{ route('billets.choose')}}" method="post" style="line-height: 25vh;">
+                    @csrf
+                    <input type="submit" value="Achetez vos billets">
+                </form>
+                <a href="#">Découvrir le planning</a>
+                </div>
+                    </div>
+                </div>
+                {{--  <a href="#" style="line-height: 10vh;">
                     <div style="background: url('../public/images/evenement.jpg'); background-size:300%; background-position: center; font-size:3vh;">
                         <p>Découvrir l'événement</p>
                     </div>
@@ -103,29 +164,7 @@
                         Achetez vos billets
                     </button>
                 </form>
-
-            </div>
-            @if (Route::has('login'))
-                    @auth
-                        <a href="{{ url('/home') }}" style="">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                @endif
-                {{-- <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div> --}}
+ --}}
             </div>
         </div>
     </body>

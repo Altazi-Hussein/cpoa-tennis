@@ -31,6 +31,8 @@ Route::resource('/billets', 'BilletsController');
 
 Route::post('coupon/create', ['uses' => 'CouponsController@save']);
 
+Route::post('panier/{id}', 'CartController@update')->name('panier.update');
+
 Route::delete('/coupon', 'CouponsController@supprimer')->name('coupon.delete');
 
 Route::post('/coupon', 'CouponsController@store')->name('coupon.store');

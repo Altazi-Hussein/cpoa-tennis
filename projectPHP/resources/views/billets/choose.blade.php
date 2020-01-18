@@ -18,7 +18,7 @@ background-size:cover;
                     <a class="float-right" href="{{ URL::to('/') }}">Retour</a>
                 </div>
                 
-                <div class="card-body" style="background: #384d9b; color:white;font-size: 1.8vh; opacity: 0.95;">
+                <div class="card-body bg-white" style="font-size: 1.8vh;">
                     <form method="get" action="{{ action('BilletsController@index') }}">
                         @csrf
                         <div class="form-group">

@@ -45,4 +45,11 @@ class CartController extends Controller
         Cart::destroy();
         return view('panier');
     }
+
+    public function update(Request $r, $id)
+    {
+        Cart::update($id, $r->quantite);
+        session()->forget('reduction');
+        return redirect()->route('panier.index')->withSuccess('Quantité modifiée avec succès')->with('warning', 'Pensez à re-saisir votre code de réduction');
+    }
 }
