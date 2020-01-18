@@ -48,10 +48,10 @@
                                 <form action="{{route('coupon.store')}}" method="post">
                                 @csrf
                                 <div class="d-flex">
-                                <input placeholder="Code promo ?" name="code" id="code" class="form-control form-control-sm w-75 mr-2" type="text">
+                                <input placeholder="Code promo ?" name="code" id="code" class="form-control form-control-sm mr-2" type="text">
                                 <input type="hidden" value="{{$item->id}}" name="idBillet">
-                                <button type="submit" class="form-control form-control-sm btn btn-primary w-25">
-                                    <i class="fas fa-check"></i>
+                                <button type="submit" class="form-control form-control-sm btn-sm btn btn-primary w-25">
+                                  <i class="fas fa-check"></i>
                                 </button>
                                 </div>
                                 </form>
@@ -109,7 +109,7 @@
                     </form>
                     @endif
                 </div>
-                    <form action="{{route('panier.supprimer')}}" method="post">
+                    {{-- <form action="{{route('panier.supprimer')}}" method="post">
                         @csrf
                         <input type="submit" value="Tout supprimer"><br>
                     </form>
@@ -117,7 +117,7 @@
                         @csrf
                         <input type="submit" value="Ajouter billets"><br>
                     </form>
-                    </div>
+                    </div> --}}
             </div>
         </div>
     </div>

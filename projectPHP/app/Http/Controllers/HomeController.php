@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Billet;
+use App\{Billet,Coupon};
 
 class HomeController extends Controller
 {
@@ -25,6 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $billets = Billet::all();
-        return view('home', ['billets' => $billets]);
+        $coupons = Coupon::all();
+        return view('home', ['billets' => $billets, 'coupons' => $coupons]);
     }
 }

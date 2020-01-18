@@ -29,8 +29,8 @@ class CreateBilletsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function billet()
     {
-        Schema::dropIfExists('billets');
+    return $this->hasMany(Coupon::class);
     }
 }

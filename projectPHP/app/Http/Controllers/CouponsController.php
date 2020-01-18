@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Coupon;
+use App\{Coupon,Billet};
 use Cart;
 
 
@@ -26,7 +26,29 @@ class CouponsController extends Controller
      */
     public function create()
     {
-        //
+        return view('coupon.create', ['billets' => Billet::all()]);
+    }
+
+    public function save(Request $request)
+    {
+        $this->validate($request, [
+            'code' => 'required',
+            'reduction'     => 'required',
+            'quantite' => 'required',
+            'idBillet' => 'required',
+        ]);
+
+        if($request->reduction<=0 || $request->quantite<0)
+        {
+            return redirect()->route('coupon.create')->withErrors('Réduction et/ou quantité erronées');
+        }
+        $coupon = new Coupon();
+        $coupon->code = $request->code;
+        $coupon->idBillet = $request->idBillet;
+        $coupon->reduction = $request->reduction;
+        $coupon->quantite = $request->quantite;
+        $coupon->save();
+        return redirect()->route('home')->with('success', 'Coupon ajouté avec succès');
     }
 
     /**
@@ -79,7 +101,9 @@ class CouponsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $coupon = Coupon::findOrFail($id);
+        $billets = Billet::all();
+        return view('coupon.edit', ['coupon' => $coupon, 'billets' => $billets]);
     }
 
     /**
@@ -91,7 +115,26 @@ class CouponsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'code' => 'required',
+            'reduction'     => 'required',
+            'quantite' => 'required',
+            'idBillet' => 'required',
+        ]);
+        $coupon = Coupon::findOrFail($id);
+
+        if($request->reduction<=0 || $request->quantite<0)
+        {
+            return redirect()->route('coupons.edit')->withErrors('Valeurs non valides');
+        }
+
+        $coupon->code = $request->code;
+        $coupon->idBillet = $request->idBillet;
+        $coupon->reduction = $request->reduction;
+        $coupon->quantite = $request->quantite;
+        $coupon->save();
+        return redirect()->route('home')->with('success', 'Coupon modifié avec succès');
+
     }
 
     public function supprimer()

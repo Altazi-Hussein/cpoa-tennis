@@ -72,6 +72,57 @@ background-size:cover;
                             @endforeach
                         </tbody>
                       </table>
+
+                    <hr>
+                      <h3>Gestion des codes de réduction</h3>
+                    <hr>
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                          <tr class="text-center">
+                            <th>Code</th>
+                            <th>Billet concerné</th>
+                            <th>Réduction</th>
+                            <th>Quantité</th>
+                            <th>Éditer</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach ($coupons as $coupon)
+                            <tr class="text-center">
+                                <td class="align-middle">{{$coupon->code}}</td>
+                                <td class="align-middle">{{$coupon->getBillet()->typeMatch}}</td>
+                                <td class="align-middle">{{$coupon->reduction}}%
+                                </td>
+                                    @if ($coupon->quantite>0)
+                                    <td class="align-middle">
+                                        {{$coupon->quantite}}
+                                    </td>
+                                    @else
+                                    <td class="align-middle text-danger">
+                                        {{$coupon->quantite}}
+                                    </td>
+                                    @endif
+                                   
+                                </td>
+                                <td class="align-middle">
+                                    <form action="{{route('coupon.edit', $coupon) }}" method="GET">
+                                        @csrf
+                                        <button type="submit" class="btn btn-warning btn-sm m-1">
+                                           <i class="far fa-edit"></i>
+                                        </button>         
+                                    </form>
+                                </td>
+                            <tr>
+                            @endforeach
+                        </tbody>
+                      </table>
+                      <form action="{{route('coupon.create')}}" method="GET">
+                        @csrf
+                        <button type="submit" class="btn btn-primary float-right">
+                           Ajouter une réduction
+                        </button>         
+                    </form>
                 </div>
             </div>
         </div>

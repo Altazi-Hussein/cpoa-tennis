@@ -29,6 +29,8 @@ Route::put('billets/{id}', 'BilletsController@update')->name('billet');
 Route::get('billets/accueil', 'BilletsController@accueil')->name('billets.index');
 Route::resource('/billets', 'BilletsController');
 
+Route::post('coupon/create', ['uses' => 'CouponsController@save']);
+
 Route::delete('/coupon', 'CouponsController@supprimer')->name('coupon.delete');
 
 Route::post('/coupon', 'CouponsController@store')->name('coupon.store');
