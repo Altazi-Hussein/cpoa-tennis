@@ -8,6 +8,10 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
+                    {{-- @guest
+                        <p>Page administrateur non autorisée</p>
+                        <a href="{{URL::to('/')}}">Retour</a>
+                    @else --}}
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
@@ -64,11 +68,12 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Inscription') }}
                                 </button>
                             </div>
                         </div>
                     </form>
+                {{-- @endgues --}}
                 </div>
             </div>
         </div>

@@ -40,7 +40,7 @@ class BilletsController extends Controller
      */
     public function create()
     {
-        //
+        return view('billets.create');
     }
 
     /**
@@ -51,7 +51,22 @@ class BilletsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'quantite' => 'required',
+            'prix'     => 'required'
+        ]);
+
+        if(!$request->typeMatch || $request->prix<=0 || $request->quantite<0)
+        {
+            return redirect()->route('billets.create')->withErrors('Erreur de saisie. Veuillez réessayer.');
+        }
+
+        $billet = new Billet();
+        $billet->typeMatch = $request->typeMatch;
+        $billet->prix = $request->prix;
+        $billet->quantite = $request->quantite;
+        $billet->save();
+        return redirect()->route('home')->withSuccess('Billet ajouté avec succès.');
     }
 
     /**
@@ -114,7 +129,9 @@ class BilletsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $billet = Billet::where('id', $id)->first();
+        $billet->delete();
+        return redirect()->route('home')->withSuccess('Billet supprimé avec succès');
     }
 
     public function choose()

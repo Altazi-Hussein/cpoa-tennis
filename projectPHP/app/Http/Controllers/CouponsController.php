@@ -16,7 +16,6 @@ class CouponsController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -146,5 +145,13 @@ class CouponsController extends Controller
         session()->forget('reduction');
         return redirect()->route('panier.index')->withSuccess('Réduction supprimée.');
     
+    }
+
+    public function retirer($id)
+    {
+
+        $coupon = Coupon::where('id', $id)->first();
+        $coupon->delete();
+        return redirect()->route('home')->withSuccess('Réduction supprimée avec succès');
     }
 }

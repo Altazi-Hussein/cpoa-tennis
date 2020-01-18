@@ -31,8 +31,7 @@ background-size:cover;
                             @endforeach
                     </div>
                 @endif
-                    <h3>Gestion des billets</h3>
-                    <hr>
+                    <h3 class="mb-4">Gestion des billets</h3>
                     <table class="table table-hover table-bordered">
                         <thead>
                           <tr class="text-center">
@@ -40,6 +39,7 @@ background-size:cover;
                             <th>Prix</th>
                             <th>Quantité</th>
                             <th>Éditer</th>
+                            <th>Supprimer</th>
                           </tr>
                         </thead>
 
@@ -68,14 +68,27 @@ background-size:cover;
                                         </button>         
                                     </form>
                                 </td>
+                                <td class="align-middle">
+                                    <form action="{{URL::route('billets.destroy', $billet->id)}}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button onclick="return confirm('Voulez-vous vraiment supprimer cette réduction ?');" type="submit" class="btn btn-danger btn-sm m-1">
+                                           <i class="fas fa-times"></i>
+                                        </button>         
+                                    </form>
+                                </td>
                             <tr>
                             @endforeach
                         </tbody>
                       </table>
+                      <form class="mb-5" action="{{route('billets.create')}}" method="GET">
+                        @csrf
+                        <button type="submit" class="btn btn-primary float-right">
+                            Nouveau billet
+                        </button>
+                    </form>
 
-                    <hr>
-                      <h3>Gestion des codes de réduction</h3>
-                    <hr>
+                    <h3 class="mb-4 mt-4">Gestion des codes de réduction</h3>
                     <table class="table table-hover table-bordered">
                         <thead>
                           <tr class="text-center">
@@ -84,6 +97,7 @@ background-size:cover;
                             <th>Réduction</th>
                             <th>Quantité</th>
                             <th>Éditer</th>
+                            <th>Supprimer</th>
                           </tr>
                         </thead>
 
@@ -113,6 +127,15 @@ background-size:cover;
                                         </button>         
                                     </form>
                                 </td>
+                                <td class="align-middle">
+                                    <form action="{{URL::route('coupon.retirer', $coupon->id)}}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button onclick="return confirm('Voulez-vous vraiment supprimer cette réduction ?');" type="submit" class="btn btn-danger btn-sm m-1">
+                                           <i class="fas fa-times"></i>
+                                        </button>         
+                                    </form>
+                                </td>
                             <tr>
                             @endforeach
                         </tbody>
@@ -121,7 +144,7 @@ background-size:cover;
                         @csrf
                         <button type="submit" class="btn btn-primary float-right">
                            Ajouter une réduction
-                        </button>         
+                        </button>
                     </form>
                 </div>
             </div>
