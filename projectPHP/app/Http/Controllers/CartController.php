@@ -32,6 +32,10 @@ class CartController extends Controller
 
     public function destroy($id)
     {
+        $item = Cart::get($id);
+        $billet = Billet::where('id', $item->id)->first();
+        $billet->quantite = $billet->quantite + $item->qty;
+        $billet->save();
         Cart::remove($id);
         return view('panier');
     }

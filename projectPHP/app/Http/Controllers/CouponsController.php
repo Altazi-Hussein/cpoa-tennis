@@ -139,8 +139,12 @@ class CouponsController extends Controller
 
     public function supprimer()
     {
+        $code = session()->get('reduction')['code'];
+        $coupon = Coupon::where('code', $code)->first();
+        $coupon->quantite = $coupon->quantite + 1;
+        $coupon->save();
         session()->forget('reduction');
-
         return redirect()->route('panier.index')->withSuccess('Réduction supprimée.');
+    
     }
 }

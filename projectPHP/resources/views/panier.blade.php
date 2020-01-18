@@ -37,12 +37,27 @@
                                 <h5>{{$item->name}}</h5>
                                 <form action="{{URL::route('panier.destroy', array('id' => $item->rowId))}}" method="post">
                                     @csrf
-                                    <input type="hidden" value="{{$item->rowId}}" name="id">
                                     <button type="submit" class="btn btn-sm text-danger">
                                         Supprimer
                                     </button>
                                 </form>
                                 </div>
+                                @if ($item->name == 'Licenciés')
+                                @for ($i = 0; $i < $item->qty; $i++)
+                                <div class="d-flex">
+                                    <form action="{{route('coupon.store')}}" method="post">
+                                    @csrf
+                                    <div class="d-flex">
+                                    <input placeholder="Code licencié" name="code" id="code" class="form-control form-control-sm mr-2 mb-3" type="text">
+                                    <input type="hidden" value="{{$item->id}}" name="idBillet">
+                                    <button type="submit" class="form-control form-control-sm btn-sm btn btn-primary w-25">
+                                      <i class="fas fa-check"></i>
+                                    </button>
+                                    </div>
+                                    </form>
+                               </div>
+                                @endfor
+                                @else
                                 <div class="d-flex">
                                 <br>
                                 <form action="{{route('coupon.store')}}" method="post">
@@ -55,8 +70,9 @@
                                 </button>
                                 </div>
                                 </form>
-                            </div>
+                           </div>
                             </td>
+                            @endif
                             <td class="text-center align-middle"><h5>{{$item->qty}}</h5></td>
                             <td class="text-center align-middle" ><h5>{{$item->price}}€</h5></td>
                             </tr>
