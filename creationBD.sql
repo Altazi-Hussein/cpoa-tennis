@@ -66,7 +66,7 @@ create or replace table MatchSimple(
 	idMatchSimple int not null primary key,
 	idJoueur1 int,
 	idJoueur2 int,
-	tournoi boolean
+	tournoi int
 );
 
 create or replace table MatchDouble(

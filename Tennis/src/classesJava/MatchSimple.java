@@ -1,32 +1,33 @@
 package classesJava;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class MatchSimple extends Match {
 
-   private Boolean tournoi;
+   private int tournoi;
    
-   private int[] lesJoueurs;
+   private ArrayList<Joueur> lesJoueurs;
 
-    public MatchSimple(Boolean tournoi, int[] lesJoueurs, int idMatch, int idPlanning, ArbitreDeChaise arbitreDeChaise, EquipeArbitreDeLigne equipeArbitresDeLigne, EquipeRamasseur equipeDeRamasseur, Date dateDébut, Date dateFin, Court court, ScoreMatch score, int tour, int idGagnant) {
+    public MatchSimple(int tournoi, ArrayList<Joueur> lesJoueurs, int idMatch, int idPlanning, ArbitreDeChaise arbitreDeChaise, EquipeArbitreDeLigne equipeArbitresDeLigne, EquipeRamasseur equipeDeRamasseur, Date dateDébut, Date dateFin, Court court, ScoreMatch score, int tour, int idGagnant) {
         super(idMatch, idPlanning, arbitreDeChaise, equipeArbitresDeLigne, equipeDeRamasseur, dateDébut, dateFin, court, score, tour, idGagnant);
         this.tournoi = tournoi;
         this.lesJoueurs = lesJoueurs;
     }
 
-    public int[] getLesJoueurs() {
+    public ArrayList<Joueur> getLesJoueurs() {
         return lesJoueurs;
     }
 
-    public void setLesJoueurs(int[] lesJoueurs) {
+    public void setLesJoueurs(ArrayList<Joueur> lesJoueurs) {
         this.lesJoueurs = lesJoueurs;
     }
 
-    public Boolean getTournoi() {
+    public int getTournoi() {
         return tournoi;
     }
 
-    public void setTournoi(Boolean tournoi) {
+    public void setTournoi(int tournoi) {
         this.tournoi = tournoi;
     }
    

@@ -39,5 +39,20 @@ public class ScoreMatch {
         this.scoreMatch = scoreMatch;
     }
     
+    public int getGagnant(){
+        int num1 = 0;
+        int num2 = 0;
+        int numGagnant = 0;
+        
+        for(int i = 0; i<scoreMatch.length; i++){
+            if (scoreMatch[i][1] > scoreMatch[i][2])num1++;
+            else if (scoreMatch[i][1] > scoreMatch[i][2]) num2++;
+        }
+        
+        if (num1>num2) numGagnant = 1;
+        if (num1<num2) numGagnant = 2;
+        
+        return numGagnant;
+    }
     
 }

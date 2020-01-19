@@ -121,8 +121,14 @@ public class ScoreMatchDAO implements InterfaceScoreMatchDAO {
     public int update (ScoreMatch sm) throws SQLException {
         int rowCount;
         PreparedStatement pst = null;
+        ResultSet rset;
         try {
-            this.delete(sm);
+            pst = connexionBD.prepareStatement("select count(*) from ScoreMatch WHERE idMatch=?");
+            pst.setInt(1, sm.getIdMatch());
+            rset = pst.executeQuery();
+            if(rset.next()){
+                if (rset.getInt(1)>0)this.delete(sm);
+            }
             rowCount = this.create(sm);
         } catch (SQLException exc) {
             JOptionPane.showMessageDialog(null, "Code d'erreur : "+ exc.getErrorCode() +"\nMessage d'erreur : "+ exc.getMessage());

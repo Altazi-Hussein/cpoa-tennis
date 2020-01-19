@@ -14,7 +14,7 @@ public class Match {
 
    private EquipeRamasseur equipeDeRamasseur;
 
-   private Date dateDébut;
+   private Date dateDebut;
    
    private Date dateFin;
    
@@ -35,7 +35,7 @@ public class Match {
         this.arbitreDeChaise = arbitreDeChaise;
         this.equipeArbitresDeLigne = equipeArbitresDeLigne;
         this.equipeDeRamasseur = equipeDeRamasseur;
-        this.dateDébut = dateDébut;
+        this.dateDebut = dateDébut;
         this.dateFin = dateFin;
         this.court = court;
         this.score = score;
@@ -99,12 +99,12 @@ public class Match {
         this.court = court;
     }
 
-    public Date getDateDébut() {
-        return dateDébut;
+    public Date getDateDebut() {
+        return dateDebut;
     }
 
-    public void setDateDébut(Date dateDébut) {
-        this.dateDébut = dateDébut;
+    public void setDateDebut(Date dateDebut) {
+        this.dateDebut = dateDebut;
     }
 
     public Date getDateFin() {

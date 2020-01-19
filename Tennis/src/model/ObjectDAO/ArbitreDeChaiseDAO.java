@@ -9,6 +9,8 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import classesJava.ArbitreDeChaise;
+import classesJava.EquipeJoueur;
+import classesJava.Joueur;
 import java.util.ArrayList;
 import model.interfaces.InterfaceArbitreDeChaiseDAO;
 
@@ -61,7 +63,7 @@ public class ArbitreDeChaiseDAO implements InterfaceArbitreDeChaiseDAO {
             pst.setInt(2, a.getNbMatchSimple());
             pst.setInt(3, a.getNbMatchDouble());
             rowCount += pst.executeUpdate();
-            pst = connexionBD.prepareStatement("INSERT INTO ArbitreDeChaise VALUES (?,?,?,?,?)");
+            pst = connexionBD.prepareStatement("INSERT INTO Arbitre VALUES (?,?,?,?,?)");
             pst.setInt(1, a.getIdArbitre());
             pst.setString(2, a.getNom());
             pst.setString(3, a.getPrenom());
@@ -91,7 +93,7 @@ public class ArbitreDeChaiseDAO implements InterfaceArbitreDeChaiseDAO {
         Statement st = connexionBD.createStatement() ;
         ArrayList<ArbitreDeChaise> lesArbitre = new ArrayList<ArbitreDeChaise>();
         try{
-            ResultSet rs = st.executeQuery("SELECT idArbitreC, nom, prenom, nationalite, categorie, nmMatchSimple, nbMatchDouble FROM ArbitreDeChaise join Arbitre on idArbitreC=idArbitre");
+            ResultSet rs = st.executeQuery("SELECT idArbitreC, nom, prenom, nationalite, categorie, nbMatchSimple, nbMatchDouble FROM ArbitreDeChaise join Arbitre on idArbitreC=idArbitre");
             int no;
             String nom;
             String pre;
@@ -173,5 +175,74 @@ public class ArbitreDeChaiseDAO implements InterfaceArbitreDeChaiseDAO {
         }
         return rowCount;
     }
+
+    @Override
+    public List<ArbitreDeChaise> findArbitresLibresNationaliteMS(Joueur j1, Joueur j2) throws SQLException {
+        PreparedStatement pst = null;
+        ArrayList<ArbitreDeChaise> lesArbitre = new ArrayList<ArbitreDeChaise>();
+        try{
+            pst = connexionBD.prepareStatement("SELECT idArbitreC, nom, prenom, nationalite, categorie, nbMatchSimple, nbMatchDouble FROM ArbitreDeChaise join Arbitre on idArbitreC=idArbitre where nationalite not in (?,?) and nbMatchSimple<2");
+            pst.setString(1, j1.getNationaliteJ());
+            pst.setString(2, j2.getNationaliteJ());
+            ResultSet rs = pst.executeQuery();
+            int no;
+            String nom;
+            String pre;
+            String nat;
+            String cat;
+            int maS, maD;
+            while (rs.next()){
+                no = rs.getInt(1);
+                nom = rs.getString(2);
+                pre = rs.getString(3);
+                nat = rs.getString(4);
+                cat = rs.getString(5);
+                maS = rs.getInt(6);
+                maD = rs.getInt(7);
+                ArbitreDeChaise a = new ArbitreDeChaise(no, nom, pre, nat, cat, maS, maD);
+                lesArbitre.add(a);
+            }
+        }catch (SQLException exc) {
+            throw exc;
+        }
+        return lesArbitre;
+    }
+
+    @Override
+    public List<ArbitreDeChaise> findArbitresLibresNationaliteMD(EquipeJoueur e1, EquipeJoueur e2) throws SQLException {
+        PreparedStatement pst = null;
+        ArrayList<ArbitreDeChaise> lesArbitre = new ArrayList<ArbitreDeChaise>();
+        try{
+            pst = connexionBD.prepareStatement("SELECT idArbitreC, nom, prenom, nationalite, categorie, nbMatchSimple, nbMatchDouble FROM ArbitreDeChaise join Arbitre on idArbitreC=idArbitre where nationalite not in (?,?,?,?) and nbMatchDouble<2");
+            ArrayList<Joueur> lesJoueursE1 = e1.getLesJoueurs();
+            pst.setString(1, lesJoueursE1.get(0).getNationaliteJ());
+            pst.setString(2, lesJoueursE1.get(0).getNationaliteJ());
+            ArrayList<Joueur> lesJoueursE2 = e1.getLesJoueurs();
+            pst.setString(3, lesJoueursE2.get(0).getNationaliteJ());
+            pst.setString(4, lesJoueursE2.get(0).getNationaliteJ());
+            ResultSet rs = pst.executeQuery();
+            int no;
+            String nom;
+            String pre;
+            String nat;
+            String cat;
+            int maS, maD;
+            while (rs.next()){
+                no = rs.getInt(1);
+                nom = rs.getString(2);
+                pre = rs.getString(3);
+                nat = rs.getString(4);
+                cat = rs.getString(5);
+                maS = rs.getInt(6);
+                maD = rs.getInt(7);
+                ArbitreDeChaise a = new ArbitreDeChaise(no, nom, pre, nat, cat, maS, maD);
+                lesArbitre.add(a);
+            }
+        }catch (SQLException exc) {
+            throw exc;
+        }
+        return lesArbitre;
+    }
+
 
 }

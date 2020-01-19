@@ -3,33 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/model/interfaces/InterfaceEquipeRamasseurDAO.java</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/model/connexionMysql.properties</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/model/interfaces/InterfaceArbitreDeLigneDAO.java</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/classesJava/MatchSimple.java</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/tennis/Main.java</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/model/ObjectDAO/ArbitreDeLigneDAO.java</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/model/interfaces/InterfaceArbitreDeChaiseDAO.java</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/model/interfaces/InterfaceJoueurDAO.java</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/classesJava/Arbitre.java</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/model/interfaces/InterfaceCourtDAO.java</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/classesJava/MatchDouble.java</file>
             <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/model/interfaces/InterfaceScoreMatchDAO.java</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/model/interfaces/InterfaceEquipeArbitreDeLigneDAO.java</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/classesJava/EquipeArbitreDeLigne.java</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/classesJava/ArbitreDeChaise.java</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/model/ObjectDAO/EquipeArbitreDeLigneDAO.java</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/classesJava/ArbitreDeLigne.java</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/model/interfaces/InterfaceMatchSimpleDAO.java</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/model/ObjectDAO/JoueurDAO.java</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/classesJava/ScoreMatch.java</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/model/interfaces/InterfaceMatchDoubleDAO.java</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/model/interfaces/InterfaceReservationEntrainementDAO.java</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/classesJava/ReservationEntrainement.java</file>
             <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/classesJava/Match.java</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/model/interfaces/InterfacePlanningDAO.java</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/classesJava/Planning.java</file>
-            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/classesJava/Court.java</file>
+            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/tennis/Main.java</file>
+            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/model/ObjectDAO/ScoreMatchDAO.java</file>
+            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/classesJava/ScoreMatch.java</file>
+            <file>file:/C:/Users/angel/Desktop/cpoa_tennis/Tennis/src/model/ObjectDAO/JoueurDAO.java</file>
         </group>
     </open-files>
 </project-private>

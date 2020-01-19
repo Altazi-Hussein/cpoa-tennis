@@ -15,6 +15,8 @@ import java.util.ArrayList;
  */
 public interface InterfaceMatchSimpleDAO {
     public ArrayList<MatchSimple> findAll() throws SQLException;
+    public ArrayList<MatchSimple> findAllMatchsQualif() throws SQLException;
+    public ArrayList<MatchSimple> findAllMatchsTTournoi() throws SQLException;
     public MatchSimple findById(int idMatchSimple) throws SQLException;
     public int create (MatchSimple ms) throws SQLException;
     public int update (MatchSimple ms) throws SQLException;
