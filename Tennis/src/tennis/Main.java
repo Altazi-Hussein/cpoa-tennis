@@ -17,9 +17,11 @@ import model.ObjectDAO.JoueurDAO;
 import model.MonMariaDbDataSource;
 import classesJava.Joueur;
 import classesJava.ScoreMatch;
+import java.awt.Frame;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JFrame;
 import model.ObjectDAO.CourtDAO;
 import model.ObjectDAO.EquipeArbitreDeLigneDAO;
 import model.ObjectDAO.EquipeJoueurDAO;
@@ -66,7 +68,12 @@ public class Main {
             int[][] scoreM1 = scoreDAO.findById(1).getScoreMatch();
             for(int i=0; i<scoreM1.length; i++){
                 System.out.println("Round: " + (i+1) + "  J1: " + scoreM1[i][0] + "  J2: " + scoreM1[i][1]);
-            } 
+            }
+            
+            JFrame frame = new JFrame();
+            JDAuthentificationBD jd = new JDAuthentificationBD(frame);
+            
+            frame.setVisible(true);
             
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

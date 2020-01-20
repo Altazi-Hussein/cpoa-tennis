@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @author angel
  */
 public interface InterfaceMatchDoubleDAO {
-    public ArrayList<MatchDouble> findAll() throws SQLException;
+    public ArrayList<MatchDouble> findAll(int idPlanning) throws SQLException;
     public MatchDouble findById(int idMatchDouble) throws SQLException;
     public int create (MatchDouble md) throws SQLException;
     public int update (MatchDouble md) throws SQLException;

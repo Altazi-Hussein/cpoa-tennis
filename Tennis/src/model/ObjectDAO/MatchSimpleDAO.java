@@ -134,13 +134,15 @@ public class MatchSimpleDAO implements InterfaceMatchSimpleDAO {
     }
 
     @Override
-    public ArrayList<MatchSimple> findAll() throws SQLException {
-        Statement st = connexionBD.createStatement() ;
+    public ArrayList<MatchSimple> findAll(int idPlanning) throws SQLException {
+        PreparedStatement pst = null;
         ArrayList<MatchSimple> lesMatchSimple = new ArrayList<>();
         try{
-            ResultSet rs = st.executeQuery("SELECT idMatchSimple from MatchSimple");
-            while (rs.next()){
-                MatchSimple ms = this.findById(rs.getInt(1));
+            pst = connexionBD.prepareStatement("SELECT idMatchSimple from MatchSimple where idPlanning = ?");
+            pst.setInt(1, idPlanning);
+            ResultSet rset = pst.executeQuery();
+            while (rset.next()){
+                MatchSimple ms = this.findById(rset.getInt(1));
                 lesMatchSimple.add(ms);
             }  
         }catch (SQLException exc) {
@@ -230,13 +232,14 @@ public class MatchSimpleDAO implements InterfaceMatchSimpleDAO {
     }
 
     @Override
-    public ArrayList<MatchSimple> findAllMatchsQualif() throws SQLException {
+    public ArrayList<MatchSimple> findAllMatchsQualif(int idPlanning) throws SQLException {
         PreparedStatement pst = null;
         ArrayList<MatchSimple> lesMatchSimple = new ArrayList<>();
         ResultSet rset;
         try{
-            pst = connexionBD.prepareStatement("select idMatchSaimple from MatchSimple where tournoi=?");
+            pst = connexionBD.prepareStatement("select idMatchSaimple from MatchSimple where tournoi=? and idPlanning = ?");
             pst.setInt(1, 0);
+            pst.setInt(2, idPlanning);
             rset = pst.executeQuery();
             while (rset.next()){
                 MatchSimple ms = this.findById(rset.getInt(1));
@@ -249,13 +252,14 @@ public class MatchSimpleDAO implements InterfaceMatchSimpleDAO {
     }
 
     @Override
-    public ArrayList<MatchSimple> findAllMatchsTTournoi() throws SQLException {
+    public ArrayList<MatchSimple> findAllMatchsTournoi(int idPlanning) throws SQLException {
         PreparedStatement pst = null;
         ArrayList<MatchSimple> lesMatchSimple = new ArrayList<>();
         ResultSet rset;
         try{
-            pst = connexionBD.prepareStatement("select idMatchSaimple from MatchSimple where tournoi=?");
+            pst = connexionBD.prepareStatement("select idMatchSaimple from MatchSimple where tournoi=? and idPlanning = ?");
             pst.setInt(1, 1);
+            pst.setInt(2, idPlanning);
             rset = pst.executeQuery();
             while (rset.next()){
                 MatchSimple ms = this.findById(rset.getInt(1));

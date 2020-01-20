@@ -7,31 +7,25 @@ public class Planning {
 
    private int idPlanning;
 
-   private int nomPlanning;
-
    private Date dateDebut;
 
    private Date dateFin;
-
-   public ArrayList<Match> lesMatchs;
    
-   public ArrayList<ReservationEntrainement> lesReservations;
+   private String nomPlanning;
 
-    public Planning(int idPlanning, int nomPlanning, Date dateDebut, Date dateFin, ArrayList<Match> lesMatchs, ArrayList<ReservationEntrainement> lesReservations) {
+    public Planning(int idPlanning, Date dateDebut, Date dateFin, String nomPlanning) {
         this.idPlanning = idPlanning;
-        this.nomPlanning = nomPlanning;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
-        this.lesMatchs = lesMatchs;
-        this.lesReservations = lesReservations;
+        this.nomPlanning = nomPlanning;
     }
 
-    public ArrayList<ReservationEntrainement> getLesReservations() {
-        return lesReservations;
+    public String getNomPlanning() {
+        return nomPlanning;
     }
 
-    public void setLesReservations(ArrayList<ReservationEntrainement> lesReservations) {
-        this.lesReservations = lesReservations;
+    public void setNomPlanning(String nomPlanning) {
+        this.nomPlanning = nomPlanning;
     }
 
     public int getIdPlanning() {
@@ -40,14 +34,6 @@ public class Planning {
 
     public void setIdPlanning(int idPlanning) {
         this.idPlanning = idPlanning;
-    }
-
-    public int getNomPlanning() {
-        return nomPlanning;
-    }
-
-    public void setNomPlanning(int nomPlanning) {
-        this.nomPlanning = nomPlanning;
     }
 
     public Date getDateDebut() {
@@ -65,14 +51,5 @@ public class Planning {
     public void setDateFin(Date dateFin) {
         this.dateFin = dateFin;
     }
-
-    public ArrayList<Match> getLesMatchs() {
-        return lesMatchs;
-    }
-
-    public void setLesMatchs(ArrayList<Match> lesMatchs) {
-        this.lesMatchs = lesMatchs;
-    }
-
    
 }
