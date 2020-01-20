@@ -8,6 +8,16 @@ function myFunction()
     var message = Math.random().toString(36);
     document.getElementById("code").value = message;
 }
+
+function generateRandomString(length) {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+   
+  for (var i = 0; i < length; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+   
+  document.getElementById("code").value = text;
+}
  </script>
 
 @endsection
@@ -49,7 +59,7 @@ function myFunction()
                     
                     <input class="form-control" id="code" name="code">
                     <div class="input-group-prepend">
-                    <div onclick="myFunction()" style="cursor:pointer;" class="input-group-text">Générer un code aléatoire</div>
+                    <div onclick="generateRandomString(10)" style="cursor:pointer;" class="input-group-text">Générer un code aléatoire</div>
                     </div>
                 </div>
                     <label class="mt-3" for="idBillet">Billet concerné</label>
