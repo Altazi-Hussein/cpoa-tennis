@@ -15,20 +15,34 @@ class BilletsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $r)
+    public function index()
     {
         $billets = Billet::all();
+        return view('billets.index', ['billets' => $billets]);
+    }
+
+    public function choose(Request $r)
+    {
+        $this->validate($r, [
+            'dateMatch' => 'required'
+        ]);
+
+        if(session()->has('matchExiste'))
+        {
+            session()->forget('matchExiste');
+        }
         $matchs = Match::where('dateDebutM', $r->dateMatch)->where('idCourt', $r->court)->first();
         if($matchs)
         {
-            return view('billets.index', ['billets' => $billets , 'matchs' => $matchs, 'request' => $r]);
-        }
-        else
-        {
-        return redirect()->route('billets.choose')->withErrors('Aucun match à cette date');
+            session()->put('matchExiste', [
+                'dateMatch' => $r->dateMatch,
+                'court' => $r->court,
+            ]);
+            return redirect()->route('billets.index');
+        } else {
+            return redirect()->route('choose')->withErrors('Pas de date sélectionnée');
         }
     }
-
 
     public function accueil(Request $r)
     {
@@ -138,10 +152,5 @@ class BilletsController extends Controller
         $billet = Billet::where('id', $id)->first();
         $billet->delete();
         return redirect()->route('home')->withSuccess('Billet supprimé avec succès');
-    }
-
-    public function choose()
-    {
-        return view('billets.choose');
     }
 }

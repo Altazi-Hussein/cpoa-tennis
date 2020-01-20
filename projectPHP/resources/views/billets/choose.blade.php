@@ -17,9 +17,20 @@ background-size:cover;
                 <div class="card-header" style="text-transform: uppercase; background: white; color: #384d9b; font-weight: bold;">Achetez vos billets
                     <a class="float-right" href="{{ URL::to('/') }}">Retour</a>
                 </div>
-                
-                <div class="card-body bg-white" style="font-size: 1.8vh;">
-                    <form method="get" action="{{ action('BilletsController@index') }}">
+                <div class="card-body bg-white" style="font-size: 1.5vh;">
+                @if (session()->has('success'))
+                    <div class="alert alert-success">
+                            {{ session()->get('success') }}
+                    </div>
+                    @endif
+                @if (count($errors)>0)
+                    <div class="alert alert-danger">
+                            @foreach ($errors->all() as $error)
+                                {{$error}}
+                            @endforeach
+                    </div>
+                @endif
+                    <form method="post" action="{{route('billets.choose')}}">
                         @csrf
                         <div class="form-group">
                         <label for="dateMatch">Choisissez la date du match</label>

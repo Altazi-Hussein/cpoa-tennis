@@ -9,7 +9,7 @@
         <div class="col-md-10">
             <div class="card">
                 <div class="card-header" style="text-transform: uppercase; background: white; color: #384d9b; font-weight: bold;">Achetez vos billets
-                <a class="float-right" href="{{ URL::previous() }}">Retour</a></div>
+                <a class="float-right" href="{{ route('choose') }}">Retour</a></div>
                 @if (session()->has('success'))
                     <div class="alert alert-success">
                             {{ session()->get('success') }}
@@ -46,8 +46,6 @@
                                     <input type="hidden" value="{{$billet->id}}" name="id">
                                     <input type="hidden" value="{{$billet->typeMatch}}" name="typeMatch">
                                     <input type="hidden" value="{{$billet->prix}}" name="prix">
-                                    <input type="hidden" value="{{$request->dateMatch}}" name="dateMatch">
-                                    <input type="hidden" value="{{$request->court}}" name="court">
                                     <input type="number" class="form-control text-center mr-2" value="1" name="quantite" style="width: 6vh;">
                                     <button type="submit" class="btn btn-success form-control">
                                         <i class="fas fa-check"></i>

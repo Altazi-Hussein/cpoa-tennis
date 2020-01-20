@@ -23,7 +23,7 @@ class CartController extends Controller
             $billet = Cart::add($request->id, $request->typeMatch, $request->quantite, $request->prix, []);
             $quantite->quantite = $quantite->quantite - $request->quantite;
             $quantite->save();
-            return redirect()->route('billets.index', $request)->with('success', 'Billet(s) ajouté(s) à votre panier');
+            return redirect()->route('billets.index', compact($request))->with('success', 'Billet(s) ajouté(s) à votre panier');
         }
         return redirect()->route('billets.index')->withErrors('Quantité insuffisante de billets.');
 
@@ -47,8 +47,15 @@ class CartController extends Controller
 
     public function update(Request $r, $id)
     {
+        if($r->quantite < 0)
+        {
+        return redirect()->route('panier.index')->withErrors('Erreur de saisie, veuillez réesayer.');
+        }
+        else
+        {
         Cart::update($id, $r->quantite);
         session()->forget('reduction');
         return redirect()->route('panier.index')->withSuccess('Quantité modifiée avec succès')->with('warning', 'Pensez à re-saisir votre code de réduction');
+        }
     }
 }
