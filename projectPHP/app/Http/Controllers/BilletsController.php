@@ -15,12 +15,18 @@ class BilletsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $r)
     {
         $billets = Billet::all();
-/*         $matchs = Match::findOrFail($r->dateMatch); */
-        $var = Billet::where('id', 1)->get();
-        return view('billets.index', ['billets' => $billets, 'var' => $var/* , 'matchs' => $matchs */]);
+        $matchs = Match::where('dateDebutM', $r->dateMatch)->where('idCourt', $r->court)->first();
+        if($matchs)
+        {
+            return view('billets.index', ['billets' => $billets , 'matchs' => $matchs, 'request' => $r]);
+        }
+        else
+        {
+        return redirect()->route('billets.choose')->withErrors('Aucun match à cette date');
+        }
     }
 
 

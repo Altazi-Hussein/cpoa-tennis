@@ -46,6 +46,8 @@
                                     <input type="hidden" value="{{$billet->id}}" name="id">
                                     <input type="hidden" value="{{$billet->typeMatch}}" name="typeMatch">
                                     <input type="hidden" value="{{$billet->prix}}" name="prix">
+                                    <input type="hidden" value="{{$request->dateMatch}}" name="dateMatch">
+                                    <input type="hidden" value="{{$request->court}}" name="court">
                                     <input type="number" class="form-control text-center mr-2" value="1" name="quantite" style="width: 6vh;">
                                     <button type="submit" class="btn btn-success form-control">
                                         <i class="fas fa-check"></i>

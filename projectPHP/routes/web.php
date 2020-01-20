@@ -23,6 +23,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/panier', 'PanierController@store')->name('panier.store');
  */
 
+Route::get('billets/choose', function()
+{
+    return view('billets.choose');
+})->name('choose');
 
 Route::post('billets/choose', 'BilletsController@choose')->name('billets.choose');
 Route::put('billets/{id}', 'BilletsController@update')->name('billet');

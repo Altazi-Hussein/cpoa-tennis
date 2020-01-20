@@ -143,11 +143,11 @@
                 <hr>
                 <div class="main">
                 <a href="#">Découvrir l'événement</a>
-                {{-- <a href="{{route('billets.choose')}}">Accéder à la billeterie</a> --}}
-                <form action="{{ route('billets.choose')}}" method="post" style="line-height: 25vh;">
+                <a href="{{route('choose')}}">Accéder à la billeterie</a>
+                {{-- <form action="{{ route('billets.choose')}}" method="post" style="line-height: 25vh;">
                     @csrf
                     <input type="submit" value="Achetez vos billets">
-                </form>
+                </form> --}}
                 <a href="#">Découvrir le planning</a>
                 </div>
                     </div>
