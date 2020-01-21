@@ -37,6 +37,7 @@
                         </thead>
                         <tbody>
                             @foreach (Cart::content() as $item)
+                           {{ Cart::content()->count()}}
                             <tr>
                             <td><div class="d-flex">
                                 <h5>{{$item->name}}</h5>
@@ -125,8 +126,9 @@
                         <button class="btn btn-secondary" type="submit">
                             Autres billets
                         </form>
-                        <form method="post" action="{{route('billets.index')}}">
+                        <form method="post" action="{{route('billets.valider')}}">
                             @csrf
+                            <input type="hidden" value="{{$total}}" name="total">
                             <button class="btn btn-success" type="submit">
                                 Valider l'achat
                         </form>

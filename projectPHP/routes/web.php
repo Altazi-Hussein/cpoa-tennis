@@ -28,6 +28,8 @@ Route::get('billets/choose', function()
     return view('billets.choose');
 })->name('choose');
 
+Route::post('billets/valider', 'BilletsController@valider')->name('billets.valider');
+
 Route::post('billets/choose', 'BilletsController@choose')->name('billets.choose');
 Route::put('billets/{id}', 'BilletsController@update')->name('billet');
 Route::get('billets/accueil', 'BilletsController@accueil')->name('billets.index');

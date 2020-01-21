@@ -40,6 +40,12 @@ class BilletsController extends Controller
         }
     }
 
+    public function valider(request $r)
+    {
+        $total = $r->total;
+        return view('billets.valider', ['total' => $total]);
+    }
+
     public function accueil(Request $r)
     {
         $match = Match::where('dateDebutM', $r->dateMatch)->get();

@@ -36,7 +36,9 @@ class CartController extends Controller
         $billet->quantite = $billet->quantite + $item->qty;
         $billet->save();
         Cart::remove($id);
-        return view('panier');
+        $reduc = session()->get('reduction')['montant'] ?? 0;
+        $total = Cart::total() - $reduc;
+        return view('panier', ['total' => $total]);
     }
 
     public function supprimer()
