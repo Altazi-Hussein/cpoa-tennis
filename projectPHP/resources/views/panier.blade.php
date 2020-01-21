@@ -119,10 +119,13 @@
                       <div class="d-flex justify-content-between">
                       <form method="post" action="{{route('billets.choose')}}">
                         @csrf
+                        <input type="hidden" value="non" name="supprimer">
+                        <input type="hidden" value="{{session()->get('matchExiste')['dateMatch']}}" name="dateMatch">
+                        <input type="hidden" value="{{session()->get('matchExiste')['court']}}" name="court">
                         <button class="btn btn-secondary" type="submit">
                             Autres billets
                         </form>
-                        <form method="post" action="{{route('billets.choose')}}">
+                        <form method="post" action="{{route('billets.index')}}">
                             @csrf
                             <button class="btn btn-success" type="submit">
                                 Valider l'achat
@@ -135,6 +138,9 @@
                     <h5> Pas de billets dans votre panier</h5>
                     <form method="post" action="{{route('billets.choose')}}">
                         @csrf
+                        <input type="hidden" value="non" name="supprimer">
+                        <input type="hidden" value="{{session()->get('matchExiste')['dateMatch']}}" name="dateMatch">
+                        <input type="hidden" value="{{session()->get('matchExiste')['court']}}" name="court">
                         <button class="btn btn-primary" type="submit">
                             Boutique
                     </form>

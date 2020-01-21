@@ -23,11 +23,7 @@ class BilletsController extends Controller
 
     public function choose(Request $r)
     {
-        $this->validate($r, [
-            'dateMatch' => 'required'
-        ]);
-
-        if(session()->has('matchExiste'))
+        if(session()->has('matchExiste') && $r->supprimer)
         {
             session()->forget('matchExiste');
         }

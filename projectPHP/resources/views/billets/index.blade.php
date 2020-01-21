@@ -32,7 +32,7 @@
                 </form> --}}
                 <img src="{{asset('images/billetsbg.jpg')}}" style="height: 50vh;">
                 <div class="card-body bg-light" style="background: #384d9b; color:black;font-size: 1.8vh; opacity: 0.95;">
-                    <h4 class="text-center">Du Samedi 16/05/2020 au Samedi 23/05/2020</h4>
+                <h4 class="text-center">Billets pour la journée {{session()->get('matchExiste')['dateMatch']}}</h4>
                            <hr>     
                         @foreach ($billets as $billet)
                             @if ($billet->quantite>0)
