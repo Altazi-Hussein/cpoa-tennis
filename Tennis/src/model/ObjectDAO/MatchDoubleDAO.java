@@ -133,13 +133,15 @@ public class MatchDoubleDAO implements InterfaceMatchDoubleDAO {
     }
 
     @Override
-    public ArrayList<MatchDouble> findAll() throws SQLException {
-        Statement st = connexionBD.createStatement() ;
+    public ArrayList<MatchDouble> findAll(int idPlanning) throws SQLException {
+        PreparedStatement pst = null;
         ArrayList<MatchDouble> lesMatchDouble = new ArrayList<>();
         try{
-            ResultSet rs = st.executeQuery("SELECT idMatchDouble from MatchDouble");
-            while (rs.next()){
-                MatchDouble ms = this.findById(rs.getInt(1));
+            pst = connexionBD.prepareStatement("SELECT idMatchDouble from MatchDouble where idPlanning = ?");
+            pst.setInt(1, idPlanning);
+            ResultSet rset = pst.executeQuery();
+            while (rset.next()){
+                MatchDouble ms = this.findById(rset.getInt(1));
                 lesMatchDouble.add(ms);
             }  
         }catch (SQLException exc) {

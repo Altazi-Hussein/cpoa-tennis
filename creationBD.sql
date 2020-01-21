@@ -87,6 +87,7 @@ create or replace table ReservationEntrainement(
 
 create or replace table Planning(
 	idPlanning int not null primary key,
+	nomPlanning varchar(254) not null,
 	dateDebutP Datetime not null,
 	dateFinP Datetime not null
 );

@@ -90,7 +90,7 @@ public class ArbitreDeChaiseDAO implements InterfaceArbitreDeChaiseDAO {
 
     @Override
     public List<ArbitreDeChaise> findAll() throws SQLException {
-        Statement st = connexionBD.createStatement() ;
+        Statement st = connexionBD.createStatement();
         ArrayList<ArbitreDeChaise> lesArbitre = new ArrayList<ArbitreDeChaise>();
         try{
             ResultSet rs = st.executeQuery("SELECT idArbitreC, nom, prenom, nationalite, categorie, nbMatchSimple, nbMatchDouble FROM ArbitreDeChaise join Arbitre on idArbitreC=idArbitre");
