@@ -10,7 +10,11 @@ import javax.swing.JOptionPane;
 
 import model.interfaces.InterfacePlanningDAO;
 import classesJava.Planning;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PlanningDAO implements InterfacePlanningDAO {
 
@@ -30,8 +34,8 @@ public class PlanningDAO implements InterfacePlanningDAO {
             pst.setInt(1, idPlanning);
             rset = pst.executeQuery();
             if (rset.next()) {
-                Date dateD = new Date(rset.getString(2));
-                Date dateF = new Date(rset.getString(3));
+                Date dateD = new SimpleDateFormat("yyyy-MM-dd").parse(rset.getString("dateDebutP"));
+                Date dateF = new SimpleDateFormat("yyyy-MM-dd").parse(rset.getString("dateFinP"));
                 p = new Planning(idPlanning, dateD, dateF, rset.getString(4));
             }
             else 
@@ -41,6 +45,8 @@ public class PlanningDAO implements InterfacePlanningDAO {
 
         } catch (SQLException exc) {
             throw exc;
+        } catch (ParseException ex) {
+            Logger.getLogger(PlanningDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 // la clause finally est toujours executée, quoi qu'il arrive
@@ -59,21 +65,44 @@ public class PlanningDAO implements InterfacePlanningDAO {
         int rowCount;
         PreparedStatement pst = null;
         try {
-            pst = connexionBD.prepareStatement("INSERT INTO Planning VALUES (?,?,?,?)");
-            pst.setInt(1, p.getIdPlanning());
+            
+            Planning pt = null;
+            rowCount = 0;
+            
+            if(p.getIdPlanning()==0){
+            
+            pst = connexionBD.prepareStatement("INSERT INTO Planning VALUES (NULL,?,?,?)");
 
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String dateD = sdf.format(p.getDateDebut());
             String dateF = sdf.format(p.getDateFin());
             
+            pst.setString(1, p.getNomPlanning());
             pst.setString(2, dateD);
             pst.setString(3, dateF);
-            pst.setString(4, p.getNomPlanning());
             
             rowCount = pst.executeUpdate();
+            }else{
+                
+                pt = this.findById(p.getIdPlanning());
+                if (pt == null){
+                    pst = connexionBD.prepareStatement("INSERT INTO Planning VALUES (?,?,?,?)");
 
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String dateD = sdf.format(p.getDateDebut());
+                    String dateF = sdf.format(p.getDateFin());
+                    pst.setInt(1, p.getIdPlanning());
+                    pst.setString(2, p.getNomPlanning());
+                    pst.setString(3, dateD);
+                    pst.setString(4, dateF);
+                    
+                    rowCount = pst.executeUpdate();
+                }else JOptionPane.showMessageDialog(null,"Le planning existe déjà");
+                
+            }
+            
         } catch (SQLException exc) {
-            JOptionPane.showMessageDialog(null, "Code d'erreur : "+ exc.getErrorCode() +"\nMessage d'erreur : "+ exc.getMessage());
+            JOptionPane.showMessageDialog(null,"L'insertion du planning à echoué");
             throw exc;
         } finally {
             try {
@@ -96,13 +125,15 @@ public class PlanningDAO implements InterfacePlanningDAO {
         try{
             ResultSet rs = st.executeQuery("SELECT * from Planning");
             while (rs.next()){
-                Date dateD = new Date(rs.getString(2));
-                Date dateF = new Date(rs.getString(3));
-                Planning p = new Planning(rs.getInt(1), dateD, dateF, rs.getString(4));
+                Date dateD = new SimpleDateFormat("yyyy-MM-dd").parse(rs.getString("dateDebutP"));
+                Date dateF = new SimpleDateFormat("yyyy-MM-dd").parse(rs.getString("dateFinP"));
+                Planning p = new Planning(rs.getInt("idPlanning"), dateD, dateF, rs.getString("nomPlanning"));
                 lesPlanning.add(p);
             }  
         }catch (SQLException exc) {
             throw exc;
+        } catch (ParseException ex) {
+            Logger.getLogger(PlanningDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lesPlanning;
         

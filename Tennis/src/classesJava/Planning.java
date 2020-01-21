@@ -20,6 +20,13 @@ public class Planning {
         this.nomPlanning = nomPlanning;
     }
 
+    public Planning(Date dateDebut, Date dateFin, String nomPlanning) {
+        this.idPlanning = 0;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.nomPlanning = nomPlanning;
+    }
+
     public String getNomPlanning() {
         return nomPlanning;
     }

@@ -5,21 +5,84 @@
  */
 package tennis;
 
+import classesJava.Planning;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import model.MonMariaDbDataSource;
+import model.ObjectDAO.ArbitreDeChaiseDAO;
+import model.ObjectDAO.ArbitreDeLigneDAO;
+import model.ObjectDAO.CourtDAO;
+import model.ObjectDAO.EquipeArbitreDeLigneDAO;
+import model.ObjectDAO.EquipeJoueurDAO;
+import model.ObjectDAO.EquipeRamasseurDAO;
+import model.ObjectDAO.JoueurDAO;
+import model.ObjectDAO.MatchDoubleDAO;
+import model.ObjectDAO.MatchSimpleDAO;
+import model.ObjectDAO.PlanningDAO;
+import model.ObjectDAO.RamasseurDeBalleDAO;
+import model.ObjectDAO.ReservationEntrainementDAO;
+import model.ObjectDAO.ScoreMatchDAO;
 
 /**
  *
  * @author p1806052
  */
 public class Fenetre extends javax.swing.JFrame {
+    private Connection connexion;
+    private PlanningDAO planningDAO;
+    private ArbitreDeChaiseDAO ACDAO;
+    private ArbitreDeLigneDAO ALDAO;
+    private CourtDAO courtDAO;
+    private EquipeArbitreDeLigneDAO EALDAO;
+    private EquipeJoueurDAO EJDAO;
+    private EquipeRamasseurDAO ERDAO;
+    private JoueurDAO JDAO;
+    private MatchDoubleDAO MDDAO;
+    private MatchSimpleDAO MSDAO;
+    private RamasseurDeBalleDAO RDAO;
+    private ReservationEntrainementDAO reservationDAO;
+    private ScoreMatchDAO scoreDAO;
+    private ArrayList<Planning>  lesPlannings;
     
     /**
      * Creates new form Fenetre
      */
-    public Fenetre() {
+    public Fenetre(){
+        try{
+            MonMariaDbDataSource dataSourceDAO = MonMariaDbDataSource.getMdbDataSource();
+            Connection connexionBD = dataSourceDAO.getConnection();
+            this.connexion = connexionBD;
+            planningDAO = new PlanningDAO(connexion);
+            ACDAO = new ArbitreDeChaiseDAO(connexion);
+            ALDAO = new ArbitreDeLigneDAO(connexion);
+            courtDAO = new CourtDAO(connexion);
+            EALDAO = new EquipeArbitreDeLigneDAO(connexion);
+            EJDAO = new EquipeJoueurDAO(connexion);
+            ERDAO = new EquipeRamasseurDAO(connexion);
+            JDAO = new JoueurDAO(connexion);
+            MDDAO = new MatchDoubleDAO(connexion);
+            MSDAO = new MatchSimpleDAO(connexion);
+            RDAO = new RamasseurDeBalleDAO(connexion);
+            reservationDAO = new ReservationEntrainementDAO(connexion);
+            scoreDAO = new ScoreMatchDAO(connexion);
+            
+            
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Erreur lors de la connection à la base de données");
+        }
+        
+
         initComponents();
     }
 
@@ -34,37 +97,31 @@ public class Fenetre extends javax.swing.JFrame {
 
         panelPlanningModifier = new javax.swing.JPanel();
         pLblPlanning3 = new javax.swing.JLabel();
-        labelChoixP1 = new javax.swing.JLabel();
-        comboChoixP1 = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        supprimerP1 = new javax.swing.JButton();
-        tfAnneeDP1 = new javax.swing.JTextField();
-        moisDP1 = new javax.swing.JTextField();
-        jourDP1 = new javax.swing.JTextField();
-        tfAnneeFP1 = new javax.swing.JTextField();
-        moisFP1 = new javax.swing.JTextField();
-        jourFP1 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        panelPlanningHome = new javax.swing.JPanel();
-        pLblPlanning = new javax.swing.JLabel();
-        pCreerB = new javax.swing.JButton();
-        pModifierP = new javax.swing.JButton();
-        pSupprimerB = new javax.swing.JButton();
+        javax.swing.JLabel labelChoixP1 = new javax.swing.JLabel();
+        comboChoixPModif = new javax.swing.JComboBox<>();
+        javax.swing.JLabel jLabel3 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel4 = new javax.swing.JLabel();
+        Modifier = new javax.swing.JButton();
+        newDateDebutPicker = new com.github.lgooddatepicker.components.DatePicker();
+        newDateFinPicker = new com.github.lgooddatepicker.components.DatePicker();
+        javax.swing.JLabel jLabel5 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        tfNewNomP = new javax.swing.JTextField();
+        ancienneDateDPM = new javax.swing.JLabel();
+        ancienneDateFPM = new javax.swing.JLabel();
+        ancienNomPM = new javax.swing.JLabel();
         panelPlanningCreer = new javax.swing.JPanel();
         labelNomP = new javax.swing.JLabel();
         labelDateDP = new javax.swing.JLabel();
         labelDateFP = new javax.swing.JLabel();
         tfNomP = new javax.swing.JTextField();
-        tfAnneeDP = new javax.swing.JTextField();
-        tfAnneeFP = new javax.swing.JTextField();
-        moisDP = new javax.swing.JTextField();
-        jourDP = new javax.swing.JTextField();
-        moisFP = new javax.swing.JTextField();
-        jourFP = new javax.swing.JTextField();
         creerPB = new javax.swing.JButton();
         pLblPlanning2 = new javax.swing.JLabel();
+        dateDebutPickerP = new com.github.lgooddatepicker.components.DatePicker();
+        dateFinPickerP = new com.github.lgooddatepicker.components.DatePicker();
         panelPlanningSupprimer = new javax.swing.JPanel();
         pLblPlanning1 = new javax.swing.JLabel();
         comboChoixP = new javax.swing.JComboBox<>();
@@ -74,10 +131,15 @@ public class Fenetre extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        panelPlanningHome = new javax.swing.JPanel();
+        pLblPlanning = new javax.swing.JLabel();
+        pCreerB = new javax.swing.JButton();
+        pModifierP = new javax.swing.JButton();
+        pSupprimerB = new javax.swing.JButton();
 
-        panelPlanningModifier.setMaximumSize(new java.awt.Dimension(800, 400));
-        panelPlanningModifier.setMinimumSize(new java.awt.Dimension(800, 400));
-        panelPlanningModifier.setPreferredSize(new java.awt.Dimension(800, 400));
+        panelPlanningModifier.setMaximumSize(new java.awt.Dimension(1000, 500));
+        panelPlanningModifier.setMinimumSize(new java.awt.Dimension(1000, 500));
+        panelPlanningModifier.setPreferredSize(new java.awt.Dimension(1000, 500));
 
         pLblPlanning3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         pLblPlanning3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -86,52 +148,40 @@ public class Fenetre extends javax.swing.JFrame {
 
         labelChoixP1.setText("Choissisez un planning: ");
 
-        comboChoixP1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboChoixP1.addActionListener(new java.awt.event.ActionListener() {
+        comboChoixPModif.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboChoixP1ActionPerformed(evt);
+                comboChoixPModifActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("date de début: ");
+        jLabel3.setText("nouvelle date de début: ");
 
-        jLabel4.setText("date de fin: ");
+        jLabel4.setText("nouvelle date de fin: ");
 
-        supprimerP1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        supprimerP1.setText("Modifier");
-        supprimerP1.addActionListener(new java.awt.event.ActionListener() {
+        Modifier.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Modifier.setText("Modifier");
+        Modifier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                supprimerP1ActionPerformed(evt);
+                ModifierActionPerformed(evt);
             }
         });
 
-        tfAnneeDP1.setText("yyyy");
-        tfAnneeDP1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfAnneeDP1ActionPerformed(evt);
-            }
-        });
+        jLabel5.setText("ancienne date de début: ");
 
-        moisDP1.setText("mm");
+        jLabel6.setText("ancienne date de fin: ");
 
-        jourDP1.setText("dd");
+        jLabel8.setText("ancien nom du planning:");
 
-        tfAnneeFP1.setText("yyyy");
+        jLabel9.setText("nouveau nom:");
 
-        moisFP1.setText("mm");
+        jLabel7.setText("(optionnel)");
 
-        jourFP1.setText("dd");
+        ancienneDateDPM.setForeground(new java.awt.Color(255, 0, 0));
+        ancienneDateDPM.setText(" ");
 
-        jTextField3.setEditable(false);
-        jTextField3.setText("dateDébutInitiale");
+        ancienneDateFPM.setForeground(new java.awt.Color(255, 0, 0));
 
-        jTextField4.setEditable(false);
-        jTextField4.setText("dateFinInitiale");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
+        ancienNomPM.setForeground(new java.awt.Color(255, 0, 0));
 
         panelPlanningModifier.setVisible(false);
 
@@ -140,155 +190,90 @@ public class Fenetre extends javax.swing.JFrame {
         panelPlanningModifierLayout.setHorizontalGroup(
             panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPlanningModifierLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPlanningModifierLayout.createSequentialGroup()
-                        .addComponent(labelChoixP1)
-                        .addGap(18, 18, 18)
-                        .addComponent(comboChoixP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52))
+                        .addGap(26, 26, 26)
+                        .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(11, 11, 11))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPlanningModifierLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addContainerGap()
+                        .addComponent(labelChoixP1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPlanningModifierLayout.createSequentialGroup()
-                        .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(panelPlanningModifierLayout.createSequentialGroup()
-                                    .addComponent(jourDP1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(11, 11, 11))
-                                .addComponent(moisDP1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tfAnneeDP1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelPlanningModifierLayout.createSequentialGroup()
-                                .addGap(144, 144, 144)
-                                .addComponent(jLabel4))
-                            .addGroup(panelPlanningModifierLayout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
-                        .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfAnneeFP1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(moisFP1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jourFP1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(93, 93, 93)
-                        .addComponent(supprimerP1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32))
+                        .addComponent(comboChoixPModif, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(216, 216, 216)
+                        .addComponent(jLabel7))
                     .addGroup(panelPlanningModifierLayout.createSequentialGroup()
-                        .addComponent(pLblPlanning3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelPlanningModifierLayout.createSequentialGroup()
+                                .addGap(226, 226, 226)
+                                .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGroup(panelPlanningModifierLayout.createSequentialGroup()
+                                .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(ancienneDateFPM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ancienneDateDPM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ancienNomPM, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(66, 66, 66)))
+                        .addGap(31, 31, 31)
+                        .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(newDateDebutPicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(newDateFinPicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfNewNomP, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Modifier, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(106, 106, 106))
+            .addGroup(panelPlanningModifierLayout.createSequentialGroup()
+                .addGap(350, 350, 350)
+                .addComponent(pLblPlanning3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(350, 350, 350))
         );
         panelPlanningModifierLayout.setVerticalGroup(
             panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPlanningModifierLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(pLblPlanning3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboChoixPModif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelChoixP1)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelPlanningModifierLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(comboChoixP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelChoixP1)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(39, 39, 39)
-                        .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(16, 16, 16)
-                        .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfAnneeDP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfAnneeFP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(moisFP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(moisDP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jourFP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jourDP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPlanningModifierLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(supprimerP1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(133, 133, 133))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(newDateDebutPicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(ancienneDateDPM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel4)
+                    .addComponent(newDateFinPicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ancienneDateFPM, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Modifier, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9)
+                    .addComponent(tfNewNomP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ancienNomPM, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 400));
-        setMinimumSize(new java.awt.Dimension(800, 400));
+        setMaximumSize(new java.awt.Dimension(1000, 500));
+        setMinimumSize(new java.awt.Dimension(1000, 500));
         setName("applicaationFrame"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(800, 400));
-        setSize(new java.awt.Dimension(800, 400));
-
-        panelPlanningHome.setMaximumSize(new java.awt.Dimension(800, 400));
-        panelPlanningHome.setMinimumSize(new java.awt.Dimension(800, 400));
-        panelPlanningHome.setPreferredSize(new java.awt.Dimension(800, 400));
-
-        pLblPlanning.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        pLblPlanning.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        pLblPlanning.setText("Planning");
-        pLblPlanning.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        pCreerB.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        pCreerB.setText("Créer");
-        pCreerB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pCreerBActionPerformed(evt);
-            }
-        });
-
-        pModifierP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        pModifierP.setText("Modifier");
-        pModifierP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pModifierPActionPerformed(evt);
-            }
-        });
-
-        pSupprimerB.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        pSupprimerB.setText("Supprimer");
-        pSupprimerB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pSupprimerBActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelPlanningHomeLayout = new javax.swing.GroupLayout(panelPlanningHome);
-        panelPlanningHome.setLayout(panelPlanningHomeLayout);
-        panelPlanningHomeLayout.setHorizontalGroup(
-            panelPlanningHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelPlanningHomeLayout.createSequentialGroup()
-                .addGroup(panelPlanningHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelPlanningHomeLayout.createSequentialGroup()
-                        .addGap(250, 250, 250)
-                        .addComponent(pLblPlanning, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelPlanningHomeLayout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(pCreerB, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70)
-                        .addComponent(pModifierP, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70)
-                        .addComponent(pSupprimerB, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(90, Short.MAX_VALUE))
-        );
-        panelPlanningHomeLayout.setVerticalGroup(
-            panelPlanningHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelPlanningHomeLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(pLblPlanning, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addGroup(panelPlanningHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pCreerB, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pModifierP, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pSupprimerB, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60))
-        );
-
-        pLblPlanning.getAccessibleContext().setAccessibleName("pPlanningL");
-        pCreerB.getAccessibleContext().setAccessibleName("pCreerB");
-        pModifierP.getAccessibleContext().setAccessibleName("plModifierB");
-        pSupprimerB.getAccessibleContext().setAccessibleName("pSupprimerB");
+        setPreferredSize(new java.awt.Dimension(1000, 500));
+        setSize(new java.awt.Dimension(1000, 500));
 
         panelPlanningCreer.setMaximumSize(new java.awt.Dimension(800, 400));
         panelPlanningCreer.setMinimumSize(new java.awt.Dimension(800, 400));
@@ -299,25 +284,12 @@ public class Fenetre extends javax.swing.JFrame {
 
         labelDateFP.setText("Date fIn:");
 
-        tfNomP.setText("nom planning");
         tfNomP.setName(""); // NOI18N
         tfNomP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfNomPActionPerformed(evt);
             }
         });
-
-        tfAnneeDP.setText("yyyy");
-
-        tfAnneeFP.setText("yyyy");
-
-        moisDP.setText("mm");
-
-        jourDP.setText("dd");
-
-        moisFP.setText("mm");
-
-        jourFP.setText("dd");
 
         creerPB.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         creerPB.setText("Créer");
@@ -340,29 +312,20 @@ public class Fenetre extends javax.swing.JFrame {
                 .addGap(125, 125, 125)
                 .addGroup(panelPlanningCreerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelNomP)
-                    .addComponent(labelDateDP)
-                    .addComponent(labelDateFP))
-                .addGap(104, 104, 104)
+                    .addComponent(labelDateDP, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelDateFP, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(88, 88, 88)
                 .addGroup(panelPlanningCreerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPlanningCreerLayout.createSequentialGroup()
-                        .addComponent(tfAnneeFP, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(moisFP, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jourFP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(panelPlanningCreerLayout.createSequentialGroup()
-                        .addComponent(tfNomP, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panelPlanningCreerLayout.createSequentialGroup()
-                        .addComponent(tfAnneeDP, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(moisDP, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jourDP, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelPlanningCreerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(dateFinPickerP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dateDebutPickerP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(creerPB, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48))))
+                        .addGap(48, 48, 48))
+                    .addGroup(panelPlanningCreerLayout.createSequentialGroup()
+                        .addComponent(tfNomP, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPlanningCreerLayout.createSequentialGroup()
                 .addContainerGap(270, Short.MAX_VALUE)
                 .addComponent(pLblPlanning2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -380,17 +343,13 @@ public class Fenetre extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(panelPlanningCreerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(creerPB, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfAnneeDP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(moisDP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jourDP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelDateDP))
-                .addGap(23, 23, 23)
+                    .addComponent(labelDateDP)
+                    .addComponent(dateDebutPickerP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addGroup(panelPlanningCreerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelDateFP)
-                    .addComponent(tfAnneeFP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(moisFP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jourFP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(124, Short.MAX_VALUE))
+                    .addComponent(dateFinPickerP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
 
         panelPlanningCreer.setVisible(false);
@@ -488,6 +447,75 @@ public class Fenetre extends javax.swing.JFrame {
                 .addContainerGap(131, Short.MAX_VALUE))
         );
 
+        panelPlanningHome.setMaximumSize(new java.awt.Dimension(800, 400));
+        panelPlanningHome.setMinimumSize(new java.awt.Dimension(800, 400));
+        panelPlanningHome.setPreferredSize(new java.awt.Dimension(800, 400));
+
+        pLblPlanning.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        pLblPlanning.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pLblPlanning.setText("Planning");
+        pLblPlanning.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        pCreerB.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        pCreerB.setText("Créer");
+        pCreerB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pCreerBActionPerformed(evt);
+            }
+        });
+
+        pModifierP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        pModifierP.setText("Modifier");
+        pModifierP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pModifierPActionPerformed(evt);
+            }
+        });
+
+        pSupprimerB.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        pSupprimerB.setText("Supprimer");
+        pSupprimerB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pSupprimerBActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelPlanningHomeLayout = new javax.swing.GroupLayout(panelPlanningHome);
+        panelPlanningHome.setLayout(panelPlanningHomeLayout);
+        panelPlanningHomeLayout.setHorizontalGroup(
+            panelPlanningHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPlanningHomeLayout.createSequentialGroup()
+                .addGroup(panelPlanningHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelPlanningHomeLayout.createSequentialGroup()
+                        .addGap(250, 250, 250)
+                        .addComponent(pLblPlanning, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelPlanningHomeLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(pCreerB, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(pModifierP, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(pSupprimerB, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(90, Short.MAX_VALUE))
+        );
+        panelPlanningHomeLayout.setVerticalGroup(
+            panelPlanningHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPlanningHomeLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(pLblPlanning, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addGroup(panelPlanningHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pCreerB, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pModifierP, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pSupprimerB, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60))
+        );
+
+        pLblPlanning.getAccessibleContext().setAccessibleName("pPlanningL");
+        pCreerB.getAccessibleContext().setAccessibleName("pCreerB");
+        pModifierP.getAccessibleContext().setAccessibleName("plModifierB");
+        pSupprimerB.getAccessibleContext().setAccessibleName("pSupprimerB");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -496,12 +524,12 @@ public class Fenetre extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(panelPlanningHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelPlanningSupprimer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(panelPlanningSupprimer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelPlanningHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
@@ -509,14 +537,14 @@ public class Fenetre extends javax.swing.JFrame {
             .addComponent(panelPlanningCreer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(panelPlanningHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(panelPlanningSupprimer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panelPlanningHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         panelPlanningHome.getAccessibleContext().setAccessibleName("planningHomePanel");
@@ -538,12 +566,49 @@ public class Fenetre extends javax.swing.JFrame {
     }//GEN-LAST:event_tfNomPActionPerformed
 
     private void creerPBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creerPBActionPerformed
-        // TODO add your handling code here:
+
+        LocalDate dateDebut = dateDebutPickerP.getDate();
+        LocalDate dateFin = dateFinPickerP.getDate();
+        
+        if(tfNomP.getText()!=null){
+            
+            if(dateDebut==null || dateFin==null){
+                JOptionPane.showMessageDialog(null,"Veuillez choisir des dates valides");
+            } else
+            if(dateFin.isAfter(dateDebut)){
+                
+                Date dateD = Date.from(dateDebut.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                Date dateF = Date.from(dateFin.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                String nomPlanning = tfNomP.getText();
+                Planning p = new Planning(dateD, dateF, nomPlanning);
+                try {
+                    this.planningDAO.create(p);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                JOptionPane.showMessageDialog(null,"L'insertion à bien marché");
+                
+            }else JOptionPane.showMessageDialog(null,"Veuillez choisir une date de fin supérieure à celle de début");
+            
+        }else JOptionPane.showMessageDialog(null,"Veuillez insérer un nom de Planning correcte");
     }//GEN-LAST:event_creerPBActionPerformed
 
     private void pModifierPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pModifierPActionPerformed
         this.getContentPane().setVisible(false);
         this.setContentPane(panelPlanningModifier);
+        comboChoixPModif.removeAllItems();
+        try{
+            lesPlannings = planningDAO.findAll();
+                for (Planning p : lesPlannings){
+                    String stringP = "";
+                    stringP = p.getIdPlanning()+" - " + p.getNomPlanning();
+                    comboChoixPModif.addItem(stringP);
+                }
+        } catch (SQLException ex) {
+            Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        comboChoixPModif.revalidate();
+        comboChoixPModif.repaint();
         panelPlanningModifier.setVisible(true);
     }//GEN-LAST:event_pModifierPActionPerformed
 
@@ -565,21 +630,90 @@ public class Fenetre extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void comboChoixP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboChoixP1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboChoixP1ActionPerformed
+    private void comboChoixPModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboChoixPModifActionPerformed
+    if(comboChoixPModif.getSelectedIndex()!=-1){
+        Planning p = lesPlannings.get(comboChoixPModif.getSelectedIndex());
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateD = sdf.format(p.getDateDebut());
+        String dateF = sdf.format(p.getDateFin());
+        ancienneDateDPM.setText(dateD);
+        ancienneDateFPM.setText(dateF);
+        ancienNomPM.setText(p.getNomPlanning());
+    }
 
-    private void supprimerP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerP1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_supprimerP1ActionPerformed
+    }//GEN-LAST:event_comboChoixPModifActionPerformed
 
-    private void tfAnneeDP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAnneeDP1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfAnneeDP1ActionPerformed
+    private void ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifierActionPerformed
+        comboChoixPModif.removeAllItems();
+        try{
+            ArrayList<Planning> lesPlanning = planningDAO.findAll();
+                for (Planning p : lesPlanning){
+                    String stringP = "";
+                    stringP = p.getIdPlanning()+" - " + p.getNomPlanning();
+                    comboChoixPModif.addItem(stringP);
+                }
+        } catch (SQLException ex) {
+            Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+        
+        LocalDate dateDebut = newDateDebutPicker.getDate();
+        LocalDate dateFin = newDateFinPicker.getDate();
+        String newNom = tfNewNomP.getText();
+        int index =  -1;
+        if(comboChoixPModif.getSelectedIndex()!=-1){
+            index = comboChoixPModif.getSelectedIndex();
+        }
+        
+        if(index!= -1){
+            Planning p = lesPlannings.get(index);
+            if(dateDebut!=null){
+                Date dateD = Date.from(dateDebut.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                if(dateFin!=null){
+                    Date dateF = Date.from(dateFin.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                    if(dateFin.isAfter(dateDebut)){
+                        p.setDateDebut(dateD);
+                        p.setDateFin(dateF);
+                    }else JOptionPane.showMessageDialog(null,"Veuillez choisir une date de fin supérieure à celle de début");
+                }
+                LocalDate dateF = p.getDateFin().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                if(dateF.isAfter(dateDebut)){
+                    p.setDateDebut(dateD);
+                }else JOptionPane.showMessageDialog(null,"Veuillez choisir une date de début inférieure à l'ancienne date de fin");
+                
+            }
+            if(dateFin!=null){
+                LocalDate dateD = p.getDateDebut().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                if(dateFin.isAfter(dateD)){
+                    Date dateF = Date.from(dateFin.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                }else JOptionPane.showMessageDialog(null,"Veuillez choisir une date de fin supérieure à l'ancienne date de début");
+            }
+            if(!newNom.equals("") && !newNom.equals(ancienNomPM.getText())){
+                p.setNomPlanning(newNom);
+            }
+            
+            try{
+                planningDAO.update(p);
+                    comboChoixPModif.removeAllItems();
+                    try{
+                        ArrayList<Planning> lesPlanning = planningDAO.findAll();
+                            for (Planning pt : lesPlanning){
+                                String stringP = "";
+                                stringP = pt.getIdPlanning()+" - " + pt.getNomPlanning();
+                                comboChoixPModif.addItem(stringP);
+                            }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            } catch (SQLException ex) {
+                Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        comboChoixPModif.revalidate();
+        comboChoixPModif.repaint();
+        panelPlanningModifier.setVisible(true);
+    }//GEN-LAST:event_ModifierActionPerformed
 
     /**
      * @param args the command line arguments
@@ -624,30 +758,28 @@ public class Fenetre extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Modifier;
+    private javax.swing.JLabel ancienNomPM;
+    private javax.swing.JLabel ancienneDateDPM;
+    private javax.swing.JLabel ancienneDateFPM;
     private javax.swing.JComboBox<String> comboChoixP;
-    private javax.swing.JComboBox<String> comboChoixP1;
+    private javax.swing.JComboBox<String> comboChoixPModif;
     private javax.swing.JButton creerPB;
+    private com.github.lgooddatepicker.components.DatePicker dateDebutPickerP;
+    private com.github.lgooddatepicker.components.DatePicker dateFinPickerP;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jourDP;
-    private javax.swing.JTextField jourDP1;
-    private javax.swing.JTextField jourFP;
-    private javax.swing.JTextField jourFP1;
     private javax.swing.JLabel labelChoixP;
-    private javax.swing.JLabel labelChoixP1;
     private javax.swing.JLabel labelDateDP;
     private javax.swing.JLabel labelDateFP;
     private javax.swing.JLabel labelNomP;
-    private javax.swing.JTextField moisDP;
-    private javax.swing.JTextField moisDP1;
-    private javax.swing.JTextField moisFP;
-    private javax.swing.JTextField moisFP1;
+    private com.github.lgooddatepicker.components.DatePicker newDateDebutPicker;
+    private com.github.lgooddatepicker.components.DatePicker newDateFinPicker;
     private javax.swing.JButton pCreerB;
     private javax.swing.JLabel pLblPlanning;
     private javax.swing.JLabel pLblPlanning1;
@@ -660,11 +792,7 @@ public class Fenetre extends javax.swing.JFrame {
     private javax.swing.JPanel panelPlanningModifier;
     private javax.swing.JPanel panelPlanningSupprimer;
     private javax.swing.JButton supprimerP;
-    private javax.swing.JButton supprimerP1;
-    private javax.swing.JTextField tfAnneeDP;
-    private javax.swing.JTextField tfAnneeDP1;
-    private javax.swing.JTextField tfAnneeFP;
-    private javax.swing.JTextField tfAnneeFP1;
+    private javax.swing.JTextField tfNewNomP;
     private javax.swing.JTextField tfNomP;
     // End of variables declaration//GEN-END:variables
 }
