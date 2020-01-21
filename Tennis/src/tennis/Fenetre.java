@@ -137,6 +137,13 @@ public class Fenetre extends javax.swing.JFrame {
         pModifierP = new javax.swing.JButton();
         pSupprimerB = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1000, 500));
+        setMinimumSize(new java.awt.Dimension(1000, 500));
+        setName("applicaationFrame"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1000, 500));
+        setSize(new java.awt.Dimension(1000, 500));
+
         panelPlanningModifier.setMaximumSize(new java.awt.Dimension(1000, 500));
         panelPlanningModifier.setMinimumSize(new java.awt.Dimension(1000, 500));
         panelPlanningModifier.setPreferredSize(new java.awt.Dimension(1000, 500));
@@ -253,27 +260,22 @@ public class Fenetre extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addComponent(ancienneDateDPM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
-                .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel4)
-                    .addComponent(newDateFinPicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ancienneDateFPM, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Modifier, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ancienneDateFPM, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(jLabel4)
+                        .addComponent(newDateFinPicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Modifier, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9)
-                    .addComponent(tfNewNomP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ancienNomPM, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ancienNomPM, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelPlanningModifierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(jLabel9)
+                        .addComponent(tfNewNomP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(112, Short.MAX_VALUE))
         );
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1000, 500));
-        setMinimumSize(new java.awt.Dimension(1000, 500));
-        setName("applicaationFrame"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1000, 500));
-        setSize(new java.awt.Dimension(1000, 500));
 
         panelPlanningCreer.setMaximumSize(new java.awt.Dimension(800, 400));
         panelPlanningCreer.setMinimumSize(new java.awt.Dimension(800, 400));
@@ -451,29 +453,29 @@ public class Fenetre extends javax.swing.JFrame {
         panelPlanningHome.setMinimumSize(new java.awt.Dimension(800, 400));
         panelPlanningHome.setPreferredSize(new java.awt.Dimension(800, 400));
 
-        pLblPlanning.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         pLblPlanning.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pLblPlanning.setText("Planning");
+        pLblPlanning.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         pLblPlanning.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        pCreerB.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         pCreerB.setText("Créer");
+        pCreerB.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         pCreerB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pCreerBActionPerformed(evt);
             }
         });
 
-        pModifierP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         pModifierP.setText("Modifier");
+        pModifierP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         pModifierP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pModifierPActionPerformed(evt);
             }
         });
 
-        pSupprimerB.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         pSupprimerB.setText("Supprimer");
+        pSupprimerB.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         pSupprimerB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pSupprimerBActionPerformed(evt);
@@ -524,13 +526,18 @@ public class Fenetre extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(panelPlanningSupprimer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelPlanningSupprimer, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE)
                     .addContainerGap()))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(panelPlanningHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelPlanningHome, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE)
                     .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panelPlanningModifier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -538,12 +545,17 @@ public class Fenetre extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(panelPlanningSupprimer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelPlanningSupprimer, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
                     .addContainerGap()))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(panelPlanningHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panelPlanningModifier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -644,6 +656,47 @@ public class Fenetre extends javax.swing.JFrame {
     }//GEN-LAST:event_comboChoixPModifActionPerformed
 
     private void ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifierActionPerformed
+        LocalDate dateDebut = newDateDebutPicker.getDate();
+        LocalDate dateFin = newDateFinPicker.getDate();
+        String newNom = tfNewNomP.getText();
+        int index =  -1;
+        if(comboChoixPModif.getSelectedIndex()!=-1){
+            index = comboChoixPModif.getSelectedIndex();
+        }
+        
+        if(index!= -1){
+            Planning plan = lesPlannings.get(index);
+            if(dateDebut!=null){
+                Date dateD = Date.from(dateDebut.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                if(dateFin!=null){
+                    Date dateF = Date.from(dateFin.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                    if(dateFin.isAfter(dateDebut)){
+                        plan.setDateDebut(dateD);
+                        plan.setDateFin(dateF);
+                    }else JOptionPane.showMessageDialog(null,"Veuillez choisir une date de fin supérieure à celle de début");
+                }
+                LocalDate dateF = plan.getDateFin().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                if(dateF.isAfter(dateDebut)){
+                    plan.setDateDebut(dateD);
+                }else JOptionPane.showMessageDialog(null,"Veuillez choisir une date de début inférieure à l'ancienne date de fin");
+                
+            }
+            if(dateFin!=null){
+                LocalDate dateD = plan.getDateDebut().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                if(dateFin.isAfter(dateD)){
+                    Date dateF = Date.from(dateFin.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                }else JOptionPane.showMessageDialog(null,"Veuillez choisir une date de fin supérieure à l'ancienne date de début");
+            }
+            if(!newNom.equals("") && !newNom.equals(ancienNomPM.getText())){
+                plan.setNomPlanning(newNom);
+            }
+            
+            try{
+                planningDAO.update(plan);
+            } catch (SQLException ex) {
+                Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         comboChoixPModif.removeAllItems();
         try{
             ArrayList<Planning> lesPlanning = planningDAO.findAll();
@@ -655,61 +708,6 @@ public class Fenetre extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        
-        LocalDate dateDebut = newDateDebutPicker.getDate();
-        LocalDate dateFin = newDateFinPicker.getDate();
-        String newNom = tfNewNomP.getText();
-        int index =  -1;
-        if(comboChoixPModif.getSelectedIndex()!=-1){
-            index = comboChoixPModif.getSelectedIndex();
-        }
-        
-        if(index!= -1){
-            Planning p = lesPlannings.get(index);
-            if(dateDebut!=null){
-                Date dateD = Date.from(dateDebut.atStartOfDay(ZoneId.systemDefault()).toInstant());
-                if(dateFin!=null){
-                    Date dateF = Date.from(dateFin.atStartOfDay(ZoneId.systemDefault()).toInstant());
-                    if(dateFin.isAfter(dateDebut)){
-                        p.setDateDebut(dateD);
-                        p.setDateFin(dateF);
-                    }else JOptionPane.showMessageDialog(null,"Veuillez choisir une date de fin supérieure à celle de début");
-                }
-                LocalDate dateF = p.getDateFin().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                if(dateF.isAfter(dateDebut)){
-                    p.setDateDebut(dateD);
-                }else JOptionPane.showMessageDialog(null,"Veuillez choisir une date de début inférieure à l'ancienne date de fin");
-                
-            }
-            if(dateFin!=null){
-                LocalDate dateD = p.getDateDebut().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                if(dateFin.isAfter(dateD)){
-                    Date dateF = Date.from(dateFin.atStartOfDay(ZoneId.systemDefault()).toInstant());
-                }else JOptionPane.showMessageDialog(null,"Veuillez choisir une date de fin supérieure à l'ancienne date de début");
-            }
-            if(!newNom.equals("") && !newNom.equals(ancienNomPM.getText())){
-                p.setNomPlanning(newNom);
-            }
-            
-            try{
-                planningDAO.update(p);
-                    comboChoixPModif.removeAllItems();
-                    try{
-                        ArrayList<Planning> lesPlanning = planningDAO.findAll();
-                            for (Planning pt : lesPlanning){
-                                String stringP = "";
-                                stringP = pt.getIdPlanning()+" - " + pt.getNomPlanning();
-                                comboChoixPModif.addItem(stringP);
-                            }
-                    } catch (SQLException ex) {
-                        Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-            } catch (SQLException ex) {
-                Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        
         comboChoixPModif.revalidate();
         comboChoixPModif.repaint();
         panelPlanningModifier.setVisible(true);
