@@ -33,7 +33,8 @@
                 <img src="{{asset('images/billetsbg.jpg')}}" style="height: 50vh;">
                 <div class="card-body bg-light" style="background: #384d9b; color:black;font-size: 1.8vh; opacity: 0.95;">
                 <h4 class="text-center">Billets pour la journée {{session()->get('matchExiste')['dateMatch']}}</h4>
-                           <hr>     
+                <h5 class="text-center">Court {{session()->get('matchExiste')['court']}}</h5>
+                           <hr>
                         @foreach ($billets as $billet)
                             @if ($billet->quantite>0)
                             <div class="d-flex justify-content-between">
@@ -46,8 +47,13 @@
                                     <input type="hidden" value="{{$billet->id}}" name="id">
                                     <input type="hidden" value="{{$billet->typeMatch}}" name="typeMatch">
                                     <input type="hidden" value="{{$billet->prix}}" name="prix">
+                                    <select class="form-control mr-2" name="place">
+                                        <option value="0">Placement libre (0€)</option>
+                                        <option value="15">Niveaux 1 et 2 (+15€)</option>
+                                        <option value="30">Niveaux 3 (+30€)</option>
+                                    </select>
                                     <input type="number" class="form-control text-center mr-2" value="1" name="quantite" style="width: 6vh;">
-                                    <button type="submit" class="btn btn-success form-control">
+                                    <button type="submit" class="btn btn-success">
                                         <i class="fas fa-check"></i>
                                     </button>
                                 </div>
