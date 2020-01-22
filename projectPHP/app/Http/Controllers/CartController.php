@@ -17,13 +17,15 @@ class CartController extends Controller
 
     public function add(Request $request)
     {
-        $quantite = Billet::findOrFail($request->id);
+        $quantite = Billet::where('id', $request->id)->first();
+        /* return $quantite . '<br>' . $request->id . '<br>' . $request->typeMatch . '<br>' . $request->quantite . '<br>' . $request->prix; */
         if($quantite->quantite >= $request->quantite)
         {
-            $billet = Cart::add($request->id, $request->typeMatch, $request->quantite, $request->prix, []);
+            $q =  Cart::content();
+            Cart::add($quantite->id, $quantite->typeMatch, $request->quantite, $quantite->prix+$request->place, ['place' => $request->place]);
             $quantite->quantite = $quantite->quantite - $request->quantite;
             $quantite->save();
-            return redirect()->route('billets.index', compact($request))->with('success', 'Billet(s) ajouté(s) à votre panier');
+            return redirect()->route('billets.index', ['contenu' => $q])->with('success', 'Billet(s) ajouté(s) à votre panier');
         }
         return redirect()->route('billets.index')->withErrors('Quantité insuffisante de billets.');
 
