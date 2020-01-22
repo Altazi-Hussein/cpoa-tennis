@@ -84,36 +84,82 @@ public class MatchDoubleDAO implements InterfaceMatchDoubleDAO {
     }
 
     @Override
-    public int create (MatchDouble ms) throws SQLException {
+    public int create (MatchDouble md) throws SQLException {
         int rowCount = 0;
-        PreparedStatement pst = null;
+PreparedStatement pst = null;
+        ResultSet rset = null;
+        boolean possible = false;
+        String texte = "";
         try {
-            pst = connexionBD.prepareStatement("INSERT INTO MatchDouble VALUES (?,?,?)");
-            pst.setInt(1, ms.getIdMatch());
-            pst.setInt(2, ms.getLesEquipesJoueur().get(0).getIdEquipe());
-            pst.setInt(3, ms.getLesEquipesJoueur().get(1).getIdEquipe());
-            rowCount += pst.executeUpdate();
-            pst = connexionBD.prepareStatement("INSERT INTO `Match` VALUES (?,?,?,?,?,?,?,?,?,?)");
-            pst.setInt(1, ms.getIdMatch());
-            pst.setInt(2, ms.getArbitreDeChaise().getIdArbitre());
-            pst.setInt(3, ms.getEquipeArbitresDeLigne().getIdEquipeAL());
-            pst.setInt(4, ms.getEquipeDeRamasseur().getIdEquipeR());
             
-            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String dateD = sdf.format(ms.getDateDebut());
-            String dateF = sdf.format(ms.getDateFin());
+            if(md.getTour()==4){ //1/8 de finale
+                pst = connexionBD.prepareStatement("select count(*) from `Match` where tour = 4 and idPlanning=?");
+                rset = pst.executeQuery();
+                if (rset.next()){
+                    if(rset.getInt(1)<16) possible = true; 
+                    else texte = "Il y a déjà 16 matchs pour les huitèmes de final";
+                }else possible = true;
+            }
             
-            pst.setString(5, dateD);
-            pst.setString(6, dateF);
-            pst.setInt(7, ms.getCourt().getIdCourt());
-            pst.setInt(8, ms.getIdGagnant());
-            pst.setInt(9, ms.getTour());
-            pst.setInt(10, ms.getIdPlanning());
-            rowCount += pst.executeUpdate();
+            if(md.getTour()==3){ //1/4 de finale
+                pst = connexionBD.prepareStatement("select count(*) from `Match` where tour = 3 and idPlanning=?");
+                rset = pst.executeQuery();
+                if (rset.next()){
+                    if(rset.getInt(1)<8) possible = true; 
+                    else texte = "Il y a déjà 8 matchs pour les quarts de final";
+                }else possible = true;
+            }
             
-            ScoreMatchDAO sDAO = new ScoreMatchDAO(connexionBD);
-            rowCount += sDAO.create(ms.getScore());
+            if(md.getTour()==2){ //1/2 de final
+                pst = connexionBD.prepareStatement("select count(*) from `Match` where tour = 2  and idPlanning=?");
+                rset = pst.executeQuery();
+                if (rset.next()){
+                    if(rset.getInt(1)<4) possible = true; 
+                    else texte = "Il y a déjà 4 matchs pour les demis-finals";
+                }else possible = true;
+            }
             
+            if(md.getTour()==1){ // final
+                pst = connexionBD.prepareStatement("select count(*) from `Match` where tour = 1  and idPlanning=?");
+                rset = pst.executeQuery();
+                if (rset.next()){
+                    if(rset.getInt(1)<2) possible = true; 
+                    else texte = "Il y a déjà 2 matchs pour la final";
+                }else possible = true;
+            }
+            
+            if (possible) possible = this.verifNoMatchNorReservation(md.getDateDebut(), md.getDateFin(), md.getIdPlanning());
+            
+            if(possible){
+                
+                pst = connexionBD.prepareStatement("INSERT INTO MatchSimple VALUES (?,?,?)");
+                pst.setInt(1, md.getIdMatch());
+                pst.setInt(2, md.getLesEquipesJoueur().get(0).getIdEquipe());
+                pst.setInt(3, md.getLesEquipesJoueur().get(1).getIdEquipe());
+                rowCount += pst.executeUpdate();
+                pst = connexionBD.prepareStatement("INSERT INTO `Match` VALUES (?,?,?,?,?,?,?,?,?,?)");
+                pst.setInt(1, md.getIdMatch());
+                pst.setInt(2, md.getArbitreDeChaise().getIdArbitre());
+                pst.setInt(3, md.getEquipeArbitresDeLigne().getIdEquipeAL());
+                pst.setInt(4, md.getEquipeDeRamasseur().getIdEquipeR());
+
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String dateD = sdf.format(md.getDateDebut());
+                String dateF = sdf.format(md.getDateFin());
+
+                pst.setString(5, dateD);
+                pst.setString(6, dateF);
+                pst.setInt(7, md.getCourt().getIdCourt());
+                pst.setInt(8, md.getIdGagnant());
+                pst.setInt(9, md.getTour());
+                pst.setInt(10, md.getIdPlanning());
+                rowCount += pst.executeUpdate();
+
+                ScoreMatchDAO sDAO = new ScoreMatchDAO(connexionBD);
+                rowCount += sDAO.create(md.getScore());
+            }else {
+                JOptionPane.showMessageDialog(null, texte);
+            }
         } catch (SQLException exc) {
             JOptionPane.showMessageDialog(null, "Code d'erreur : "+ exc.getErrorCode() +"\nMessage d'erreur : "+ exc.getMessage());
             rowCount = -1;
@@ -229,4 +275,61 @@ public class MatchDoubleDAO implements InterfaceMatchDoubleDAO {
         return rowCount;
     }
 
+        //fonction qui vérifie si les dates d'un match que l'on souhaite insérer ne sont pas prises par une réservation ou un autre match dans un planning
+    public boolean verifNoMatchNorReservation(Date dateDMD, Date dateFMD, int idPlanning) throws SQLException{
+        boolean bool = true;
+        PreparedStatement pst = null;
+        ResultSet rset;
+        try{
+            pst = connexionBD.prepareStatement("select count(*) from `Match` where idPlanning = ? "
+                    + "and ((dateDebutM<? and dateFinM>?) "  //si les dates du match à ajouter se trouve entre deux autres dates d'un match
+                    + "or (dateDebutM>? and dateFinM>?) "  //si la date de fin du match à ajouter se trouve entre les deux autres dates d'un match
+                    + "or (dateFinM<? and dateDebutM<?));");  //si la date de début du match à ajouter se trouve entre les deux autres dates d'un match
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String dateD = sdf.format(dateDMD);
+            String dateF = sdf.format(dateFMD);
+            pst.setInt(1, idPlanning);
+            
+            pst.setString(1, dateD);
+            pst.setString(2, dateF);
+            
+            pst.setString(3, dateF);
+            pst.setString(4, dateF);
+            
+            pst.setString(5, dateD);
+            pst.setString(6, dateD);
+            
+            rset = pst.executeQuery();
+            if (rset.next()){
+                bool = false;  //s'il y a un résultat alors on renvoie qu'on ne peut ajouter le match
+            }  
+            else{ //sinon on fait les mêmes tests avec les réservations d'entrainement
+                    
+                    pst = connexionBD.prepareStatement("select count(*) from ReservationEntrainement where idPlanning = ? "
+                    + "and ((dateDebutR<? and dateFinR>?) " 
+                    + "or (dateDebutR>? and dateFinR>?) "  
+                    + "or (dateFinR<? and dateDebutR<?));");
+                            pst.setInt(1, idPlanning);
+            
+                    pst.setString(1, dateD);
+                    pst.setString(2, dateF);
+
+                    pst.setString(3, dateF);
+                    pst.setString(4, dateF);
+
+                    pst.setString(5, dateD);
+                    pst.setString(6, dateD);
+
+                    rset = pst.executeQuery();
+                    if (rset.next()){
+                        bool = false;  //s'il y a un résultat alors on renvoie qu'on ne peut ajouter le match
+                    }else bool = true; 
+                }
+        }catch (SQLException exc) {
+            throw exc;
+        }
+        return bool;
+        
+    }
+    
 }

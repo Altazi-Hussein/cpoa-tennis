@@ -8,6 +8,7 @@ package model.interfaces;
 import classesJava.ReservationEntrainement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 public interface InterfaceReservationEntrainementDAO {
     public ArrayList<ReservationEntrainement> findAll() throws SQLException;
     public ReservationEntrainement findById(int idReservationEntrainement) throws SQLException;
+    public boolean verifNoMatchNorReservation(Date dateDMS, Date dateFMS, int idPlanning) throws SQLException;
     public int create (ReservationEntrainement res) throws SQLException;
     public int update (ReservationEntrainement res) throws SQLException;
     public int delete(ReservationEntrainement res) throws SQLException;

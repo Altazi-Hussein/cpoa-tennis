@@ -34,7 +34,7 @@ public class EquipeRamasseurDAO implements InterfaceEquipeRamasseurDAO{
         ResultSet rset;
         EquipeRamasseur equipe = null;
         try {
-            pst = connexionBD.prepareStatement("SELECT * FROM EquipeRamasseur WHERE idEquipeR=?");
+            pst = connexionBD.prepareStatement("SELECT * FROM RamasseurDeBalle WHERE idEquipeR=?");
             pst.setInt(1, idEquipe);
             rset = pst.executeQuery();
             RamasseurDeBalleDAO RDAO = new RamasseurDeBalleDAO(connexionBD);
