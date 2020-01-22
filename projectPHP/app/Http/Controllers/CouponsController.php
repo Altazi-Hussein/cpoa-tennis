@@ -59,6 +59,7 @@ class CouponsController extends Controller
     public function store(Request $request)
     {
         $code = Coupon::where('code', $request->code)->where('idBillet', $request->idBillet)->first();
+        $billet = Billet::where('id', $request->idBillet)->first();
         if(!$code)
         {
             return redirect()->route('panier.index')->withErrors('Code invalide, veuillez réessayer');
@@ -68,10 +69,10 @@ class CouponsController extends Controller
         {
             return redirect()->route('panier.index')->withErrors('Ce code n\'est plus valable.');
         }
-
+        $montant = $code->reduction/100 * $billet->prix * $request->quantite;
         session()->put('reduction', [
             'code' => $code->code,
-            'montant' => $code->discount(Cart::total()),
+            'montant' => $montant,
             'pourcentage' => $code->reduction,
         ]);
         $code->quantite = $code->quantite - 1;

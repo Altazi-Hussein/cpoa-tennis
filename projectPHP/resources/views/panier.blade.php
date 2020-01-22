@@ -70,6 +70,7 @@
                                 @csrf
                                 <div class="d-flex">
                                 <input placeholder="Code promo ?" name="code" id="code" class="form-control form-control-sm mr-2" type="text">
+                                <input type="hidden" value="{{$item->qty}}" name="quantite">
                                 <input type="hidden" value="{{$item->id}}" name="idBillet">
                                 <button type="submit" class="form-control form-control-sm btn-sm btn btn-primary w-25">
                                   <i class="fas fa-check"></i>
