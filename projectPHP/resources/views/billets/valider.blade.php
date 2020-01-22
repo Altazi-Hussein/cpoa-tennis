@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Récapitulatif d'achat
-                <a class="float-right" href="{{ URL::to('/') }}">Accueil</a></div>
+                <a class="float-right" href="{{ URL::previous() }}">Retour</a></div>
                 <div class="card-body">
                     @if (session()->has('success'))
                     <div class="alert alert-success">
