@@ -37,7 +37,6 @@
                         </thead>
                         <tbody>
                             @foreach (Cart::content() as $item)
-                           {{ Cart::content()->count()}}
                             <tr>
                             <td><div class="d-flex">
                                 <h5>{{$item->name}}</h5>
@@ -49,12 +48,12 @@
                                 </form>
                                 </div>
                                 @if ($item->name == 'Licenciés')
-                                @for ($i = 0; $i < $item->qty; $i++)
                                 <div class="d-flex">
                                     <form action="{{route('coupon.store')}}" method="post">
                                     @csrf
                                     <div class="d-flex">
                                     <input placeholder="Code licencié" name="code" id="code" class="form-control form-control-sm mr-2 mb-3" type="text">
+                                    <input type="hidden" value="{{$item->qty}}" name="quantite">
                                     <input type="hidden" value="{{$item->id}}" name="idBillet">
                                     <button type="submit" class="form-control form-control-sm btn-sm btn btn-primary w-25">
                                       <i class="fas fa-check"></i>
@@ -62,7 +61,6 @@
                                     </div>
                                     </form>
                                </div>
-                                @endfor
                                 @else
                                 <div class="d-flex">
                                 <br>
@@ -84,10 +82,14 @@
                             <form action="{{URL::route('panier.update', array('id' => $item->rowId))}}" method="post">
                                 @csrf
                                 <div class="d-flex">
+                                @if($item->name!="Licenciés")
                                 <input class="text-center form-control form-control-sm w-25 mr-2" name="quantite" id="quantite" type="number" value="{{$item->qty}}">
-                                <button class="btn btn-secondary btn-sm" type="submit"><i class="fas fa-check"></i>
-
+                                <button class="btn btn-secondary btn-sm" type="submit">
+                                    <i class="fas fa-check"></i>
                                 </button>
+                                @else
+                                <input class="text-center form-control form-control-sm w-25 mr-2" name="quantite" id="quantite" type="number" value="{{$item->qty}}" readonly>
+                                @endif
                                 </div>
                             </form>
                         </td>

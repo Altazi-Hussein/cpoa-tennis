@@ -47,8 +47,11 @@
 
                     <label class="mt-3" for="idBillet">Billet concerné</label>
                     <select class="form-control" name="idBillet" id="idBillet">
+                        <option selected="selected" value="{{$coupon->getBillet()->id}}">{{$coupon->getBillet()->typeMatch}}</option>
                         @foreach ($billets as $billet)
+                            @if($billet->id != $coupon->getBillet()->id)
                             <option value="{{$billet->id}}">{{$billet->typeMatch}}</option>
+                            @endif
                         @endforeach
                     </select>
 
