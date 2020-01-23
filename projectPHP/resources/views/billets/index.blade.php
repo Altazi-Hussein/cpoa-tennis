@@ -24,6 +24,7 @@
                 @endif
 
                 @php
+                $check = false;
                 foreach (Cart::content() as $item) {
                     if ($item->name == "Licenciés") {
                         $check = true;
@@ -31,6 +32,7 @@
                         $check = false;
                     }
                 }
+                echo $check;
                 @endphp
 
                 {{-- <form action="{{url('add')}}" method="post">
