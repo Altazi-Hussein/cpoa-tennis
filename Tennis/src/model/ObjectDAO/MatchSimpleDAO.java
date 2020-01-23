@@ -105,37 +105,53 @@ public class MatchSimpleDAO implements InterfaceMatchSimpleDAO {
             
             if(ms.getTour()==4){ //1/8 de finale
                 pst = connexionBD.prepareStatement("select count(*) from `Match` where tour = 4 and idPlanning=?");
+                pst.setInt(1, ms.getIdPlanning());
                 rset = pst.executeQuery();
                 if (rset.next()){
                     if(rset.getInt(1)<16) possible = true; 
-                    else texte = "Il y a déjà 16 matchs pour les huitèmes de final";
+                    else {
+                        texte = "Il y a déjà 16 matchs pour les huitèmes de final";
+                        possible = false;
+                    }
                 }else possible = true;
             }
             
             if(ms.getTour()==3){ //1/4 de finale
                 pst = connexionBD.prepareStatement("select count(*) from `Match` where tour = 3 and idPlanning=?");
+                pst.setInt(1, ms.getIdPlanning());
                 rset = pst.executeQuery();
                 if (rset.next()){
                     if(rset.getInt(1)<8) possible = true; 
-                    else texte = "Il y a déjà 8 matchs pour les quarts de final";
+                    else {
+                        texte = "Il y a déjà 8 matchs pour les quarts de final";
+                        possible = false;
+                    }
                 }else possible = true;
             }
             
             if(ms.getTour()==2){ //1/2 de final
                 pst = connexionBD.prepareStatement("select count(*) from `Match` where tour = 2  and idPlanning=?");
+                pst.setInt(1, ms.getIdPlanning());
                 rset = pst.executeQuery();
                 if (rset.next()){
                     if(rset.getInt(1)<4) possible = true; 
-                    else texte = "Il y a déjà 4 matchs pour les demis-finals";
+                    else {
+                        texte = "Il y a déjà 4 matchs pour les demis-finals";
+                        possible = false;
+                    }
                 }else possible = true;
             }
             
             if(ms.getTour()==1){ // final
                 pst = connexionBD.prepareStatement("select count(*) from `Match` where tour = 1  and idPlanning=?");
+                pst.setInt(1, ms.getIdPlanning());
                 rset = pst.executeQuery();
                 if (rset.next()){
                     if(rset.getInt(1)<2) possible = true; 
-                    else texte = "Il y a déjà 2 matchs pour la final";
+                    else {
+                        texte = "Il y a déjà 2 matchs pour la final";
+                        possible = false;
+                    }
                 }else possible = true;
             }
             
@@ -340,14 +356,14 @@ public class MatchSimpleDAO implements InterfaceMatchSimpleDAO {
             String dateF = sdf.format(dateFMS);
             pst.setInt(1, idPlanning);
             
-            pst.setString(1, dateD);
-            pst.setString(2, dateF);
-            
+            pst.setString(2, dateD);
             pst.setString(3, dateF);
-            pst.setString(4, dateF);
             
-            pst.setString(5, dateD);
+            pst.setString(4, dateF);
+            pst.setString(5, dateF);
+            
             pst.setString(6, dateD);
+            pst.setString(7, dateD);
             
             rset = pst.executeQuery();
             if (rset.next()){
@@ -361,19 +377,21 @@ public class MatchSimpleDAO implements InterfaceMatchSimpleDAO {
                     + "or (dateFinR<? and dateDebutR<?));");
                             pst.setInt(1, idPlanning);
             
-                    pst.setString(1, dateD);
-                    pst.setString(2, dateF);
-
+                    pst.setString(2, dateD);
                     pst.setString(3, dateF);
-                    pst.setString(4, dateF);
 
-                    pst.setString(5, dateD);
+                    pst.setString(4, dateF);
+                    pst.setString(5, dateF);
+
                     pst.setString(6, dateD);
+                    pst.setString(7, dateD);
 
                     rset = pst.executeQuery();
                     if (rset.next()){
                         bool = false;  //s'il y a un résultat alors on renvoie qu'on ne peut ajouter le match
-                    }else bool = true; 
+                    }else {
+                        bool = true;
+                    } 
                 }
         }catch (SQLException exc) {
             throw exc;

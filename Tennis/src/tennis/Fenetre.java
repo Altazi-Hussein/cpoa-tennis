@@ -75,6 +75,7 @@ public class Fenetre extends javax.swing.JFrame {
     private ArrayList<EquipeArbitreDeLigne> lesEquipesL;
     private ArrayList<ArbitreDeChaise> lesArbitresC;
     private ArrayList<Joueur> lesJoueurs;
+    private ArrayList<Court> lesCourts;
     
     /**
      * Creates new form Fenetre
@@ -330,7 +331,7 @@ public class Fenetre extends javax.swing.JFrame {
         jLabel59 = new javax.swing.JLabel();
         comboTourMS = new javax.swing.JComboBox<>();
         jLabel60 = new javax.swing.JLabel();
-        comboPlanningMS1 = new javax.swing.JComboBox<>();
+        comboPlanningMS = new javax.swing.JComboBox<>();
         panelMatchSimpleHome = new javax.swing.JPanel();
         pLblPlanning5 = new javax.swing.JLabel();
         mSCreerB = new javax.swing.JButton();
@@ -405,10 +406,10 @@ public class Fenetre extends javax.swing.JFrame {
             }
         });
 
-        pVoirMatchsB.setText("Voir matchs");
         pVoirMatchsB.setBackground(new java.awt.Color(192, 57, 43));
-        pVoirMatchsB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         pVoirMatchsB.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        pVoirMatchsB.setText("Voir matchs");
+        pVoirMatchsB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         pVoirMatchsB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pVoirMatchsBActionPerformed(evt);
@@ -455,13 +456,13 @@ public class Fenetre extends javax.swing.JFrame {
         panelPlanningModifier.setMinimumSize(new java.awt.Dimension(1000, 500));
         panelPlanningModifier.setPreferredSize(new java.awt.Dimension(1000, 500));
 
+        pLblPlanning3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         pLblPlanning3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pLblPlanning3.setText("Modifier Planning");
-        pLblPlanning3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         pLblPlanning3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        labelChoixP1.setText("Choissisez un planning: ");
         labelChoixP1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelChoixP1.setText("Choissisez un planning: ");
 
         comboChoixPModif.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         comboChoixPModif.addActionListener(new java.awt.event.ActionListener() {
@@ -470,16 +471,16 @@ public class Fenetre extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("nouvelle date de début: ");
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("nouvelle date de début: ");
 
-        jLabel4.setText("nouvelle date de fin: ");
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("nouvelle date de fin: ");
 
-        Modifier.setText("Modifier");
         Modifier.setBackground(new java.awt.Color(192, 57, 43));
-        Modifier.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         Modifier.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Modifier.setText("Modifier");
+        Modifier.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         Modifier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ModifierActionPerformed(evt);
@@ -490,20 +491,20 @@ public class Fenetre extends javax.swing.JFrame {
 
         newDateFinPicker.setBackground(new java.awt.Color(52, 152, 219));
 
-        jLabel5.setText("ancienne date de début: ");
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText("ancienne date de début: ");
 
-        jLabel6.setText("ancienne date de fin: ");
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("ancienne date de fin: ");
 
-        jLabel8.setText("ancien nom du planning:");
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("ancien nom du planning:");
 
-        jLabel9.setText("nouveau nom:");
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setText("nouveau nom:");
 
-        jLabel7.setText("(optionnel)");
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("(optionnel)");
 
         ancienneDateDPM.setText(" ");
         ancienneDateDPM.setForeground(new java.awt.Color(255, 0, 0));
@@ -616,14 +617,14 @@ public class Fenetre extends javax.swing.JFrame {
         panelPlanningCreer.setMaximumSize(new java.awt.Dimension(800, 400));
         panelPlanningCreer.setMinimumSize(new java.awt.Dimension(800, 400));
 
-        labelNomP.setText("Nom Planning:");
         labelNomP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelNomP.setText("Nom Planning:");
 
-        labelDateDP.setText("Date Début:");
         labelDateDP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelDateDP.setText("Date Début:");
 
-        labelDateFP.setText("Date fIn:");
         labelDateFP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelDateFP.setText("Date fIn:");
 
         tfNomP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tfNomP.setName(""); // NOI18N
@@ -633,19 +634,19 @@ public class Fenetre extends javax.swing.JFrame {
             }
         });
 
-        creerPB.setText("Créer");
         creerPB.setBackground(new java.awt.Color(192, 57, 43));
-        creerPB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         creerPB.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        creerPB.setText("Créer");
+        creerPB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         creerPB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 creerPBActionPerformed(evt);
             }
         });
 
+        pLblPlanning2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         pLblPlanning2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pLblPlanning2.setText("Créer Planning");
-        pLblPlanning2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         pLblPlanning2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         dateDebutPickerP.setBackground(new java.awt.Color(52, 152, 219));
@@ -714,9 +715,9 @@ public class Fenetre extends javax.swing.JFrame {
         panelPlanningSupprimer.setMinimumSize(new java.awt.Dimension(1000, 500));
         panelPlanningSupprimer.setPreferredSize(new java.awt.Dimension(1000, 500));
 
+        pLblPlanning1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         pLblPlanning1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pLblPlanning1.setText("Supprimer Planning");
-        pLblPlanning1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         pLblPlanning1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         comboChoixPSupprimer.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -726,32 +727,32 @@ public class Fenetre extends javax.swing.JFrame {
             }
         });
 
-        labelChoixP.setText("Choissisez un planning: ");
         labelChoixP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelChoixP.setText("Choissisez un planning: ");
 
-        supprimerP.setText("Supprimer");
         supprimerP.setBackground(new java.awt.Color(192, 57, 43));
-        supprimerP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         supprimerP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        supprimerP.setText("Supprimer");
+        supprimerP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         supprimerP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 supprimerPActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("date de début: ");
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("date de début: ");
 
-        jLabel2.setText("date de fin: ");
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("date de fin: ");
 
-        lblDateFinPS.setText(" ");
         lblDateFinPS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblDateFinPS.setForeground(new java.awt.Color(255, 0, 0));
+        lblDateFinPS.setText(" ");
 
-        lblDateDebutPS.setText(" ");
         lblDateDebutPS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblDateDebutPS.setForeground(new java.awt.Color(255, 0, 0));
+        lblDateDebutPS.setText(" ");
 
         panelPlanningSupprimer.setVisible(false);
 
@@ -812,9 +813,9 @@ public class Fenetre extends javax.swing.JFrame {
         panelPlanningMatchs.setVisible(false);
         panelPlanningMatchs.setMinimumSize(new java.awt.Dimension(1000, 500));
 
+        pLblPlanning4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         pLblPlanning4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pLblPlanning4.setText("Afficher matchs planning");
-        pLblPlanning4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         pLblPlanning4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         bPMS.setText("Matchs simples");
@@ -850,8 +851,8 @@ public class Fenetre extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setText("Choissisez le planning:");
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setText("Choissisez le planning:");
 
         javax.swing.GroupLayout panelPlanningMatchsLayout = new javax.swing.GroupLayout(panelPlanningMatchs);
         panelPlanningMatchs.setLayout(panelPlanningMatchsLayout);
@@ -898,141 +899,141 @@ public class Fenetre extends javax.swing.JFrame {
         panelPlanningMatchsSimples.setMaximumSize(new java.awt.Dimension(1000, 500));
         panelPlanningMatchsSimples.setMinimumSize(new java.awt.Dimension(1000, 500));
 
+        pLblPlanning6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         pLblPlanning6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pLblPlanning6.setText("Matchs simples du planning");
-        pLblPlanning6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         pLblPlanning6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jButton1.setText("1/8 final");
         jButton1.setBackground(new java.awt.Color(192, 57, 43));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton1.setText("1/8 final");
 
-        jButton2.setText("1/8 final");
         jButton2.setBackground(new java.awt.Color(192, 57, 43));
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton2.setText("1/8 final");
 
-        jButton3.setText("1/8 final");
         jButton3.setBackground(new java.awt.Color(192, 57, 43));
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton3.setText("1/8 final");
 
-        jButton4.setText("1/8 final");
         jButton4.setBackground(new java.awt.Color(192, 57, 43));
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton4.setText("1/8 final");
 
-        jButton5.setText("1/8 final");
         jButton5.setBackground(new java.awt.Color(192, 57, 43));
         jButton5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton5.setText("1/8 final");
 
-        jButton6.setText("1/8 final");
         jButton6.setBackground(new java.awt.Color(192, 57, 43));
         jButton6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton6.setText("1/8 final");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
 
-        jButton7.setText("1/8 final");
         jButton7.setBackground(new java.awt.Color(192, 57, 43));
         jButton7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton7.setText("1/8 final");
 
-        jButton8.setText("1/8 final");
         jButton8.setBackground(new java.awt.Color(192, 57, 43));
         jButton8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton8.setText("1/8 final");
 
-        jButton21.setText("1/4 final");
         jButton21.setBackground(new java.awt.Color(192, 57, 43));
         jButton21.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton21.setText("1/4 final");
 
-        jButton22.setText("1/4 final");
         jButton22.setBackground(new java.awt.Color(192, 57, 43));
         jButton22.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton22.setText("1/4 final");
 
-        jButton23.setText("1/4 final");
         jButton23.setBackground(new java.awt.Color(192, 57, 43));
         jButton23.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton23.setText("1/4 final");
 
-        jButton24.setText("1/4 final");
         jButton24.setBackground(new java.awt.Color(192, 57, 43));
         jButton24.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton24.setText("1/4 final");
 
-        jButton25.setText("1/2 final");
         jButton25.setBackground(new java.awt.Color(192, 57, 43));
         jButton25.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton25.setText("1/2 final");
 
-        jButton26.setText("1/2 final");
         jButton26.setBackground(new java.awt.Color(192, 57, 43));
         jButton26.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton26.setText("1/2 final");
 
-        jButton29.setText("finale");
         jButton29.setBackground(new java.awt.Color(192, 57, 43));
         jButton29.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton29.setText("finale");
         jButton29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton29ActionPerformed(evt);
             }
         });
 
-        jButton27.setText("1/2 final");
         jButton27.setBackground(new java.awt.Color(192, 57, 43));
         jButton27.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton27.setText("1/2 final");
 
-        jButton28.setText("1/2 final");
         jButton28.setBackground(new java.awt.Color(192, 57, 43));
         jButton28.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton28.setText("1/2 final");
 
-        jButton30.setText("1/4 final");
         jButton30.setBackground(new java.awt.Color(192, 57, 43));
         jButton30.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton30.setText("1/4 final");
 
-        jButton31.setText("1/4 final");
         jButton31.setBackground(new java.awt.Color(192, 57, 43));
         jButton31.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton31.setText("1/4 final");
 
-        jButton32.setText("1/4 final");
         jButton32.setBackground(new java.awt.Color(192, 57, 43));
         jButton32.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton32.setText("1/4 final");
 
-        jButton33.setText("1/4 final");
         jButton33.setBackground(new java.awt.Color(192, 57, 43));
         jButton33.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton33.setText("1/4 final");
 
-        jButton9.setText("1/8 final");
         jButton9.setBackground(new java.awt.Color(192, 57, 43));
         jButton9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton9.setText("1/8 final");
 
-        jButton10.setText("1/8 final");
         jButton10.setBackground(new java.awt.Color(192, 57, 43));
         jButton10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton10.setText("1/8 final");
 
-        jButton11.setText("1/8 final");
         jButton11.setBackground(new java.awt.Color(192, 57, 43));
         jButton11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton11.setText("1/8 final");
 
-        jButton12.setText("1/8 final");
         jButton12.setBackground(new java.awt.Color(192, 57, 43));
         jButton12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton12.setText("1/8 final");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
             }
         });
 
-        jButton13.setText("1/8 final");
         jButton13.setBackground(new java.awt.Color(192, 57, 43));
         jButton13.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton13.setText("1/8 final");
 
-        jButton14.setText("1/8 final");
         jButton14.setBackground(new java.awt.Color(192, 57, 43));
         jButton14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton14.setText("1/8 final");
 
-        jButton15.setText("1/8 final");
         jButton15.setBackground(new java.awt.Color(192, 57, 43));
         jButton15.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton15.setText("1/8 final");
 
-        jButton16.setText("1/8 final");
         jButton16.setBackground(new java.awt.Color(192, 57, 43));
         jButton16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton16.setText("1/8 final");
 
         jPanel2.setBackground(new java.awt.Color(127, 140, 141));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -1040,15 +1041,15 @@ public class Fenetre extends javax.swing.JFrame {
         jPanel2.setMinimumSize(new java.awt.Dimension(375, 150));
         jPanel2.setPreferredSize(new java.awt.Dimension(375, 150));
 
-        jLabel11.setText("Cliquez sur un match qui possède un id pour afficher plus d'info dessus");
         jLabel11.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel11.setText("Cliquez sur un match qui possède un id pour afficher plus d'info dessus");
 
         lblIdMS.setForeground(new java.awt.Color(255, 0, 0));
 
         jLabel15.setText("idMatch");
 
-        jLabel13.setText("Cliquez sur un match qui n'en possède pas pour en ajouter un");
         jLabel13.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel13.setText("Cliquez sur un match qui n'en possède pas pour en ajouter un");
 
         jLabel16.setText("Nom J1:");
 
@@ -1086,8 +1087,8 @@ public class Fenetre extends javax.swing.JFrame {
 
         lblNatACMS.setForeground(new java.awt.Color(255, 0, 0));
 
-        bAfficherPlusMS.setText("Afficher plus");
         bAfficherPlusMS.setBackground(new java.awt.Color(192, 57, 43));
+        bAfficherPlusMS.setText("Afficher plus");
         bAfficherPlusMS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bAfficherPlusMSActionPerformed(evt);
@@ -1358,60 +1359,60 @@ public class Fenetre extends javax.swing.JFrame {
         panelPlanningMatchSimpleAgrandit.setMaximumSize(new java.awt.Dimension(1000, 500));
         panelPlanningMatchSimpleAgrandit.setMinimumSize(new java.awt.Dimension(1000, 500));
 
+        pLblPlanning8.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         pLblPlanning8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pLblPlanning8.setText("Match simple");
-        pLblPlanning8.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         pLblPlanning8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jLabel30.setText("Date de début du match: ");
         jLabel30.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel30.setText("Date de début du match: ");
 
-        jLabel31.setText("Date de fin du match: ");
         jLabel31.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel31.setText("Date de fin du match: ");
 
-        bSupprimerMS.setText("Supprimer match");
         bSupprimerMS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bSupprimerMS.setText("Supprimer match");
         bSupprimerMS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bSupprimerMSActionPerformed(evt);
             }
         });
 
-        bModifierMS.setText("Modifier match");
         bModifierMS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bModifierMS.setText("Modifier match");
 
-        jLabel32.setText("Nom joueur 1:");
         jLabel32.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel32.setText("Nom joueur 1:");
 
-        jLabel33.setText("Nom joueur 2:");
         jLabel33.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel33.setText("Nom joueur 2:");
 
-        jLabel34.setText("Prenom joueur 1:");
         jLabel34.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel34.setText("Prenom joueur 1:");
 
-        jLabel35.setText("Prenom joueur 2:");
         jLabel35.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel35.setText("Prenom joueur 2:");
 
-        jLabel36.setText("Score joueur 1:");
         jLabel36.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel36.setText("Score joueur 1:");
 
-        jLabel37.setText("Nationalité joueur 2:");
         jLabel37.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel37.setText("Nationalité joueur 2:");
 
-        jLabel38.setText("Nationalité joueur 1:");
         jLabel38.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel38.setText("Nationalité joueur 1:");
 
-        jLabel39.setText("Score joueur 2:");
         jLabel39.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel39.setText("Score joueur 2:");
 
-        jLabel40.setText("Prenom arbitre de chaise:");
         jLabel40.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel40.setText("Prenom arbitre de chaise:");
 
-        jLabel41.setText("Nom arbitre de chaise:");
         jLabel41.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel41.setText("Nom arbitre de chaise:");
 
-        jLabel42.setText("Nationalité arbitre de chaise:");
         jLabel42.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel42.setText("Nationalité arbitre de chaise:");
 
         idJ2MS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         idJ2MS.setForeground(new java.awt.Color(255, 0, 0));
@@ -1440,20 +1441,20 @@ public class Fenetre extends javax.swing.JFrame {
         natACMS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         natACMS.setForeground(new java.awt.Color(255, 0, 0));
 
-        jLabel43.setText("id du joueur gagnant:");
         jLabel43.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel43.setText("id du joueur gagnant:");
 
-        jLabel44.setText("id du joueur 2:");
         jLabel44.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel44.setText("id du joueur 2:");
 
-        jLabel45.setText("id du joueur 1:");
         jLabel45.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel45.setText("id du joueur 1:");
 
-        jLabel46.setText("id arbitre de chaise:");
         jLabel46.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel46.setText("id arbitre de chaise:");
 
-        jLabel47.setText("id match:");
         jLabel47.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel47.setText("id match:");
 
         idMS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         idMS.setForeground(new java.awt.Color(255, 0, 0));
@@ -1510,50 +1511,51 @@ public class Fenetre extends javax.swing.JFrame {
                             .addComponent(jLabel45))
                         .addGap(10, 10, 10)
                         .addGroup(panelPlanningMatchSimpleAgranditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelPlanningMatchSimpleAgranditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(panelPlanningMatchSimpleAgranditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelPlanningMatchSimpleAgranditLayout.createSequentialGroup()
-                                        .addGroup(panelPlanningMatchSimpleAgranditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelPlanningMatchSimpleAgranditLayout.createSequentialGroup()
-                                                .addComponent(prenomJ1MS, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel35))
-                                            .addGroup(panelPlanningMatchSimpleAgranditLayout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addGroup(panelPlanningMatchSimpleAgranditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jLabel33)
-                                                    .addGroup(panelPlanningMatchSimpleAgranditLayout.createSequentialGroup()
-                                                        .addComponent(natJ1MS, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(jLabel37)))))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(panelPlanningMatchSimpleAgranditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(panelPlanningMatchSimpleAgranditLayout.createSequentialGroup()
-                                                .addComponent(natJ2MS, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel42))
-                                            .addGroup(panelPlanningMatchSimpleAgranditLayout.createSequentialGroup()
-                                                .addComponent(nomJ2MS, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel41))
-                                            .addGroup(panelPlanningMatchSimpleAgranditLayout.createSequentialGroup()
-                                                .addComponent(prenomJ2MS, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel40))))
-                                    .addGroup(panelPlanningMatchSimpleAgranditLayout.createSequentialGroup()
-                                        .addComponent(idJ1MS, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(39, 39, 39)
-                                        .addComponent(jLabel44)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(idJ2MS, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelPlanningMatchSimpleAgranditLayout.createSequentialGroup()
+                                .addGroup(panelPlanningMatchSimpleAgranditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelPlanningMatchSimpleAgranditLayout.createSequentialGroup()
+                                        .addComponent(prenomJ1MS, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel46))
-                                    .addComponent(nomJ1MS1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(scoreJ2MS, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(scoreJ1MS, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(dateFMS, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(idJGMS, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(dateDMS, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jLabel35))
+                                    .addGroup(panelPlanningMatchSimpleAgranditLayout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(panelPlanningMatchSimpleAgranditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel33)
+                                            .addGroup(panelPlanningMatchSimpleAgranditLayout.createSequentialGroup()
+                                                .addComponent(natJ1MS, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel37)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(panelPlanningMatchSimpleAgranditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(panelPlanningMatchSimpleAgranditLayout.createSequentialGroup()
+                                        .addComponent(natJ2MS, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel42))
+                                    .addGroup(panelPlanningMatchSimpleAgranditLayout.createSequentialGroup()
+                                        .addComponent(nomJ2MS, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel41))
+                                    .addGroup(panelPlanningMatchSimpleAgranditLayout.createSequentialGroup()
+                                        .addComponent(prenomJ2MS, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel40))))
+                            .addGroup(panelPlanningMatchSimpleAgranditLayout.createSequentialGroup()
+                                .addComponent(idJ1MS, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(jLabel44)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(idJ2MS, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel46))
+                            .addGroup(panelPlanningMatchSimpleAgranditLayout.createSequentialGroup()
+                                .addGroup(panelPlanningMatchSimpleAgranditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(nomJ1MS1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(scoreJ2MS, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(scoreJ1MS, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(idJGMS, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dateDMS, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(dateFMS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(10, 10, 10)
                 .addGroup(panelPlanningMatchSimpleAgranditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nomACMS, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1676,156 +1678,156 @@ public class Fenetre extends javax.swing.JFrame {
         panelPlanningMatchsDoubles.setMaximumSize(new java.awt.Dimension(1000, 500));
         panelPlanningMatchsDoubles.setMinimumSize(new java.awt.Dimension(1000, 500));
 
+        pLblPlanning7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         pLblPlanning7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pLblPlanning7.setText("Matchs doubles du planning");
-        pLblPlanning7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         pLblPlanning7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jButton17.setText("1/8 final");
         jButton17.setBackground(new java.awt.Color(192, 57, 43));
         jButton17.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton17.setText("1/8 final");
 
-        jButton18.setText("1/8 final");
         jButton18.setBackground(new java.awt.Color(192, 57, 43));
         jButton18.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton18.setText("1/8 final");
 
-        jButton19.setText("1/8 final");
         jButton19.setBackground(new java.awt.Color(192, 57, 43));
         jButton19.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton19.setText("1/8 final");
 
-        jButton20.setText("1/8 final");
         jButton20.setBackground(new java.awt.Color(192, 57, 43));
         jButton20.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton20.setText("1/8 final");
 
-        jButton34.setText("1/8 final");
         jButton34.setBackground(new java.awt.Color(192, 57, 43));
         jButton34.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton34.setText("1/8 final");
 
-        jButton35.setText("1/8 final");
         jButton35.setBackground(new java.awt.Color(192, 57, 43));
         jButton35.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton35.setText("1/8 final");
         jButton35.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton35ActionPerformed(evt);
             }
         });
 
-        jButton36.setText("1/8 final");
         jButton36.setBackground(new java.awt.Color(192, 57, 43));
         jButton36.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton36.setText("1/8 final");
 
-        jButton37.setText("1/8 final");
         jButton37.setBackground(new java.awt.Color(192, 57, 43));
         jButton37.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton37.setText("1/8 final");
 
-        jButton38.setText("1/4 final");
         jButton38.setBackground(new java.awt.Color(192, 57, 43));
         jButton38.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton38.setText("1/4 final");
 
-        jButton39.setText("1/4 final");
         jButton39.setBackground(new java.awt.Color(192, 57, 43));
         jButton39.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton39.setText("1/4 final");
 
-        jButton40.setText("1/4 final");
         jButton40.setBackground(new java.awt.Color(192, 57, 43));
         jButton40.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton40.setText("1/4 final");
 
-        jButton41.setText("1/4 final");
         jButton41.setBackground(new java.awt.Color(192, 57, 43));
         jButton41.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton41.setText("1/4 final");
 
-        jButton42.setText("1/2 final");
         jButton42.setBackground(new java.awt.Color(192, 57, 43));
         jButton42.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton42.setText("1/2 final");
 
-        jButton43.setText("1/2 final");
         jButton43.setBackground(new java.awt.Color(192, 57, 43));
         jButton43.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton43.setText("1/2 final");
 
-        jButton44.setText("final");
         jButton44.setBackground(new java.awt.Color(192, 57, 43));
         jButton44.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton44.setText("final");
         jButton44.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton44ActionPerformed(evt);
             }
         });
 
-        jButton45.setText("1/2 final");
         jButton45.setBackground(new java.awt.Color(192, 57, 43));
         jButton45.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton45.setText("1/2 final");
 
-        jButton46.setText("1/2 final");
         jButton46.setBackground(new java.awt.Color(192, 57, 43));
         jButton46.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton46.setText("1/2 final");
 
-        jButton47.setText("1/4 final");
         jButton47.setBackground(new java.awt.Color(192, 57, 43));
         jButton47.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton47.setText("1/4 final");
 
-        jButton48.setText("1/4 final");
         jButton48.setBackground(new java.awt.Color(192, 57, 43));
         jButton48.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton48.setText("1/4 final");
 
-        jButton49.setText("1/4 final");
         jButton49.setBackground(new java.awt.Color(192, 57, 43));
         jButton49.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton49.setText("1/4 final");
 
-        jButton50.setText("1/4 final");
         jButton50.setBackground(new java.awt.Color(192, 57, 43));
         jButton50.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton50.setText("1/4 final");
 
-        jButton51.setText("1/8 final");
         jButton51.setBackground(new java.awt.Color(192, 57, 43));
         jButton51.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton51.setText("1/8 final");
 
-        jButton52.setText("1/8 final");
         jButton52.setBackground(new java.awt.Color(192, 57, 43));
         jButton52.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton52.setText("1/8 final");
 
-        jButton53.setText("1/8 final");
         jButton53.setBackground(new java.awt.Color(192, 57, 43));
         jButton53.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton53.setText("1/8 final");
 
-        jButton54.setText("1/8 final");
         jButton54.setBackground(new java.awt.Color(192, 57, 43));
         jButton54.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton54.setText("1/8 final");
         jButton54.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton54ActionPerformed(evt);
             }
         });
 
-        jButton55.setText("1/8 final");
         jButton55.setBackground(new java.awt.Color(192, 57, 43));
         jButton55.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton55.setText("1/8 final");
 
-        jButton56.setText("1/8 final");
         jButton56.setBackground(new java.awt.Color(192, 57, 43));
         jButton56.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton56.setText("1/8 final");
 
-        jButton57.setText("1/8 final");
         jButton57.setBackground(new java.awt.Color(192, 57, 43));
         jButton57.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton57.setText("1/8 final");
 
-        jButton58.setText("1/8 final");
         jButton58.setBackground(new java.awt.Color(192, 57, 43));
         jButton58.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton58.setText("1/8 final");
 
         jPanel4.setBackground(new java.awt.Color(127, 140, 141));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel4.setMaximumSize(new java.awt.Dimension(375, 150));
         jPanel4.setMinimumSize(new java.awt.Dimension(375, 150));
 
-        jLabel20.setText("Cliquez sur un match qui possède un id pour afficher plus d'info dessus");
         jLabel20.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel20.setText("Cliquez sur un match qui possède un id pour afficher plus d'info dessus");
 
         lblIdMS1.setForeground(new java.awt.Color(255, 0, 0));
 
         jLabel21.setText("idMatch");
 
-        jLabel22.setText("Cliquez sur un match qui n'en possède pas pour en ajouter un");
         jLabel22.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel22.setText("Cliquez sur un match qui n'en possède pas pour en ajouter un");
 
         jLabel23.setText("Nom J1:");
 
@@ -2123,11 +2125,11 @@ public class Fenetre extends javax.swing.JFrame {
 
         dateDebutCreerMS.setBackground(new java.awt.Color(52, 152, 219));
 
-        jLabel53.setText("Début du match:");
         jLabel53.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel53.setText("Début du match:");
 
-        jLabel54.setText("Fin du match:");
         jLabel54.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel54.setText("Fin du match:");
 
         mCreerMS.setBackground(new java.awt.Color(192, 57, 43));
         mCreerMS.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -2175,10 +2177,10 @@ public class Fenetre extends javax.swing.JFrame {
         jLabel60.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel60.setText("Court:");
 
-        comboPlanningMS1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        comboPlanningMS1.addActionListener(new java.awt.event.ActionListener() {
+        comboPlanningMS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        comboPlanningMS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboPlanningMS1ActionPerformed(evt);
+                comboPlanningMSActionPerformed(evt);
             }
         });
 
@@ -2206,7 +2208,7 @@ public class Fenetre extends javax.swing.JFrame {
                     .addComponent(comboERMS, 0, 80, Short.MAX_VALUE)
                     .addComponent(comboCourtsMS, 0, 80, Short.MAX_VALUE)
                     .addComponent(comboTourMS, 0, 80, Short.MAX_VALUE)
-                    .addComponent(comboPlanningMS1, 0, 80, Short.MAX_VALUE))
+                    .addComponent(comboPlanningMS, 0, 80, Short.MAX_VALUE))
                 .addGroup(panelMatchCreerMatchSimpleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMatchCreerMatchSimpleLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -2276,15 +2278,15 @@ public class Fenetre extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelMatchCreerMatchSimpleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel58)
-                            .addComponent(comboPlanningMS1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboPlanningMS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelMatchCreerMatchSimpleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel59)
                             .addComponent(comboTourMS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelMatchCreerMatchSimpleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel60)
-                            .addComponent(comboCourtsMS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelMatchCreerMatchSimpleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comboCourtsMS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel60))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMatchCreerMatchSimpleLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
@@ -2297,45 +2299,45 @@ public class Fenetre extends javax.swing.JFrame {
         panelMatchSimpleHome.setMaximumSize(new java.awt.Dimension(1000, 520));
         panelMatchSimpleHome.setMinimumSize(new java.awt.Dimension(1000, 520));
 
+        pLblPlanning5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         pLblPlanning5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pLblPlanning5.setText("Match Simple");
-        pLblPlanning5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         pLblPlanning5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        mSCreerB.setText("Créer");
         mSCreerB.setBackground(new java.awt.Color(192, 57, 43));
-        mSCreerB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         mSCreerB.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        mSCreerB.setText("Créer");
+        mSCreerB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         mSCreerB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mSCreerBActionPerformed(evt);
             }
         });
 
-        mSModifierB.setText("Modifier");
         mSModifierB.setBackground(new java.awt.Color(192, 57, 43));
-        mSModifierB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         mSModifierB.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        mSModifierB.setText("Modifier");
+        mSModifierB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         mSModifierB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mSModifierBActionPerformed(evt);
             }
         });
 
-        mSSupprimerB.setText("Supprimer");
         mSSupprimerB.setBackground(new java.awt.Color(192, 57, 43));
-        mSSupprimerB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         mSSupprimerB.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        mSSupprimerB.setText("Supprimer");
+        mSSupprimerB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         mSSupprimerB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mSSupprimerBActionPerformed(evt);
             }
         });
 
-        mSVoirMatchsB.setText("Voir matchs");
         mSVoirMatchsB.setBackground(new java.awt.Color(192, 57, 43));
-        mSVoirMatchsB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         mSVoirMatchsB.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        mSVoirMatchsB.setText("Voir matchs");
+        mSVoirMatchsB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         mSVoirMatchsB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mSVoirMatchsBActionPerformed(evt);
@@ -3021,6 +3023,70 @@ public class Fenetre extends javax.swing.JFrame {
         this.setContentPane(panelMatchCreerMatchSimple);
         panelMatchCreerMatchSimple.setVisible(true);
         
+        comboJoueur1MS.removeAllItems();
+        comboJoueur2MS.removeAllItems();
+        comboACMS.removeAllItems();
+        comboEALMS.removeAllItems();
+        comboERMS.removeAllItems();
+        comboPlanningMS.removeAllItems();
+        comboCourtsMS.removeAllItems();
+        
+        try{
+             lesJoueurs = JDAO.findAll();
+            if(lesJoueurs.size()>0){
+                for(Joueur j : lesJoueurs){
+                    String sJ = Integer.toString(j.getIdJoueur()) +" - " + j.getNomJ();
+                    comboJoueur1MS.addItem(sJ);
+                    comboJoueur2MS.addItem(sJ);
+                }
+            }
+            
+            lesArbitresC = (ArrayList<ArbitreDeChaise>) ACDAO.findAll();
+            
+            if(lesArbitresC.size()>0){
+                for(ArbitreDeChaise c : lesArbitresC){
+                    String sAC = Integer.toString(c.getIdArbitre()) +" - " + c.getNom();
+                    comboACMS.addItem(sAC);
+                }
+            }
+            
+            lesEquipesL = (ArrayList<EquipeArbitreDeLigne>) EALDAO.findAll();
+            
+            if(lesEquipesL.size()>0){
+                for(EquipeArbitreDeLigne eAL : lesEquipesL){
+                    String sEAL = Integer.toString(eAL.getIdEquipeAL());
+                    comboEALMS.addItem(sEAL);
+                }
+            }
+            
+            lesRamasseurs = (ArrayList<EquipeRamasseur>) ERDAO.findAll();
+            
+            if(lesEquipesL.size()>0){
+                for(EquipeRamasseur eRB : lesRamasseurs){
+                    String sRB = Integer.toString(eRB.getIdEquipeR());
+                    comboERMS.addItem(sRB);
+                }
+            }
+            
+            lesPlannings = planningDAO.findAll();
+            
+            if(lesPlannings.size()>0){
+                for(Planning p : lesPlannings){
+                    String sP = Integer.toString(p.getIdPlanning());
+                    comboPlanningMS.addItem(sP);
+                }
+            }
+            
+            lesCourts = courtDAO.findAll();
+            if(lesCourts.size()>0){
+                for(Court c : lesCourts){
+                    String sC = Integer.toString(c.getIdCourt()) + " - " + c.getTypeCourt();
+                    comboCourtsMS.addItem(sC);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_mSCreerBActionPerformed
 
     private void bSupprimerMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSupprimerMSActionPerformed
@@ -3098,7 +3164,7 @@ public class Fenetre extends javax.swing.JFrame {
         
         int indexER = comboERMS.getSelectedIndex();
         
-        int indexP = comboCourtsMS.getSelectedIndex();
+        int indexP = comboPlanningMS.getSelectedIndex();
         
         boolean tournoiC = checkTournoi.isSelected();
         
@@ -3132,50 +3198,66 @@ public class Fenetre extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(null,"Choissisez une equipe de ramasseur");
                         }else {
 
-                            if(dateDebut.isEqual(null)){
+                            if(dateDebut==null){
                                 JOptionPane.showMessageDialog(null,"Choissisez un date pour le match");
                             }else {
-                                if(heureFin.compareTo(heureDebut)==0){
-                                    JOptionPane.showMessageDialog(null,"Choissisez deux heures différents pour le match");
-                                }else {
-                                    if(heureFin.compareTo(heureDebut)<0){
-                                    JOptionPane.showMessageDialog(null,"Choissisez une heure de fin supérieur à l'heure de début");
-                                }else {
-                                        Joueur j1 = null;
-                                        Joueur j2 = null;
-                                        EquipeRamasseur eR = null;
-                                        EquipeArbitreDeLigne eAL = null;
-                                        ArbitreDeChaise aC = null;
-                                        Court c = null;
+                                
+                                if(heureDebut==null)JOptionPane.showMessageDialog(null,"Choissisez une heure de début");
+                                else if (heureFin==null)JOptionPane.showMessageDialog(null,"Choissisez une heure de fin");
+                                else{
 
-                                        ArrayList<Joueur> lesJ = new ArrayList<>();
-                                        j1 = lesJoueurs.get(indexJ1);
-                                        j2 = lesJoueurs.get(indexJ2);
-                                        lesJ.add(j1);
-                                        lesJ.add(j2);
+                                    if(heureFin.compareTo(heureDebut)==0){
+                                        JOptionPane.showMessageDialog(null,"Choissisez deux heures différents pour le match");
+                                    }else {
+                                        if(heureFin.compareTo(heureDebut)<0){
+                                        JOptionPane.showMessageDialog(null,"Choissisez une heure de fin supérieur à l'heure de début");
+                                    }else {
+                                            Joueur j1 = null;
+                                            Joueur j2 = null;
+                                            EquipeRamasseur eR = null;
+                                            EquipeArbitreDeLigne eAL = null;
+                                            ArbitreDeChaise aC = null;
+                                            Court c = null;
 
-                                        int idGagnant = 0;
+                                            ArrayList<Joueur> lesJ = new ArrayList<>();
+                                            j1 = lesJoueurs.get(indexJ1);
+                                            j2 = lesJoueurs.get(indexJ2);
+                                            lesJ.add(j1);
+                                            lesJ.add(j2);
 
-                                        eR = lesRamasseurs.get(indexER);
-                                        eAL = lesEquipesL.get(indexEAL);
-                                        aC = lesArbitresC.get(indexAC);
+                                            int idGagnant = 0;
 
-                                        int idPlanning = lesPlannings.get(indexP).getIdPlanning();
-                                        
-                                        int tournoi = 0;
+                                            eR = lesRamasseurs.get(indexER);
+                                            eAL = lesEquipesL.get(indexEAL);
+                                            aC = lesArbitresC.get(indexAC);
 
-                                        if(tournoiC) tournoi = 1;
-                                        else tournoi = 0;
+                                            int idPlanning = lesPlannings.get(indexP).getIdPlanning();
 
-                                        LocalDateTime dateDebutM = LocalDateTime.of(dateDebut,heureDebut);
-                                        LocalDateTime dateFinM = LocalDateTime.of(dateDebut,heureFin);
+                                            int tournoi = 0;
 
-                                        Date dateD = Date.from( dateDebutM.atZone( ZoneId.systemDefault()).toInstant());
-                                        Date dateF = Date.from( dateFinM.atZone( ZoneId.systemDefault()).toInstant());
+                                            if(tournoiC) tournoi = 1;
+                                            else tournoi = 0;
 
-                                        MatchSimple ms = new MatchSimple(tournoi, lesJ, idPlanning, aC, eAL, eR, dateD, dateF, c, tourNum, idGagnant);
+                                            LocalDateTime dateDebutM = LocalDateTime.of(dateDebut,heureDebut);
+                                            LocalDateTime dateFinM = LocalDateTime.of(dateDebut,heureFin);
 
-                                    }
+                                            Date dateD = Date.from( dateDebutM.atZone( ZoneId.systemDefault()).toInstant());
+                                            Date dateF = Date.from( dateFinM.atZone( ZoneId.systemDefault()).toInstant());
+
+                                            MatchSimple ms = new MatchSimple(tournoi, lesJ, idPlanning, aC, eAL, eR, dateD, dateF, c, tourNum, idGagnant);
+
+                                            int reply = JOptionPane.showConfirmDialog(null, "Etes-vous sûr de vouloir ajouter ce match simple ?", "Confirmer l'ajout", JOptionPane.YES_NO_OPTION);
+                                            if(reply == JOptionPane.YES_OPTION){
+                                                try{
+                                                    MSDAO.create(ms);
+                                                    JOptionPane.showMessageDialog(null,"Le match simple à été ajouté.");
+                                                } catch (SQLException ex) {
+                                                    Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
+                                                }
+                                            }
+                                        }
+                                    
+                                }
                                 }
                             }
                         }
@@ -3194,6 +3276,14 @@ public class Fenetre extends javax.swing.JFrame {
         this.getContentPane().setVisible(false);
         this.setContentPane(panelMatchCreerMatchSimple);
         panelMatchCreerMatchSimple.setVisible(true); 
+        
+        comboJoueur1MS.removeAllItems();
+        comboJoueur2MS.removeAllItems();
+        comboACMS.removeAllItems();
+        comboEALMS.removeAllItems();
+        comboERMS.removeAllItems();
+        comboPlanningMS.removeAllItems();
+        comboCourtsMS.removeAllItems();
         
         try{
              lesJoueurs = JDAO.findAll();
@@ -3232,7 +3322,23 @@ public class Fenetre extends javax.swing.JFrame {
                 }
             }
             
+            lesPlannings = planningDAO.findAll();
             
+            if(lesPlannings.size()>0){
+                for(Planning p : lesPlannings){
+                    String sP = Integer.toString(p.getIdPlanning());
+                    comboPlanningMS.addItem(sP);
+                }
+            }
+            
+            lesCourts = courtDAO.findAll();
+            
+            if(lesCourts.size()>0){
+                for(Court c : lesCourts){
+                    String sC = Integer.toString(c.getIdCourt()) + " - " + c.getTypeCourt();
+                    comboCourtsMS.addItem(sC);
+                }
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
@@ -3256,9 +3362,9 @@ public class Fenetre extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboTourMSActionPerformed
 
-    private void comboPlanningMS1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPlanningMS1ActionPerformed
+    private void comboPlanningMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPlanningMSActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comboPlanningMS1ActionPerformed
+    }//GEN-LAST:event_comboPlanningMSActionPerformed
 
     
     private ArrayList<JButton> getAllMatchSimplesButtonsByOrder(){
@@ -3492,7 +3598,7 @@ public class Fenetre extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboERMS;
     private javax.swing.JComboBox<String> comboJoueur1MS;
     private javax.swing.JComboBox<String> comboJoueur2MS;
-    private javax.swing.JComboBox<String> comboPlanningMS1;
+    private javax.swing.JComboBox<String> comboPlanningMS;
     private javax.swing.JComboBox<String> comboTourMS;
     private javax.swing.JButton creerPB;
     private javax.swing.JLabel dateDMS;
