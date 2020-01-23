@@ -143,32 +143,28 @@ public class MatchSimpleDAO implements InterfaceMatchSimpleDAO {
             
             if(possible){
                 
-                pst = connexionBD.prepareStatement("INSERT INTO MatchSimple VALUES (?,?,?,?)");
-                pst.setInt(1, ms.getIdMatch());
-                pst.setInt(2, ms.getLesJoueurs().get(0).getIdJoueur());
-                pst.setInt(3, ms.getLesJoueurs().get(1).getIdJoueur());
-                pst.setInt(4, ms.getTournoi());
+                pst = connexionBD.prepareStatement("INSERT INTO MatchSimple VALUES (?,?,?)");
+                pst.setInt(1, ms.getLesJoueurs().get(0).getIdJoueur());
+                pst.setInt(2, ms.getLesJoueurs().get(1).getIdJoueur());
+                pst.setInt(3, ms.getTournoi());
                 rowCount += pst.executeUpdate();
-                pst = connexionBD.prepareStatement("INSERT INTO `Match` VALUES (?,?,?,?,?,?,?,?,?,?)");
-                pst.setInt(1, ms.getIdMatch());
-                pst.setInt(2, ms.getArbitreDeChaise().getIdArbitre());
-                pst.setInt(3, ms.getEquipeArbitresDeLigne().getIdEquipeAL());
-                pst.setInt(4, ms.getEquipeDeRamasseur().getIdEquipeR());
+                pst = connexionBD.prepareStatement("INSERT INTO `Match` VALUES (?,?,?,?,?,?,?,?,?)");
+                pst.setInt(1, ms.getArbitreDeChaise().getIdArbitre());
+                pst.setInt(2, ms.getEquipeArbitresDeLigne().getIdEquipeAL());
+                pst.setInt(3, ms.getEquipeDeRamasseur().getIdEquipeR());
 
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String dateD = sdf.format(ms.getDateDebut());
                 String dateF = sdf.format(ms.getDateFin());
 
-                pst.setString(5, dateD);
-                pst.setString(6, dateF);
-                pst.setInt(7, ms.getCourt().getIdCourt());
-                pst.setInt(8, ms.getIdGagnant());
-                pst.setInt(9, ms.getTour());
-                pst.setInt(10, ms.getIdPlanning());
+                pst.setString(4, dateD);
+                pst.setString(5, dateF);
+                pst.setInt(6, ms.getCourt().getIdCourt());
+                pst.setInt(7, ms.getIdGagnant());
+                pst.setInt(8, ms.getTour());
+                pst.setInt(9, ms.getIdPlanning());
                 rowCount += pst.executeUpdate();
-
-                ScoreMatchDAO sDAO = new ScoreMatchDAO(connexionBD);
-                rowCount += sDAO.create(ms.getScore());
+                    
             }else {
                 JOptionPane.showMessageDialog(null, texte);
             }

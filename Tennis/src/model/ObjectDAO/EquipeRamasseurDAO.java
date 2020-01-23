@@ -65,7 +65,7 @@ public class EquipeRamasseurDAO implements InterfaceEquipeRamasseurDAO{
         ArrayList<EquipeRamasseur> lesEquipe = new ArrayList<EquipeRamasseur>();
         EquipeRamasseur equipe = null;
         try{
-            ResultSet rs = st.executeQuery("SELECT distinct idEquipeR from EquipeRamasseur");
+            ResultSet rs = st.executeQuery("SELECT distinct idEquipeR from RamasseurDeBalle");
             int no;
             while (rs.next()){
                 no = rs.getInt(1);

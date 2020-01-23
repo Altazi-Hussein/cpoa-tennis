@@ -23,6 +23,10 @@ public class ScoreMatch {
         this.scoreMatch = scoreMatch;
     }
 
+    public ScoreMatch(int idMatch) {
+        this.idMatch = idMatch;
+    }
+
     public int getIdMatch() {
         return idMatch;
     }

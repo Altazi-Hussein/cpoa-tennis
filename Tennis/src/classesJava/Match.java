@@ -43,6 +43,20 @@ public class Match {
         this.idGagnant = idGagnant;
     }
 
+    public Match(int idPlanning, ArbitreDeChaise arbitreDeChaise, EquipeArbitreDeLigne equipeArbitresDeLigne, EquipeRamasseur equipeDeRamasseur, Date dateDebut, Date dateFin, Court court, int tour, int idGagnant) {
+        this.idPlanning = idPlanning;
+        this.arbitreDeChaise = arbitreDeChaise;
+        this.equipeArbitresDeLigne = equipeArbitresDeLigne;
+        this.equipeDeRamasseur = equipeDeRamasseur;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.court = court;
+        this.tour = tour;
+        this.idGagnant = idGagnant;
+    }
+    
+    
+
     public int getTour() {
         return tour;
     }

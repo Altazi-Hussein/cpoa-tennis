@@ -15,6 +15,11 @@ public class MatchSimple extends Match {
         this.lesJoueurs = lesJoueurs;
     }
 
+    public MatchSimple(int tournoi, ArrayList<Joueur> lesJoueurs, int idPlanning, ArbitreDeChaise arbitreDeChaise, EquipeArbitreDeLigne equipeArbitresDeLigne, EquipeRamasseur equipeDeRamasseur, Date dateDebut, Date dateFin, Court court, int tour, int idGagnant) {
+        super(idPlanning, arbitreDeChaise, equipeArbitresDeLigne, equipeDeRamasseur, dateDebut, dateFin, court, tour, idGagnant);
+        this.tournoi = tournoi;
+        this.lesJoueurs = lesJoueurs;
+    }
     public ArrayList<Joueur> getLesJoueurs() {
         return lesJoueurs;
     }
