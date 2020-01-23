@@ -56,20 +56,25 @@ public class ReservationEntrainementDAO implements InterfaceReservationEntrainem
 
     @Override
     public int create (ReservationEntrainement res) throws SQLException {
-        int rowCount;
+        int rowCount = 0;
         PreparedStatement pst = null;
+        boolean possible = true;
         try {
-            pst = connexionBD.prepareStatement("INSERT INTO ReservationEntrainement VALUES (?,?,?,?,?)");
-            pst.setInt(1, res.getIdReservation());
-            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String dateD = sdf.format(res.getDateDebutR());
-            String dateF = sdf.format(res.getDateFinR());
-            pst.setString(2, dateD);
-            pst.setString(3, dateF);
-            pst.setInt(4, res.getIdCourt());
-            pst.setInt(5, res.getIdJoueur());
-            pst.setInt(6, res.getIdPlanning());
-            rowCount = pst.executeUpdate();
+            
+            possible = this.verifNoMatchNorReservation(res.getDateDebutR(), res.getDateFinR(), res.getIdPlanning());
+            if (possible) {
+                pst = connexionBD.prepareStatement("INSERT INTO ReservationEntrainement VALUES (?,?,?,?,?)");
+                pst.setInt(1, res.getIdReservation());
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String dateD = sdf.format(res.getDateDebutR());
+                String dateF = sdf.format(res.getDateFinR());
+                pst.setString(2, dateD);
+                pst.setString(3, dateF);
+                pst.setInt(4, res.getIdCourt());
+                pst.setInt(5, res.getIdJoueur());
+                pst.setInt(6, res.getIdPlanning());
+                rowCount = pst.executeUpdate();
+            }else JOptionPane.showMessageDialog(null, "Insértion impossible car il y a un match/une reservation à ces mêmes horaires");
 
         } catch (SQLException exc) {
             JOptionPane.showMessageDialog(null, "Code d'erreur : "+ exc.getErrorCode() +"\nMessage d'erreur : "+ exc.getMessage());
@@ -179,4 +184,61 @@ public class ReservationEntrainementDAO implements InterfaceReservationEntrainem
         return rowCount;
     }
 
+    //fonction qui vérifie si les dates d'une réservation que l'on souhaite insérer ne sont pas prises par une réservation ou un autre match dans un planning
+    public boolean verifNoMatchNorReservation(Date dateDR, Date dateFR, int idPlanning) throws SQLException{
+        boolean bool = true;
+        PreparedStatement pst = null;
+        ResultSet rset;
+        try{
+            pst = connexionBD.prepareStatement("select count(*) from `Match` where idPlanning = ? "
+                    + "and ((dateDebutM<? and dateFinM>?) "  //si les dates du match à ajouter se trouve entre deux autres dates d'un match
+                    + "or (dateDebutM>? and dateFinM>?) "  //si la date de fin du match à ajouter se trouve entre les deux autres dates d'un match
+                    + "or (dateFinM<? and dateDebutM<?));");  //si la date de début du match à ajouter se trouve entre les deux autres dates d'un match
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String dateD = sdf.format(dateDR);
+            String dateF = sdf.format(dateFR);
+            pst.setInt(1, idPlanning);
+            
+            pst.setString(1, dateD);
+            pst.setString(2, dateF);
+            
+            pst.setString(3, dateF);
+            pst.setString(4, dateF);
+            
+            pst.setString(5, dateD);
+            pst.setString(6, dateD);
+            
+            rset = pst.executeQuery();
+            if (rset.next()){
+                bool = false;  //s'il y a un résultat alors on renvoie qu'on ne peut ajouter le match
+            }  
+            else{ //sinon on fait les mêmes tests avec les réservations d'entrainement
+                    
+                    pst = connexionBD.prepareStatement("select count(*) from ReservationEntrainement where idPlanning = ? "
+                    + "and ((dateDebutR<? and dateFinR>?) " 
+                    + "or (dateDebutR>? and dateFinR>?) "  
+                    + "or (dateFinR<? and dateDebutR<?));");
+                            pst.setInt(1, idPlanning);
+            
+                    pst.setString(1, dateD);
+                    pst.setString(2, dateF);
+
+                    pst.setString(3, dateF);
+                    pst.setString(4, dateF);
+
+                    pst.setString(5, dateD);
+                    pst.setString(6, dateD);
+
+                    rset = pst.executeQuery();
+                    if (rset.next()){
+                        bool = false;  //s'il y a un résultat alors on renvoie qu'on ne peut ajouter le match
+                    }else bool = true; 
+                }
+        }catch (SQLException exc) {
+            throw exc;
+        }
+        return bool;
+        
+    }
+    
 }

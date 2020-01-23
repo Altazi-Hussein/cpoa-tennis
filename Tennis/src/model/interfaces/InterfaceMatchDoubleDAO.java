@@ -8,6 +8,7 @@ package model.interfaces;
 import classesJava.MatchDouble;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 public interface InterfaceMatchDoubleDAO {
     public ArrayList<MatchDouble> findAll(int idPlanning) throws SQLException;
     public MatchDouble findById(int idMatchDouble) throws SQLException;
+    public boolean verifNoMatchNorReservation(Date dateDMS, Date dateFMS, int idPlanning) throws SQLException;
     public int create (MatchDouble md) throws SQLException;
     public int update (MatchDouble md) throws SQLException;
     public int delete(MatchDouble md) throws SQLException;

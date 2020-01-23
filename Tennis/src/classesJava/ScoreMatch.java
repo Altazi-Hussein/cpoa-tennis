@@ -45,14 +45,26 @@ public class ScoreMatch {
         int numGagnant = 0;
         
         for(int i = 0; i<scoreMatch.length; i++){
-            if (scoreMatch[i][1] > scoreMatch[i][2])num1++;
-            else if (scoreMatch[i][1] > scoreMatch[i][2]) num2++;
+            if (scoreMatch[i][0] > scoreMatch[i][1])num1++;
+            else if (scoreMatch[i][0] > scoreMatch[i][1]) num2++;
         }
         
-        if (num1>num2) numGagnant = 1;
-        if (num1<num2) numGagnant = 2;
+        if (num1>num2) numGagnant = 0;
+        if (num1<num2) numGagnant = 1;
         
         return numGagnant;
     }
+    
+    public String getScoreJ1(){
+        String score = "|";
+            for(int i=0; i<this.scoreMatch.length; i++) score += scoreMatch[i][0] + "|";
+        return score;
+    }
+    
+    public String getScoreJ2(){
+    String score = "|";
+        for(int i=0; i<this.scoreMatch.length; i++) score += scoreMatch[i][1] + "|";
+    return score;
+}
     
 }
